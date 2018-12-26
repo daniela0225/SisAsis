@@ -1,17 +1,9 @@
 export default {
   items: [
-    {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
-    },
+    
     {
       title: true,
-      name: 'Theme',
+      name: 'Mantenimientos',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -19,40 +11,55 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Colors',
+      name: 'Registros',
       url: '/theme/colors',
-      icon: 'icon-drop',
+      icon: 'icon-pencil',
     },
     {
-      name: 'Typography',
+      name: 'Colegios',
+      url: '/theme/typography',
+      icon: 'icon-pencil',
+    },
+    {
+      name: 'Alumnos',
+      url: '/theme/typography',
+      icon: 'icon-pencil',
+    },
+    {
+      name: 'Usuarios',
+      url: '/theme/typography',
+      icon: 'icon-pencil',
+    },
+    {
+      name: 'Tutores',
       url: '/theme/typography',
       icon: 'icon-pencil',
     },
     {
       title: true,
-      name: 'Components',
+      name: 'Reportes',
       wrapper: {
         element: '',
         attributes: {},
       },
     },
     {
-      name: 'Base',
+      name: 'Reporte de alumno',
       url: '/base',
       icon: 'icon-puzzle',
       children: [
         {
-          name: 'Breadcrumbs',
+          name: 'Por fecha',
           url: '/base/breadcrumbs',
           icon: 'icon-puzzle',
         },
         {
-          name: 'Cards',
+          name: 'Busqueda de alumno',
           url: '/base/cards',
           icon: 'icon-puzzle',
         },
         {
-          name: 'Carousels',
+          name: 'General',
           url: '/base/carousels',
           icon: 'icon-puzzle',
         },
