@@ -25,7 +25,7 @@ import {
   Row,
 } from 'reactstrap';
 
-class Forms extends Component {
+class Formulario extends Component {
   constructor(props) {
     super(props);
 
@@ -64,7 +64,7 @@ class Forms extends Component {
                       <Label htmlFor="text-input">Nombre</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="text-input" placeholder="Text" />
+                      <Input type="text" id="text-input" name="text-input"/>
                       
                     </Col>
                   </FormGroup>
@@ -133,4 +133,4 @@ class Forms extends Component {
   }
 }
 
-export default Forms;
+export default Formulario;

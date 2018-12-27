@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Container, Jumbotron, Row } from 'reactstrap';
 
-class Jumbotrons extends Component {
+class Home extends Component {
 
   render() {
     return (
@@ -12,10 +12,13 @@ class Jumbotrons extends Component {
               
               <CardBody>
                 <Jumbotron>
-                  <h1 className="display-3">Bienvenido</h1>
-                  <p className="lead">Sistema de asistencias para la el colegio Internacional .</p>
+                  <h1 className="display-3">Colegio Internacional</h1>
+                  <p className="lead">Bienvenido a su Sistema de asistencias  .</p>
                   <hr className="my-2" />
-                  <p>En el menu de la izquierda encontrara los mantenimientos.</p>
+                 
+                  <center>
+                   <img src={'../../assets/img/avatars/instd.png'} height="20%" width="20%"  />
+                  </center>
                   
                 </Jumbotron>
               </CardBody>
@@ -28,4 +31,4 @@ class Jumbotrons extends Component {
   }
 }
 
-export default Jumbotrons;
+export default Home;

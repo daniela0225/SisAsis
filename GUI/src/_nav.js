@@ -12,27 +12,27 @@ export default {
     },
     {
       name: 'Registros',
-      url: '/theme/colors',
+      url: '/Home/Registros',
       icon: 'icon-pencil',
     },
     {
       name: 'Colegios',
-      url: '/theme/typography',
+      url: '/Home/Colegios',
       icon: 'icon-pencil',
     },
     {
       name: 'Alumnos',
-      url: '/theme/typography',
+      url: '/Home/Alumnos',
       icon: 'icon-pencil',
     },
     {
       name: 'Usuarios',
-      url: '/theme/typography',
+      url: '/Home/Usuarios',
       icon: 'icon-pencil',
     },
     {
       name: 'Tutores',
-      url: '/theme/typography',
+      url: '/Home/Tutores',
       icon: 'icon-pencil',
     },
     {

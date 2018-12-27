@@ -38,7 +38,16 @@ const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 
 
+const Home = React.lazy(() => import('./views/Home/Home'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
+const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
+const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
+const ListadoUsuarios = React.lazy(() => import('./views/Usuarios/Listado'));
+const ListadoTutores = React.lazy(() => import('./views/Tutores/Listado'));
+const FormularioColegio = React.lazy(() => import('./views/Colegios/Formulario'));
+const FormularioAlumno = React.lazy(() => import('./views/Alumnos/Formulario'));
+const FormularioUsuario = React.lazy(() => import('./views/Usuarios/Formulario'));
+const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 
 
 
@@ -52,9 +61,19 @@ const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Sistema de asistencias', component: DefaultLayout },
+  { path: '/Home', name: 'Home', component: Home, exact:true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/base/ListadoRegistros', name: 'Listado de Registros', component: ListadoRegistros },
+  { path: '/Data', name: 'Data', exact: true, component: ListadoRegistros },
+  { path: '/Home/Registros', exact:true, name: 'Registros', component: ListadoRegistros },
+  { path: '/Home/Colegios',exact:true, name: 'Colegios', component: ListadoColegios },
+  { path: '/Home/Colegios/Formulario', name: 'Formulario Colegio', component: FormularioColegio },
+  { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },
+  { path: '/Home/Alumnos/Formulario', name: 'Formulario Alumno', component: FormularioAlumno },
+  { path: '/Home/Usuarios',exact:true, name: 'Usuarios', component: ListadoUsuarios },
+  { path: '/Home/Usuarios/Formulario', name: 'Formulario Usuario', component: FormularioUsuario },
+  { path: '/Home/Tutores',exact:true, name: 'Tutores', component: ListadoTutores },
+  { path: '/Home/Tutores/Formulario', name: 'Formulario Tutor', component: FormularioTutor },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

@@ -25,7 +25,7 @@ import {
   Row,
 } from 'reactstrap';
 
-class Forms extends Component {
+class Formulario extends Component {
   constructor(props) {
     super(props);
 
@@ -54,67 +54,59 @@ class Forms extends Component {
          
             <Card>
               <CardHeader>
-                <strong>Formulario de Colegio</strong> 
+                <strong>Formulario de Tutor</strong> 
               </CardHeader>
               <CardBody>
                 <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
                   
                   <FormGroup row>
                     <Col md="3">
-                      <Label htmlFor="text-input">Nombre</Label>
+                      <Label htmlFor="text-input">Nombres</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="text-input" name="text-input" placeholder="Text" />
+                      <Input type="text" id="text-input" name="text-input"/>
                       
                     </Col>
                   </FormGroup>
                   <FormGroup row>
                     <Col md="3">
-                      <Label htmlFor="selectLg">Inicial</Label>
-                    </Col>
-                    <Col xs="12" md="9" size="lg">
-                      <Input type="select" name="selectLg" id="selectLg" bsSize="lg">
-                        <option value="0">Opciones..</option>
-                        <option value="1">TRUE</option>
-                        <option value="2">FALSE</option>
-                        
-                      </Input>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="selectLg">Primaria</Label>
-                    </Col>
-                    <Col xs="12" md="9" size="lg">
-                      <Input type="select" name="selectLg" id="selectLg" bsSize="lg">
-                        <option value="0">Opciones..</option>
-                        <option value="1">TRUE</option>
-                        <option value="2">FALSE</option>
-                        
-                      </Input>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="selectLg">Secundaria</Label>
-                    </Col>
-                    <Col xs="12" md="9" size="lg">
-                      <Input type="select" name="selectLg" id="selectLg" bsSize="lg">
-                        <option value="0">Opciones..</option>
-                        <option value="1">TRUE</option>
-                        <option value="2">FALSE</option>
-                        
-                      </Input>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="file-input">Logo Institucional</Label>
+                      <Label htmlFor="text-input">Apellidos</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="file" id="file-input" name="file-input" />
+                      <Input type="text" id="text-input" name="text-input"/>
+                      
                     </Col>
                   </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="text-input">Direccion</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="text" id="text-input" name="text-input"/>
+                      
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="text-input">Celular</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="text" id="text-input" name="text-input"/>
+                      
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="text-input">Email</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="text" id="text-input" name="text-input"/>
+                      
+                    </Col>
+                  </FormGroup>
+                 
+                  
+                  
 
                 </Form>
               </CardBody>
@@ -133,4 +125,4 @@ class Forms extends Component {
   }
 }
 
-export default Forms;
+export default Formulario;
