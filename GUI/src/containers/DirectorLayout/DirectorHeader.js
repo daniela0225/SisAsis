@@ -13,7 +13,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-class AdminHeader extends Component {
+class DirectorHeader extends Component {
   render() {
 
     // eslint-disable-next-line
@@ -58,4 +58,4 @@ class AdminHeader extends Component {
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
 
-export default AdminHeader;
+export default DirectorHeader;
