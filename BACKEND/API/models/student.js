@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var genders = 'MALE FEMALE'.split(' ');
-var sections = 'A B C D E F G H'.split(' ');
+var sections = 'A B C D E F G H UNIQUE'.split(' ');
 
 const recordSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
