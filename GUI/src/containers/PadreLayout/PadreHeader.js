@@ -55,7 +55,7 @@ class PadreHeader extends Component {
   }
 }
 
-DefaultHeader.propTypes = propTypes;
-DefaultHeader.defaultProps = defaultProps;
+PadreHeader.propTypes = propTypes;
+PadreHeader.defaultProps = defaultProps;
 
 export default PadreHeader;

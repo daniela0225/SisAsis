@@ -1,3 +1,3 @@
-import DefaultLayout from './DefaultLayout';
+import PadreLayout from './PadreLayout';
 
 export default PadreLayout;

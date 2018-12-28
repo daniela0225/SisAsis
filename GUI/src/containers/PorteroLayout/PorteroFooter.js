@@ -22,7 +22,7 @@ class PorteroFooter extends Component {
   }
 }
 
-DefaultFooter.propTypes = propTypes;
-DefaultFooter.defaultProps = defaultProps;
+PorteroFooter.propTypes = propTypes;
+PorteroFooter.defaultProps = defaultProps;
 
 export default PorteroFooter;

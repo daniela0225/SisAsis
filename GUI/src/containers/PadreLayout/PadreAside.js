@@ -311,7 +311,7 @@ class PadreAside extends Component {
   }
 }
 
-DefaultAside.propTypes = propTypes;
-DefaultAside.defaultProps = defaultProps;
+PadreAside.propTypes = propTypes;
+PadreAside.defaultProps = defaultProps;
 
 export default PadreAside;

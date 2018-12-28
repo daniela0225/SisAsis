@@ -311,7 +311,7 @@ class AdminAside extends Component {
   }
 }
 
-DefaultAside.propTypes = propTypes;
-DefaultAside.defaultProps = defaultProps;
+AdminAside.propTypes = propTypes;
+AdminAside.defaultProps = defaultProps;
 
 export default AdminAside;

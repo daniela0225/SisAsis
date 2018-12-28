@@ -55,7 +55,7 @@ class DirectorHeader extends Component {
   }
 }
 
-DefaultHeader.propTypes = propTypes;
-DefaultHeader.defaultProps = defaultProps;
+DirectorHeader.propTypes = propTypes;
+DirectorHeader.defaultProps = defaultProps;
 
 export default DirectorHeader;

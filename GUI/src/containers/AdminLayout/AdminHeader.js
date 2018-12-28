@@ -55,7 +55,7 @@ class AdminHeader extends Component {
   }
 }
 
-DefaultHeader.propTypes = propTypes;
-DefaultHeader.defaultProps = defaultProps;
+AdminHeader.propTypes = propTypes;
+AdminHeader.defaultProps = defaultProps;
 
 export default AdminHeader;

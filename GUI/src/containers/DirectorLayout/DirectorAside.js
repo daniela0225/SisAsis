@@ -311,7 +311,7 @@ class DirectorAside extends Component {
   }
 }
 
-DefaultAside.propTypes = propTypes;
-DefaultAside.defaultProps = defaultProps;
+DirectorAside.propTypes = propTypes;
+DirectorAside.defaultProps = defaultProps;
 
 export default DirectorAside;

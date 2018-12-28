@@ -1,3 +1,3 @@
-import DefaultLayout from './DefaultLayout';
+import PorteroLayout from './PorteroLayout';
 
 export default PorteroLayout;

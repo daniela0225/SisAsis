@@ -55,7 +55,7 @@ class PorteroHeader extends Component {
   }
 }
 
-DefaultHeader.propTypes = propTypes;
-DefaultHeader.defaultProps = defaultProps;
+PorteroHeader.propTypes = propTypes;
+PorteroHeader.defaultProps = defaultProps;
 
 export default PorteroHeader;

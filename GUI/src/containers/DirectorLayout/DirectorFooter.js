@@ -22,7 +22,7 @@ class DirectorFooter extends Component {
   }
 }
 
-DefaultFooter.propTypes = propTypes;
-DefaultFooter.defaultProps = defaultProps;
+DirectorFooter.propTypes = propTypes;
+DirectorFooter.defaultProps = defaultProps;
 
 export default DirectorFooter;

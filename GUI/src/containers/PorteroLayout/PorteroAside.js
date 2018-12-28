@@ -311,7 +311,7 @@ class PorteroAside extends Component {
   }
 }
 
-DefaultAside.propTypes = propTypes;
-DefaultAside.defaultProps = defaultProps;
+PorteroAside.propTypes = propTypes;
+PorteroAside.defaultProps = defaultProps;
 
 export default PorteroAside;

@@ -1,3 +1,3 @@
-import DefaultLayout from './DefaultLayout';
+import DirectorLayout from './DirectorLayout';
 
 export default DirectorLayout;

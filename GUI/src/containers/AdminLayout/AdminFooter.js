@@ -22,7 +22,7 @@ class AdminFooter extends Component {
   }
 }
 
-DefaultFooter.propTypes = propTypes;
-DefaultFooter.defaultProps = defaultProps;
+AdminFooter.propTypes = propTypes;
+AdminFooter.defaultProps = defaultProps;
 
 export default AdminFooter;

@@ -22,7 +22,7 @@ class PadreFooter extends Component {
   }
 }
 
-DefaultFooter.propTypes = propTypes;
-DefaultFooter.defaultProps = defaultProps;
+PadreFooter.propTypes = propTypes;
+PadreFooter.defaultProps = defaultProps;
 
 export default PadreFooter;
