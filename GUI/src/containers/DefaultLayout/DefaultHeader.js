@@ -44,7 +44,7 @@ class DefaultHeader extends Component {
               <img src={'../../assets/img/avatars/instd.png'} className="img-avatar"  />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
-              
+               <DropdownItem header tag="div" className="text-center"><strong>JHUAYTA</strong></DropdownItem>              
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </AppHeaderDropdown>
