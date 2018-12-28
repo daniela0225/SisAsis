@@ -4,15 +4,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-/* delete */
-const userRoutes = require('./api/routes/users');
-const planRoutes = require('./api/routes/planes');
-const categoriaRoutes = require('./api/routes/categorias');
-const anuncioRoutes = require('./api/routes/anuncios');
-const compraRoutes = require('./api/routes/compras');
-const comentarioRoutes = require('./api/routes/comentarios');
-/* delete */
-
 /* let */
 const recordRoutes = require('./api/routes/records');
 const schoolRoutes = require('./api/routes/schools');
@@ -53,15 +44,6 @@ app.use((req,res,next)=>{
 app.options("/*",function(req,res,next){
 	res.sendStatus(200);
 });
-
-/* delete */
-app.use('/usuarios',userRoutes);
-app.use('/planes',planRoutes);
-app.use('/categorias',categoriaRoutes);
-app.use('/anuncios', anuncioRoutes);
-app.use('/compras', compraRoutes);
-app.use('/comentarios', comentarioRoutes);
-/* delete */
 
 /* let */
 app.use('/registros',recordRoutes);

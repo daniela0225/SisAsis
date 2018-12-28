@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var types = 'ALL_ACCESS SCHOOL_ADMIN SCHOOL_TEACHER TUTOR'.split(' ');
+var types = 'ADMIN DIRECTOR TUTOR DOORMAN'.split(' ');
 
 const userSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
