@@ -1,9 +1,13 @@
 class Rules {
 	constructor(create, read, update, delete){
-		this.create = create;
-		this.read = read;
-		this.update = update;
-		this.delete = delete;
+		this.createOwn = createOwn;
+		this.readOwn = createOwn;
+		this.updateOwn = createOwn;
+		this.deleteOwn = createOwn;
+		this.createAny = createAny;
+		this.readAny = createAny;
+		this.updateAny  = createAny;
+		this.deleteAny = createAny;
 	}
 }
 
@@ -21,48 +25,48 @@ class TableRules {
 		var roles = new Array();
 
 		foreach(obj in roleRules){
-			var rules = new Rules( obj[0], obj[1], obj[2], obj[3]);
+			var rules = new Rules( obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7]);
 			var role = new Role(rules);
 			roles.push(role);
 		}
 		
-		this.ADMIN_RULES: roles[0],
-		this.DIRECTOR_RULES: roles[1],
-		this.TUTOR_RULES: roles[2],
-		this.DOORMAN_RULES: roles[3],
+		this.ADMIN_RULES: roles[0];
+		this.DIRECTOR_RULES: roles[1];
+		this.TUTOR_RULES: roles[2];
+		this.DOORMAN_RULES: roles[3];
 	}
 }
 
 const completeRules = {
 	record : new TableRules([
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true]
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true]
 					]),
 	school : new TableRules([
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true]
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true]
 					]),
 	student : new TableRules([
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true]
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true]
 					]),
 	tutor : new TableRules([
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true]
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true]
 					]),
 	user : new TableRules([
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true],
-						[true,true,true,true]
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true],
+						[true,true,true,true,true,true,true,true]
 					])
 }
 
