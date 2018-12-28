@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Background from '../../../assets/img/brand/fondo.JPG';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
+
+var sectionStyle = {
+  width: "100%",
+  height: "100%",
+  backgroundImage: "url(" + { Background } + ")"
+};
 class Login extends Component {
   render() {
     return (
-      <div className="app flex-row align-items-center">
+ <section style={ sectionStyle }>
+      <div className="app flex-row align-items-center" >
         <Container>
           <Row className="justify-content-center">
             <Col md="8">
@@ -13,7 +21,11 @@ class Login extends Component {
                 <Card className="p-4">
                   <CardBody>
                     <Form>
-                      <h1>Login in React</h1>
+                    <center>
+                      <h1>Login</h1>
+                      <section style={ sectionStyle }/>
+                      
+                    </center>
                       <p className="text-muted">Sign In to your account</p>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend">
@@ -42,23 +54,13 @@ class Login extends Component {
                     </Form>
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
-                  <CardBody className="text-center">
-                    <div>
-                      <h2>Sign up</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                      <Link to="/register">
-                        <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
-                      </Link>
-                    </div>
-                  </CardBody>
-                </Card>
+               
               </CardGroup>
             </Col>
           </Row>
         </Container>
       </div>
+    </section>
     );
   }
 }

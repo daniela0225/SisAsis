@@ -1,5 +1,10 @@
 import React from 'react';
 import DefaultLayout from './containers/DefaultLayout';
+import AdminLayout from './containers/AdminLayout';
+import DirectorLayout from './containers/DirectorLayout';
+import PadreLayout from './containers/PadreLayout';
+import PorteroLayout from './containers/PorteroLayout';
+import InicioLayout from './containers';
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -39,6 +44,7 @@ const User = React.lazy(() => import('./views/Users/User'));
 
 
 const Home = React.lazy(() => import('./views/Home/Home'));
+const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
 const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
 const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
@@ -63,6 +69,7 @@ const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 const routes = [
   { path: '/', exact: true, name: 'Sistema de asistencias', component: DefaultLayout },
   { path: '/Home', name: 'Home', component: Home, exact:true },
+  { path: '/Admin', name: 'Home', component: HomeAdmin, exact:true },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/Data', name: 'Data', exact: true, component: ListadoRegistros },
   { path: '/Home/Registros', exact:true, name: 'Registros', component: ListadoRegistros },
