@@ -8,5 +8,6 @@ const userSchema = mongoose.Schema({
 	type: {type: String, enum: types, required: true}
 	school: {type: mongoose.Schema.Types.ObjectId, ref:'School', required: true}
 });
+
 module.exports = mongoose.model('User', userSchema,'usuarios');
 
