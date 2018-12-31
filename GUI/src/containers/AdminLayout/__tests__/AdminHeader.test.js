@@ -8,3 +8,4 @@ it('renders without crashing', () => {
   ReactDOM.render(<MemoryRouter><AdminHeader /></MemoryRouter>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
