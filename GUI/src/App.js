@@ -15,6 +15,11 @@ const AdminLayout = Loadable({
   loader: () => import('./containers/AdminLayout'),
   loading
 });
+const PadreLayout = Loadable({
+  loader: () => import('./containers/PadreLayout'),
+  loading
+});
+
 
 // Pages
 const Login = Loadable({
@@ -37,9 +42,16 @@ const Page500 = Loadable({
   loading
 });
 
+let usuario = "PADRE"
+
 class App extends Component {
 
+
+
   render() {
+
+
+
     return (
       <HashRouter>
           <Switch>
@@ -51,6 +63,8 @@ class App extends Component {
           </Switch>
       </HashRouter>
     );
+  
+
   }
 }
 
