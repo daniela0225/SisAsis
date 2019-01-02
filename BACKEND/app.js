@@ -12,7 +12,7 @@ const userRoutes = require('./api/routes/users');
 const tutorRoutes = require('./api/routes/tutors');
 /* let */
 
-mongoose.connect('mongodb://localhost:27017/baches');
+mongoose.connect('mongodb://localhost:27017/asistencias');
 mongoose.Promise = global.Promise;
 
 

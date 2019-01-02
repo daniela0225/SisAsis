@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const recordSchema = mongoose.Schema({
+const tutorSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	DNI: {type: String, required: true},
 	name: {type: String, required: true},
@@ -10,4 +10,4 @@ const recordSchema = mongoose.Schema({
 	telephone: {type: String, required: true},
 	email: {type: String, required: true},
 });
-module.exports = mongoose.model('Student', studentSchema,'students');
+module.exports = mongoose.model('Tutor', tutorSchema,'tutors');

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 var genders = 'MALE FEMALE'.split(' ');
 var sections = 'A B C D E F G H UNIQUE'.split(' ');
 
-const recordSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	name: {type: String, required: true},
 	last_name: {type: String, required: true},

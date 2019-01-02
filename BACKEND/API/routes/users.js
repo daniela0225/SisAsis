@@ -14,6 +14,7 @@ router.get('/getUserById', checkAuth, accessRules, User.getUserById);
 router.post('/update',checkAuth, accessRules, User.update);
 router.get('/delete',checkAuth, accessRules, User.delete);
 router.get('/',checkAuth, accessRules, User.show);
-router.post('/', accessRules, User.create);
+//router.post('/', accessRules, User.create);
+router.post('/', User.create);
 
 module.exports = router;
