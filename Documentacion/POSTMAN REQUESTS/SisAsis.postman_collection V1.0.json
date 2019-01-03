@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "a6265dfe-3de9-4ac3-aa20-e4874a659b98",
+		"name": "SisAsis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User requests",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpwaW5vQGdtYWlsLmNvbSIsInVzZXJJZCI6IjViMWJhZTM3ZTZlYWNlMjY4ODcxYWI0ZCIsImlhdCI6MTUyOTUyMDY3MywiZXhwIjoxNTI5NTI0MjczfQ.yADW3iFyYJA7lcaDn1GGGetEan-MeHrcICQLOx2AGyQ",
+								"disabled": false
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "juan17091998@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ABCD@1234",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								""
+							]
+						},
+						"description": "Only available during development due to security limitations.\nNote: Not anybody can create a user."
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "juan17091998@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ABCD@1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Record requests",
+			"item": []
+		},
+		{
+			"name": "School Requests",
+			"item": []
+		},
+		{
+			"name": "Student Requests",
+			"item": []
+		},
+		{
+			"name": "Tutor Requests",
+			"item": []
+		}
+	]
+}
