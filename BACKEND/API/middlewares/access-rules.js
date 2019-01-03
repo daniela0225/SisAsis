@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 class Rules {
 	constructor(createOwn, readOwn, updateOwn, deleteOwn, createAny, readAny, updateAny, deleteAny){
 		this.createOwn = createOwn;
@@ -80,9 +82,69 @@ function can(role,action,table){
 	return false;
 }
 
+function tranformAction(table,url,method){
+	switch(table){
+		case "registros":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return; break;
+			}
+			break;
+		case "colegios":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return; break;
+			}
+			break;
+		case "alumnos":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return; break;
+			}
+			break;
+		case "tutores":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return; break;
+			}
+			break;
+		case "usuarios":
+			switch(url){
+				case "/password": return "updateAny"; break;
+				case "/login": return "readOwn"; break;
+				case "/search": return "readAny"; break;
+				case "/menu": return "readOwn"; break;
+				case "/edit": return "updateOwn"; break;
+				case "/getUserById": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return; break;
+			}
+			break;
+		default: return;
+	}
+}
+
 module.exports = (req, res, next) => {
 	try{
-		if(can(req.role, req.action, req.table)){
+		var role = req.userData.type;
+		var action = req.url;
+		var table = req.originalUrl;
+		console.log("Role:" + role + "-Action:" + action + "-Table:" + table);
+		if(can(role, tranformAction(table.substr(1,table.length-2),action,req.method), table)){
 			next();
 		} else {
 			res.status(403).end();
@@ -90,7 +152,7 @@ module.exports = (req, res, next) => {
 	}
 	catch(error){
 		return res.status(401).json({
-			message: 'Access Denied',
+			message: 'Access Denied'
 		});
 	}
 };

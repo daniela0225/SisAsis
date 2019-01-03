@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
 	email: {type: String, required: true},
 	password: {type: String, required: true},
 	type: {type: String, enum: types, required: true},
-	school: {type: mongoose.Schema.Types.ObjectId, ref:'School', required: true}
+	school: {type: mongoose.Schema.Types.ObjectId, ref:'School', required: false}
 });
 
 module.exports = mongoose.model('User', userSchema,'users');
