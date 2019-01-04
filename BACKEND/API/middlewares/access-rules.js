@@ -3,22 +3,13 @@ const jwt = require('jsonwebtoken');
 class Rules {
 	constructor(createOwn, readOwn, updateOwn, deleteOwn, createAny, readAny, updateAny, deleteAny){
 		this.createOwn = createOwn;
-		this.readOwn = createOwn;
-		this.updateOwn = createOwn;
-		this.deleteOwn = createOwn;
+		this.readOwn = readOwn;
+		this.updateOwn = updateOwn;
+		this.deleteOwn = deleteOwn;
 		this.createAny = createAny;
-		this.readAny = createAny;
-		this.updateAny  = createAny;
-		this.deleteAny = createAny;
-	}
-}
-
-class Roles {
-	constructor(admin, director, tutor, doorman){
-		this.ADMIN = admin;
-		this.DIRECTOR = director;
-		this.TUTOR = tutor;
-		this.DOORMAN = doorman;
+		this.readAny = readAny;
+		this.updateAny  = updateAny;
+		this.deleteAny = deleteAny;
 	}
 }
 
@@ -26,12 +17,12 @@ class TableRules {
 	constructor(roleRules){
 		var roles = new Array();
 
-		for(var obj in roleRules){
-			var rules = new Rules( obj[0], obj[1], obj[2], obj[3], obj[4], obj[5], obj[6], obj[7]);
-			var role = new Role(rules);
-			roles.push(role);
+		for(var i = 0; i < 4; i++){
+			var rules = new Rules(	roleRules[i][0], roleRules[i][1], roleRules[i][2], roleRules[i][3],
+									roleRules[i][4], roleRules[i][5], roleRules[i][6], roleRules[i][7]	);
+			roles.push(rules);
 		}
-		
+
 		this.ADMIN_RULES = roles[0];
 		this.DIRECTOR_RULES = roles[1];
 		this.TUTOR_RULES = roles[2];
@@ -40,46 +31,58 @@ class TableRules {
 }
 
 function can(role,action,table){
-	var roleName = role + "_RULES";
+	console.log("Role: " + role + " - Action: " + action +" - Table: " + table);
 
-	const completeRules = {
-		record : new TableRules([
+	var completeRules = {
+		record : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						]),
-		school : new TableRules([
+						)),
+		school : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						]),
-		student : new TableRules([
+						)),
+		student : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						]),
-		tutor : new TableRules([
+						)),
+		tutor : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						]),
-		user : new TableRules([
+						)),
+		user : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						])
+						))
 	}
 
-	if(((completeRules[[table]])[[roleName]])[[action]]){
+	//var a = completeRules[transformTable(table)][role][action];
+	if(completeRules[transformTable(table)][role][action]){
 		return true;
 	}
 
 	return false;
+}
+
+function transformTable(table){
+	switch (table){
+		case "registros": return "record";break;
+		case "colegios": return "school" ;break;
+		case "alumnos": return "student" ;break;
+		case "tutores": return "tutor" ;break;
+		case "usuarios": return "user" ;break;
+	}
+		
 }
 
 function tranformAction(table,url,method){
@@ -90,7 +93,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-				default: return; break;
+				default: return ""; break;
 			}
 			break;
 		case "colegios":
@@ -99,7 +102,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-				default: return; break;
+				default: return ""; break;
 			}
 			break;
 		case "alumnos":
@@ -108,7 +111,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-				default: return; break;
+				default: return ""; break;
 			}
 			break;
 		case "tutores":
@@ -117,7 +120,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-				default: return; break;
+				default: return ""; break;
 			}
 			break;
 		case "usuarios":
@@ -131,20 +134,22 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-				default: return; break;
+				default: return ""; break;
 			}
 			break;
-		default: return;
+		default: return "";
 	}
 }
 
 module.exports = (req, res, next) => {
 	try{
-		var role = req.userData.type;
+		var role = req.userData.type + "_RULES";
 		var action = req.url;
-		var table = table.substr(1,table.length-2);
-		console.log("Role:" + role + "-Action:" + action + "-Table:" + table);
-		if(can(role, tranformAction(table,action,req.method), table)){
+		var table = req.originalUrl;
+
+		if(can(	role, 
+				tranformAction(table.substr(1,table.length-2),action,req.method), 
+				table.substr(1,table.length-2))){
 			next();
 		} else {
 			res.status(403).end();
