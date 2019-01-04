@@ -67,7 +67,7 @@ const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Sistema de asistencias', component: AdminLayout },
+  { path: '/', exact: true, name: 'Sistema de asistencias', component: PadreLayout },
   { path: '/Director', exact: true, name: 'Sistema de asistencias', component: DirectorLayout },
   { path: '/Portero', exact: true, name: 'Sistema de asistencias', component: PorteroLayout },
   { path: '/Padre', exact: true, name: 'Sistema de asistencias', component: PadreLayout },
