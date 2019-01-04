@@ -42,16 +42,38 @@ const Page500 = Loadable({
   loading
 });
 
-let usuario = "PADRE"
-
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      token: sessionStorage.getItem('jwtToken'),
+      showSideDrawer: false
+    }
+    //localStorage.setItem('path','http://35.238.122.18/');
+    localStorage.setItem('path','http://localhost:3000/');
+    this.UserLogged = this.UserLogged.bind(this);
+  }
 
+  componentWillMount(){
+    if(sessionStorage.getItem('jwtToken')==null || sessionStorage.getItem('jwtToken')==''){
+      sessionStorage.setItem('jwtToken','null');
+    }
+    this.setState({
+      token: sessionStorage.getItem('jwtToken')
+    });
+  }
 
+  UserLogged = () => {
+    this.setState({
+      token: sessionStorage.getItem('jwtToken')
+    });
+  }
 
+  componentWillUpdate = () => {
+    window.scrollTo(0, 0)
+  }
   render() {
-
-
-
+   
     return (
       <HashRouter>
           <Switch>
