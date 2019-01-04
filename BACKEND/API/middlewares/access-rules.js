@@ -142,9 +142,9 @@ module.exports = (req, res, next) => {
 	try{
 		var role = req.userData.type;
 		var action = req.url;
-		var table = req.originalUrl;
+		var table = table.substr(1,table.length-2);
 		console.log("Role:" + role + "-Action:" + action + "-Table:" + table);
-		if(can(role, tranformAction(table.substr(1,table.length-2),action,req.method), table)){
+		if(can(role, tranformAction(table,action,req.method), table)){
 			next();
 		} else {
 			res.status(403).end();
