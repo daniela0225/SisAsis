@@ -86,6 +86,7 @@ function transformTable(table){
 }
 
 function tranformAction(table,url,method){
+
 	switch(table){
 		case "registros":
 			switch(url){
@@ -147,9 +148,14 @@ module.exports = (req, res, next) => {
 		var action = req.url;
 		var table = req.originalUrl;
 
-		if(can(	role, 
-				tranformAction(table.substr(1,table.length-2),action,req.method), 
-				table.substr(1,table.length-2))){
+		table = table.substr(1,table.indexOf("s"));
+		action = action.substr(0, action.indexOf("?"));
+
+		if(	can(role, 
+				tranformAction(table,action,req.method), 
+				table)
+		)
+		{
 			next();
 		} else {
 			res.status(403).end();
