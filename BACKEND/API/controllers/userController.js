@@ -189,13 +189,13 @@ module.exports = {
 					var transporter = nodemailer.createTransport({
 					  service: 'gmail',
 					  auth: {
-					    user: 'bachescachibaches@gmail.com',
-					    pass: 'jeydivision03051702'
+					    user: 'test@gmail.com',
+					    pass: 'contraseña'
 					  }
 					});
 
 					var mailOptions = {
-					  from: 'bachescachibaches@gmail.com',
+					  from: 'test@gmail.com',
 					  to: email,
 					  subject: 'Contraseña de la cuenta.',
 					  text: 'Su contraseña es ' + password
