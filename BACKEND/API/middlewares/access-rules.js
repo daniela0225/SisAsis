@@ -126,6 +126,7 @@ function tranformAction(table,url,method){
 			break;
 		case "usuarios":
 			switch(url){
+				case "/find": return "readAny"; break;
 				case "/password": return "updateAny"; break;
 				case "/login": return "readOwn"; break;
 				case "/search": return "readAny"; break;
