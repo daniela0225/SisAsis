@@ -147,9 +147,10 @@ module.exports = (req, res, next) => {
 		var role = req.userData.type + "_RULES";
 		var action = req.url;
 		var table = req.originalUrl;
-		console.log(action);
-		table = table.substr(1,table.indexOf("s"));
-		console.log(table);
+		
+		table = table.substr(1,table.length-1);
+		table = table.substr(0,table.indexOf("/"));
+
 		action = (action.indexOf("?")>-1)?action.substr(0, action.indexOf("?")):action;
 
 		if(	can(role, 
