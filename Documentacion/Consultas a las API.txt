@@ -1,0 +1,30 @@
+- HEADER
+	. Nombr de usuario
+	. Foto colegio o defecto
+
+- HOME USUARIO COLEGI
+
+	. Nombre de usuario
+	. Nombre de colegio 
+	. Foto Colegio 
+
+- HOME USUARIO ADMIN 
+
+	. Nombre de usuario
+	. Foto
+
+- EXTRAS PARA FORMULARIOS
+
+	. Alumnos:
+		*Nombres
+		*Apellidos
+		*Id
+
+	. Colegio:
+		*Nombre
+		*Id
+	
+	. Tutores
+		*Nombres
+		*Apellidos
+		*Id
