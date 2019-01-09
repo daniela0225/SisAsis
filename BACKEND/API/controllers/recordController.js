@@ -34,7 +34,7 @@ module.exports = {
 		
 		const record = new Record({
 			_id: new mongoose.Types.ObjectId(),
-			student: req.body.nombre,
+			student: req.body.student,
 			date: req.body.date,
 			school: req.body.school,
 			type: req.body.type
