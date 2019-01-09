@@ -22,9 +22,12 @@ class Login extends Component {
       password: '',
       //newPassForm: false
     };
+    
+    //this.AtributoHandler = this.AtributoHandler.bind(this);
+  }
 
-
- 
+  print = (e) => {
+    console.log("laputamadre " + e.target);
   }
 
 SubmitHandler = (e) => {
@@ -53,7 +56,7 @@ SubmitHandler = (e) => {
    
         //alert("Usuario no encontrado.");
       
-      //console.log(response);
+      console.log(response);
     });
   }
 
@@ -87,7 +90,7 @@ SubmitHandler = (e) => {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" name="email"/>
+                        <Input type="text" placeholder="Username" autoComplete="username" name="email" onChange={(e) => { this.print(e); }} />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
