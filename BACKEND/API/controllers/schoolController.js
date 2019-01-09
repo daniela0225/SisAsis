@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const School = require('../models/school');
 const fs = require('fs');
+const defaultPicture = 'profilePictures\\default.jpeg';
 const cron = require('node-cron');
 
 module.exports = {
