@@ -140,5 +140,137 @@ module.exports = {
 					error: err
 				});
 			});
+	},
+	studentsBySchool: (req, res, next)=>{
+		Student.find({school:(req.body.schoolId != null)?req.body.schoolId:req.query.schoolId})
+			.select('_id DNI name last_name gender year tutor')
+			.populate('tutor','DNI name last_name')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,
+							gender: doc.gender,
+							DNI: doc.DNI,
+							year: doc.year,
+							tutor: doc.tutor
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	studentsBySchoolAndYear: (req, res, next)=>{
+		Student.find({school:req.body.school, year:req.body.year})
+			.select('_id DNI name last_name section tutor order_number')
+			.populate('tutor','DNI name last_name')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,
+							DNI: doc.DNI,
+							section: doc.section,
+							order_number: doc.order_number,
+							tutor: doc.tutor
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	searchByName: (req, res, next)=>{
+		const string = req.body.string;
+		Student.find({name: { $regex: string , $options:'i'}})
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.populate('school','name')
+			.populate('tutor','DNI')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,
+							gender: doc.gender,
+							DNI: doc.DNI,
+							birthdate: doc.birthdate,
+							year: doc.year,
+							section: doc.section,
+							fingerprint: doc.fingerprint,
+							code: doc.code,
+							order_number: doc.order_number,
+							school: doc.school,
+							tutor: doc.tutor
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	searchByLastName: (req, res, next)=>{
+		const string = req.body.string;
+		Student.find({last_name: { $regex: string , $options:'i'}})
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.populate('school','name')
+			.populate('tutor','DNI')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,
+							gender: doc.gender,
+							DNI: doc.DNI,
+							birthdate: doc.birthdate,
+							year: doc.year,
+							section: doc.section,
+							fingerprint: doc.fingerprint,
+							code: doc.code,
+							order_number: doc.order_number,
+							school: doc.school,
+							tutor: doc.tutor
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
 	}
 }

@@ -295,7 +295,7 @@ module.exports = {
 				res.status(500).json({error: err});
 			});
 	},
-	menu:(req,res,next)=>{
+	headers:(req,res,next)=>{
 		User.findById(req.userData.userId)
 			.select('_id email type school')
 			.populate('school','name')
@@ -359,5 +359,84 @@ module.exports = {
 				console.log(err);
 				res.status(500).json({error:err});
 			});
+	},
+	usersByType:(req,res,next)=>{
+		User.find({type: (req.body.type != null)?req.body.type:req.query.type})
+			.select('_id email school')
+			.populate('school','name')
+			.exec()
+			.then(docs =>{
+				const response = {
+					count: docs.length,
+					users: docs.map(doc=>{
+						return{
+							_id: doc._id,
+							email: doc.email,
+							school: doc.school
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error:err
+				});
+			});		
+	},
+	usersBySchool:(req,res,next)=>{
+		User.find({school: (req.body.school != null)?req.body.school:req.query.school})
+			.select('_id email type')
+			.populate('school','name')
+			.exec()
+			.then(docs =>{
+				const response = {
+					count: docs.length,
+					users: docs.map(doc=>{
+						return{
+							_id: doc._id,
+							email: doc.email,
+							type: doc.type
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error:err
+				});
+			});		
+	},
+	usersByTypeAndSchool:()=>{
+		User.find(
+				{
+					type: req.body.type, 
+					school: req.body.school
+				}
+			)
+			.select('_id email password')
+			.populate('school','name')
+			.exec()
+			.then(docs =>{
+				const response = {
+					count: docs.length,
+					users: docs.map(doc=>{
+						return{
+							_id: doc._id,
+							email: doc.email
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error:err
+				});
+			});		
 	}
 }

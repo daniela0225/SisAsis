@@ -116,5 +116,60 @@ module.exports = {
 					error: err
 				});
 			});
+	},
+	recordsByStudent: (req,res,next)=>{
+		Record.find({school:req.query.studentId})
+			.select('_id date type')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					records: docs.map(doc => {
+						return {
+							_id: doc._id,
+							date: doc.date,
+							type: doc.type
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	recordsByDay: (req,res,next)=>{
+		Record.find({date:
+				{
+					$gte: new Date(req.body.year,req.body.month,req.body.day)
+				}
+			})
+			.select('_id date type')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					records: docs.map(doc => {
+						return {
+							_id: doc._id,
+							date: doc.date,
+							type: doc.type
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	recordsByDayAndYear: (req,res,next)=>{
+		//desde el controlador alumnos,ordenar alumnos por año y populate con records.
 	}
 }

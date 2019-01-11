@@ -8,12 +8,18 @@ router.post('/password', accessRules, User.password);
 router.post('/login',User.login);
 router.get('/find',checkAuth, accessRules, User.find);
 router.post('/search',checkAuth, accessRules, User.search);
-router.get('/menu',checkAuth, accessRules, User.menu);
+router.get('/headers',checkAuth, accessRules, User.headers);
 router.get('/edit',checkAuth, accessRules, User.edit);
 router.get('/getUserById', checkAuth, accessRules, User.getUserById);
 router.post('/update',checkAuth, accessRules, User.update);
 router.get('/delete',checkAuth, accessRules, User.delete);
 router.get('/',checkAuth, accessRules, User.show);
 router.post('/', accessRules, User.create);
+
+router.get('/usersByType',checkAuth,accessRules,User.usersByType);
+router.post('/usersByType',checkAuth,accessRules,User.usersByType);
+router.get('/usersBySchool',checkAuth,accessRules,User.usersBySchool);
+router.post('/usersBySchool',checkAuth,accessRules,User.usersBySchool);
+router.post('/usersByTypeAndSchool',checkAuth,accessRules,User.usersByTypeAndSchool);
 
 module.exports = router;

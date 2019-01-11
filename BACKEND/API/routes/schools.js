@@ -39,4 +39,7 @@ router.post('/delete',checkAuth, accessRules,School.delete);
 router.get('/',checkAuth, accessRules, School.show);
 router.post('/',checkAuth, accessRules, upload.single('logo'), School.create);
 
+router.post('edit',checkAuth, accessRules, School.edit);
+router.post('search',checkAuth, accessRules, School.search);
+
 module.exports = router;

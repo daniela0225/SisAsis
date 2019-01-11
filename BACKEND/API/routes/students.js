@@ -11,4 +11,10 @@ router.post('/delete',checkAuth, accessRules,Student.delete);
 router.get('/',checkAuth, accessRules, Student.show);
 router.post('/',checkAuth, accessRules, Student.create);
 
+router.get('/studentsBySchool',checkAuth, accessRules, Student.studentsBySchool);
+router.post('/studentsBySchool',checkAuth, accessRules, Student.studentsBySchool);
+router.post('/studentsBySchoolAndYear',checkAuth, accessRules, Student.studentsBySchoolAndYear);
+router.post('/searchByName',checkAuth, accessRules, Student.searchByName);
+router.post('/searchByLastName',checkAuth, accessRules, Student.searchByLastName);
+
 module.exports = router;

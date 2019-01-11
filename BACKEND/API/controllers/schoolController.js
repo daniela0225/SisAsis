@@ -193,7 +193,7 @@ module.exports = {
 			});
 	},
 	listById:(req,res,next)=>{
-		const id = req.query.userId;
+		const id = req.query.school;
 		School.find({name: id})
 			.select('_id name logo kinder primary highschool')
 			.exec()
@@ -215,7 +215,7 @@ module.exports = {
 	},
 	search:(req,res,next) => {
 		const string = req.body.string;
-		School.find({kinder: { $regex: string , $options:'i'}})
+		School.find({name: { $regex: string , $options:'i'}})
 		.sort({destacado:-1})
 			.select('_id name logo kinder primary highschool')
 			.exec()

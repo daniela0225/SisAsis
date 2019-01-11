@@ -1,14 +1,14 @@
 - HEADER
-	. Nombr de usuario
-	. Foto colegio o defecto
+	. Nombre de usuario
+	. Foto del colegio o por defecto
 
-- HOME USUARIO COLEGI
+- HOME USUARIO COLEGIO
 
 	. Nombre de usuario
 	. Nombre de colegio 
-	. Foto Colegio 
+	. Foto Colegio
 
-- HOME USUARIO ADMIN 
+- HOME USUARIO ADMIN
 
 	. Nombre de usuario
 	. Foto

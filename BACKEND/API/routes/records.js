@@ -11,4 +11,7 @@ router.post('/delete',checkAuth, accessRules,Record.delete);
 router.get('/',checkAuth, accessRules, Record.show);
 router.post('/',checkAuth, accessRules, Record.create);
 
+router.get('/recordsByStudent',checkAuth, accessRules, Record.recordsByStudent);
+router.post('/recordsByDay',checkAuth, accessRules, Record.recordsByDay);
+
 module.exports = router;
