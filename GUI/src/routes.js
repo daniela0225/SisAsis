@@ -43,6 +43,7 @@ const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 
 
+const Sisasis = React.lazy(() => import('./views/Pages/sisasis/sisasis'));
 const Home = React.lazy(() => import('./views/Home/Home'));
 const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
@@ -67,7 +68,7 @@ const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Sistema de asistencias', component: PadreLayout },
+  //{ path: '/', exact: true, name: 'Sistema de asistencias', component: Sisasis },
   { path: '/Director', exact: true, name: 'Sistema de asistencias', component: DirectorLayout },
   { path: '/Portero', exact: true, name: 'Sistema de asistencias', component: PorteroLayout },
   { path: '/Padre', exact: true, name: 'Sistema de asistencias', component: PadreLayout },

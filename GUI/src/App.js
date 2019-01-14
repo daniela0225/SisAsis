@@ -27,6 +27,11 @@ const Login = Loadable({
   loading
 });
 
+const Sisasis = Loadable({
+  loader: () => import('./views/Pages/sisasis'),
+  loading
+});
+
 const Register = Loadable({
   loader: () => import('./views/Pages/Register'),
   loading
@@ -76,14 +81,35 @@ class App extends Component {
    
     return (
       <HashRouter>
+
+        {(this.state.token != "null")?(
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
             <Route exact path="/register" name="Register Page" component={Register} />
             <Route exact path="/404" name="Page 404" component={Page404} />
             <Route exact path="/500" name="Page 500" component={Page500} />
-            <Route path="/" name="Home" component={PadreLayout} />
+            <Route exact path="/sisasis" name="Home" component={AdminLayout} />
+            <Route path="/" name="Home" component={AdminLayout} />
           </Switch>
+     
+
+              ):(
+
+    
+          <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Register Page" component={Register} />
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            <Route exact path="/sisasis" name="Home" component={Login} />
+            <Route path="/" name="Home" component={Login} />
+          </Switch>
+          )} 
       </HashRouter>
+
+
+
+      
     );
   
 
