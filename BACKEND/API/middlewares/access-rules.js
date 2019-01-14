@@ -119,10 +119,10 @@ function tranformAction(table,url,method){
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
-				case "/studentsBySchool" return "readOwn"; break;
-				case "/studentsBySchoolAndYear" return "readOwn"; break;
-				case "/searchByName" return "readAny"; break;
-				case "/searchByLastName" return "readAny"; break;
+				case "/studentsBySchool": return "readOwn"; break;
+				case "/studentsBySchoolAndYear": return "readOwn"; break;
+				case "/searchByName": return "readAny"; break;
+				case "/searchByLastName": return "readAny"; break;
 
 				default: return ""; break;
 			}
@@ -149,9 +149,9 @@ function tranformAction(table,url,method){
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 				
-				case "/usersByType" return "readAny"; break;
-				case "/usersBySchool" return "readOwn"; break;
-				case "/usersByTypeAndSchool" return "readOwn"; break;
+				case "/usersByType": return "readAny"; break;
+				case "/usersBySchool": return "readOwn"; break;
+				case "/usersByTypeAndSchool": return "readOwn"; break;
 				default: return ""; break;
 			}
 			break;
