@@ -166,7 +166,7 @@ module.exports = (req, res, next) => {
 		var table = req.originalUrl;
 		
 		table = table.substr(1,table.length-1);
-		table = table.substr(0,table.indexOf("/"));
+		table = (table.indexOf("/")>-1)?table.substr(0,table.indexOf("/")):table;
 
 		action = (action.indexOf("?")>-1)?action.substr(0, action.indexOf("?")):action;
 
