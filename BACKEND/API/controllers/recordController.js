@@ -5,7 +5,7 @@ module.exports = {
 	show: (req,res,next)=>{
 		Record.find()
 			.select('_id student date school type')
-			.populate('student','DNI')
+			.populate('student','DNI name last_name')
 			.populate('school','name')
 			.exec()
 			.then(docs => {
