@@ -1,0 +1,1619 @@
+{
+	"info": {
+		"_postman_id": "f575fd2a-5cbe-4595-b01c-1820f41e00e7",
+		"name": "Asistencias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "http://localhost:3000/usuarios/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2OTM2MSwiZXhwIjoxNTQ2OTc2NTYxfQ.tXK-UHxG5FU_coIgdMbQHwGkETER57GkBfzfLfTnzKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/getUserById?userId=5c34cf583c86630614884936",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2OTY4NiwiZXhwIjoxNTQ2OTc2ODg2fQ.OR3j1Wii8mXKs4QdZzeKTTbfJHj2YpbpeGkh45kzgn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/menu?userId=5c2e1e1a20efa81f8cbd56e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"menu"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c2e1e1a20efa81f8cbd56e3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "usuario1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/edit?userId=5c34cf583c86630614884936",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2OTY4NiwiZXhwIjoxNTQ2OTc2ODg2fQ.OR3j1Wii8mXKs4QdZzeKTTbfJHj2YpbpeGkh45kzgn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/edit?userId=5c34cf583c86630614884936",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c34cf583c86630614884936"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/find?id=5c2e1e1a20efa81f8cbd56e3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2Nzk3OCwiZXhwIjoxNTQ2OTc1MTc4fQ.Fy8JvA9TH5sRj-tmUyX8xLL4Eulpq7xICsEX6eWXGAo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/find?id=5c2e1e1a20efa81f8cbd56e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"find"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5c2e1e1a20efa81f8cbd56e3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/menu?userId=5c2e1e1a20efa81f8cbd56e3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2OTY4NiwiZXhwIjoxNTQ2OTc2ODg2fQ.OR3j1Wii8mXKs4QdZzeKTTbfJHj2YpbpeGkh45kzgn4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/menu?userId=5c2e1e1a20efa81f8cbd56e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"menu"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c2e1e1a20efa81f8cbd56e3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0Njk2OTM2MSwiZXhwIjoxNTQ2OTc2NTYxfQ.tXK-UHxG5FU_coIgdMbQHwGkETER57GkBfzfLfTnzKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "example@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "TUTOR",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/usuarios/update?userId=5c3582508ebd9f199443c49f",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "local@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/usuarios/update?userId=5c3582508ebd9f199443c49f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"usuarios",
+								"update"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "5c3582508ebd9f199443c49f"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5d3a6468-90f8-4e79-9e22-28362bff855a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6b7f5d5-a905-423d-87d8-dced736dee22",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Colegios",
+			"item": [
+				{
+					"name": "http://localhost:3000/colegios/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/colegios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"colegios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/colegios/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "logo",
+									"type": "text"
+								},
+								{
+									"key": "kinder",
+									"value": "fals",
+									"type": "text"
+								},
+								{
+									"key": "primary",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "highschool",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/colegios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"colegios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/colegios/find?schoolId=5c34c419e6fd11201ca11fd1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/colegios/find?schoolId=5c34c419e6fd11201ca11fd1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"colegios",
+								"find"
+							],
+							"query": [
+								{
+									"key": "schoolId",
+									"value": "5c34c419e6fd11201ca11fd1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/colegios/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDQ2ODkxLCJleHAiOjE1NDcwNTQwOTF9.QnyhV7HoZIxIvDpVKnat_ewkiWrjxqAv_siInAAylMg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"value": "logo",
+									"type": "text"
+								},
+								{
+									"key": "kinder",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "primary",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "highschool",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/colegios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"colegios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registros",
+			"item": [
+				{
+					"name": "http://localhost:3000/registros/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/registros/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"registros",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/registros/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student",
+									"value": "5c34c96fe6fd11201ca11fd4",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2018-05-29",
+									"type": "text"
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "CHECK_OUT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/registros/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"registros",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/registros/find?recordId=5c359258325a5b10a037056c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student",
+									"value": "5c34c96fe6fd11201ca11fd4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2018-05-29",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "CHECK_OUT",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/registros/find?recordId=5c359258325a5b10a037056c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"registros",
+								"find"
+							],
+							"query": [
+								{
+									"key": "recordId",
+									"value": "5c359258325a5b10a037056c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/registros/update?recordId=5c359258325a5b10a037056c",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student",
+									"value": "5c34c96fe6fd11201ca11fd4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2018-06-02",
+									"type": "text"
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "CHECK_OUT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/registros/update?recordId=5c359258325a5b10a037056c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"registros",
+								"update"
+							],
+							"query": [
+								{
+									"key": "recordId",
+									"value": "5c359258325a5b10a037056c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alumnos",
+			"item": [
+				{
+					"name": "http://localhost:3000/alumnos/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/alumnos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"alumnos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/alumnos/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Zoila Flor",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Hermoza del Campo",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "FEMALE",
+									"type": "text"
+								},
+								{
+									"key": "DNI",
+									"value": "76419586",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "2000-02-12",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "section",
+									"value": "C",
+									"type": "text"
+								},
+								{
+									"key": "fingerprint",
+									"value": "963852741",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "85241",
+									"type": "text"
+								},
+								{
+									"key": "order_number",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text"
+								},
+								{
+									"key": "tutor",
+									"value": "5c358eeb8ebd9f199443c4a0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/alumnos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"alumnos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/alumnos/update?studentId=5c35953e10da001f8c91139e",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Zoila Flor",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Hermoza del Campo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "FEMALE",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "DNI",
+									"value": "76415213",
+									"type": "text"
+								},
+								{
+									"key": "birthdate",
+									"value": "2005-02-12",
+									"type": "text"
+								},
+								{
+									"key": "year",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "section",
+									"value": "A",
+									"type": "text"
+								},
+								{
+									"key": "fingerprint",
+									"value": "963852741",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "85241",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "order_number",
+									"value": "13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tutor",
+									"value": "5c358eeb8ebd9f199443c4a0",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/alumnos/update?studentId=5c35953e10da001f8c91139e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"alumnos",
+								"update"
+							],
+							"query": [
+								{
+									"key": "studentId",
+									"value": "5c35953e10da001f8c91139e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/alumnos/find?studentId=5c35953e10da001f8c91139e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVqZW1wbG9AZ21haWwuY29tIiwidXNlcklkIjoiNWMzNGQxMzczYzg2NjMwNjE0ODg0OTM3IiwidHlwZSI6IkFETUlOIiwiaWF0IjoxNTQ3MDE0MzcyLCJleHAiOjE1NDcwMjE1NzJ9.d4WSf4LMGLWwk9qC7BcJZHpzgaw9ZwkjVw0u5a3rEEo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Zoila Flor",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Hermoza del Campo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "FEMALE",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "DNI",
+									"value": "76415213",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "birthdate",
+									"value": "2005-02-12",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "4",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "section",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "fingerprint",
+									"value": "963852741",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "85241",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "order_number",
+									"value": "13",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "school",
+									"value": "5c34c419e6fd11201ca11fd1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tutor",
+									"value": "5c358eeb8ebd9f199443c4a0",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/alumnos/find?studentId=5c35953e10da001f8c91139e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"alumnos",
+								"find"
+							],
+							"query": [
+								{
+									"key": "studentId",
+									"value": "5c35953e10da001f8c91139e"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3a4d02d4-64cf-4e2b-bd6c-3e26daf6e186",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4fc238ee-385f-4454-89c9-517aea1efec6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tutores",
+			"item": [
+				{
+					"name": "http://localhost:3000/tutores/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3000/tutores/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tutores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/tutores/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "DNI",
+									"value": "76419291",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Rosario",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Maldonado Castillo",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Los portales lt 8 mz J",
+									"type": "text"
+								},
+								{
+									"key": "cellphone",
+									"value": "958748562",
+									"type": "text"
+								},
+								{
+									"key": "telephone",
+									"value": "0543980002",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "r.maldonado@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/tutores/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tutores",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/tutores/find?tutorId=5c358eeb8ebd9f199443c4a0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "DNI",
+									"value": "76419291",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Rosario",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "Maldonado Castillo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Los portales lt 8 mz J",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cellphone",
+									"value": "958748562",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "telephone",
+									"value": "0543980002",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "r.maldonado@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/tutores/find?tutorId=5c358eeb8ebd9f199443c4a0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tutores",
+								"find"
+							],
+							"query": [
+								{
+									"key": "tutorId",
+									"value": "5c358eeb8ebd9f199443c4a0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/tutores/update?tutorId=5c358eeb8ebd9f199443c4a0",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzdWFyaW8xQGdtYWlsLmNvbSIsInVzZXJJZCI6IjVjMzRjZjU4M2M4NjYzMDYxNDg4NDkzNiIsInR5cGUiOiJBRE1JTiIsImlhdCI6MTU0NzAxMDU1MywiZXhwIjoxNTQ3MDE3NzUzfQ.gImbpTr0n2xHiJiU92ocq-Sp_0zUhjcC4QUJhvNt_6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "DNI",
+									"value": "76419291",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Rosa Luz",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Maldonado Castillo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Los portales lt 8 mz J",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "cellphone",
+									"value": "958748562",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "telephone",
+									"value": "0543980002",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "r.maldonado@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/tutores/update?tutorId=5c358eeb8ebd9f199443c4a0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tutores",
+								"update"
+							],
+							"query": [
+								{
+									"key": "tutorId",
+									"value": "5c358eeb8ebd9f199443c4a0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e231f016-ecb8-46ee-ace5-d333be3331cd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aeea64b7-d716-445c-aa30-518f4a1353d1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
