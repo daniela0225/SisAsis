@@ -1,7 +1,79 @@
 import React, { Component } from 'react';
+import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
+
+
+  
+
+
+
 class Listado extends Component {
+
+
+
+  state = {
+    students: []
+  }
+
+
+componentDidMount() {
+    axios.get('alumnos', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const data = res.data.students;
+        let students = this.state.students;
+        console.log(data);
+
+        for(let i = 0; i < data.length ; i++){
+          console.log(data[i]);
+          students.push(
+            
+              
+
+              <tr key={data[i]._id}>
+                    <td>{data[i].name}</td>
+                    <td>{data[i].last_name}</td>
+                    <td>{data[i].gender}</td>
+                    <td>{data[i].DNI}</td>
+                    <th>{data[i].birthdate}</th>
+                    <th>{data[i].year}</th>
+                    <th>{data[i].section}</th>
+                    
+                    <th>{data[i].fingerprint}</th>
+                    <th>{data[i].code}</th>
+                    <th>{data[i].order_number}</th>
+                     <th>{data[i].school}</th>
+                     <th>{data[i].tutor}</th>
+                   
+                    <td>
+                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                     <Button block color="warning">Editar</Button>
+                    </Col>
+                    <br/>
+                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                     <Button block color="danger">Eliminar</Button>
+                     </Col>
+                    </td>
+                   
+                  </tr>
+          );
+        }
+
+        this.setState({ students: students });
+
+      })
+      .catch( res => {
+     
+        console.log(res);
+      })
+  }
+
   render() {
     return (
       <div className="animated fadeIn">
@@ -32,131 +104,8 @@ class Listado extends Component {
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Jerson Bryan</td>
-                    <td>Huayta Carpio</td>
-                    <td>Masculino</td>
-                    <td>73051791</td>
-                    <th>05/09/1998 00:00:00</th>
-                    <th>Cuarto Año</th>
-                    <th>A</th>
-                    <th>2345773269843</th>
-                    <th>8</th>
-                    <th>3</th>
-                    <th>45</th>
-                     <th>7</th>
-                   
-                    <td>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
-                    </Col>
-                    <br/>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
-                     </Col>
-                    </td>
-                   
-                  </tr>
-                  <tr>
-                    <td>Jerson Bryan</td>
-                    <td>Huayta Carpio</td>
-                    <td>Masculino</td>
-                    <td>73051791</td>
-                    <th>05/09/1998 00:00:00</th>
-                    <th>Cuarto Año</th>
-                    <th>A</th>
-                    <th>2345773269843</th>
-                    <th>8</th>
-                    <th>3</th>
-                    <th>45</th>
-                     <th>7</th>
-                   
-                    <td>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
-                    </Col>
-                    <br/>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
-                     </Col>
-                    </td>
-                   
-                  </tr>
-                 <tr>
-                    <td>Jerson Bryan</td>
-                    <td>Huayta Carpio</td>
-                    <td>Masculino</td>
-                    <td>73051791</td>
-                    <th>05/09/1998 00:00:00</th>
-                    <th>Cuarto Año</th>
-                    <th>A</th>
-                    <th>2345773269843</th>
-                    <th>8</th>
-                    <th>3</th>
-                    <th>45</th>
-                     <th>7</th>
-                   
-                    <td>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
-                    </Col>
-                    <br/>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
-                     </Col>
-                    </td>
-                   
-                  </tr>
-                  <tr>
-                    <td>Jerson Bryan</td>
-                    <td>Huayta Carpio</td>
-                    <td>Masculino</td>
-                    <td>73051791</td>
-                    <th>05/09/1998 00:00:00</th>
-                    <th>Cuarto Año</th>
-                    <th>A</th>
-                    <th>2345773269843</th>
-                    <th>8</th>
-                    <th>3</th>
-                    <th>45</th>
-                     <th>7</th>
-                   
-                    <td>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
-                    </Col>
-                    <br/>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
-                     </Col>
-                    </td>
-                   
-                  </tr>
-                  <tr>
-                    <td>Jerson Bryan</td>
-                    <td>Huayta Carpio</td>
-                    <td>Masculino</td>
-                    <td>73051791</td>
-                    <th>05/09/1998 00:00:00</th>
-                    <th>Cuarto Año</th>
-                    <th>A</th>
-                    <th>2345773269843</th>
-                    <th>8</th>
-                    <th>3</th>
-                    <th>45</th>
-                    <th>7</th>
-                   
-                    <td>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
-                    </Col>
-                    <br/>
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
-                     </Col>
-                    </td>
-                   
-                  </tr>
+                   { (this.state.students !== null)?this.state.students:(<tr><td></td></tr>) }
+                  
                   </tbody>
                 </Table>
                 
