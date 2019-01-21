@@ -18,10 +18,6 @@ class AdminHeader extends Component {
 
 
 
-  endsession() {
-     
-     
-  }
   render() {
    
 
