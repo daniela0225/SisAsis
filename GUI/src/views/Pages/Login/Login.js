@@ -32,12 +32,9 @@ class Login extends Component {
   handleSubmit(){
     let obj ={}
     obj.email = this.state.email;
-    obj.password = this.state.password
+    obj.password = this.state.password;
 
-    let url = 'usuarios/login';
-    console.log(this.state.email);
-
-   this.serverRequest = axios
+  axios
   .post("usuarios/login", {
             email: this.state.email,
             password: this.state.password

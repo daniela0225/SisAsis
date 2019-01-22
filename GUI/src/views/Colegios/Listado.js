@@ -77,7 +77,7 @@ class Listado extends Component {
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <a href="/#/Home/Alumnos/Formulario"> <Button block color="success">Nuevo Alumno</Button></a>
+                <a href="/#/Home/Colegios/Formulario"> <Button block color="success">Nuevo Colegio</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>

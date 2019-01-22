@@ -26,7 +26,7 @@ class Listado extends Component {
           records.push(
             
               <tr key={data[i]._id}>
-                    <td>{data[i].student.dni}</td>
+                    <td>{data[i].student.name} {data[i].student.last_name}</td>
                     <td>{data[i].date}</td>
                     <td>{data[i].school}</td>
                     <td>{data[i].type}</td>

@@ -37,7 +37,7 @@ module.exports = {
 
 		const school = new School({
 			_id: new mongoose.Types.ObjectId(),
-			name: req.userData.userId,
+			name: req.body.name,
 			logo: logo,
 			kinder: req.body.kinder,
 			primary: req.body.primary,
