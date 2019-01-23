@@ -13,8 +13,8 @@ router.get('/edit',checkAuth, accessRules, User.edit);
 router.get('/getUserById', checkAuth, accessRules, User.getUserById);
 router.post('/update',checkAuth, accessRules, User.update);
 router.get('/delete',checkAuth, accessRules, User.delete);
+router.post('/',checkAuth, accessRules, User.create);
 router.get('/',checkAuth, accessRules, User.show);
-router.post('/', accessRules, User.create);
 
 router.get('/usersByType',checkAuth,accessRules,User.usersByType);
 router.post('/usersByType',checkAuth,accessRules,User.usersByType);

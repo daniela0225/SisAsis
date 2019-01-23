@@ -162,10 +162,14 @@ function tranformAction(table,url,method){
 
 module.exports = (req, res, next) => {
 	try{
+		console.log("access rules");
+
 		var role = req.userData.type + "_RULES";
 		var action = req.url;
 		var table = req.originalUrl;
-		
+
+
+
 		table = table.substr(1,table.length-1);
 		table = (table.indexOf("/")>-1)?table.substr(0,table.indexOf("/")):table;
 
@@ -176,6 +180,7 @@ module.exports = (req, res, next) => {
 				table)
 		)
 		{
+			console.log("success");
 			next();
 		} else {
 			res.status(403).end();
