@@ -32,7 +32,7 @@ class AdminHeader extends Component {
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         <AppNavbarBrand>
           
-          <h1>SISASIS</h1>
+          <h1>EDUCLOCK</h1>
           
         </AppNavbarBrand>
         

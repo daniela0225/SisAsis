@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
+import { Redirect } from 'react-router-dom';
 import {
   Badge,
   Button,
@@ -9,6 +10,7 @@ import {
   CardFooter,
   CardHeader,
   Col,
+  
   Collapse,
   DropdownItem,
   DropdownMenu,
@@ -102,6 +104,10 @@ handleSubmit(e) {
       axios(params)
       .then( (response) => {
         //handle success
+        let redirect = <Redirect to="/Home/Colegios" />;
+        this.setState({
+          redirect: redirect
+        });
 
         alert("Se creo correctamente el colegio");
         console.log(response);
@@ -118,7 +124,7 @@ handleSubmit(e) {
     return (
       <div className="animated fadeIn">
         
-        
+        {this.state.redirect}
          
             <Card>
               <CardHeader>
@@ -143,7 +149,7 @@ handleSubmit(e) {
                     </Col>
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="kinder" id="kinder" bsSize="lg" onChange={this.handleAttribute} value={this.state.kinder}>
-                        <option >Opciones..</option>
+                        
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         
@@ -156,7 +162,7 @@ handleSubmit(e) {
                     </Col>
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="primary" id="primary" bsSize="lg" onChange={this.handleAttribute} value={this.state.primary}>
-                        <option >Opciones..</option>
+                        
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         
@@ -169,7 +175,7 @@ handleSubmit(e) {
                     </Col>
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="highschool" id="highschool" bsSize="lg" onChange={this.handleAttribute} value={this.state.highschool}>
-                        <option >Opciones..</option>
+                        
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         

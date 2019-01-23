@@ -29,22 +29,23 @@ class Login extends Component {
     this.setState({ [attrName]: attr });
   }
 
-  handleSubmit(){
+  handleSubmit = (e) => {
+    e.preventDefault();
     let obj ={}
     obj.email = this.state.email;
     obj.password = this.state.password;
 
-  axios
-  .post("usuarios/login", {
-            email: this.state.email,
-            password: this.state.password
+  axios.post("usuarios/login", {
+            email: obj.email,
+            password: obj.password
            
   })
-  .then(function(response) {
+  .then((response) => {
           sessionStorage.setItem('jwtToken', response.data.token);
+          window.location.reload();
           alert("Verificado")
             console.log(response);
-  }) .catch(function (error) {
+  }) .catch((error) => {
           alert("Error")
             console.log(error);
         });
@@ -53,14 +54,14 @@ class Login extends Component {
 
  
   render() {
-let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:null;
+
 
      
     return (
       
  
- <section style={ sectionStyle }>
- {redirect}
+ <section >
+
       <div className="app flex-row align-items-center" >
         <Container>
           <Row className="justify-content-center">
@@ -74,7 +75,7 @@ let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:
                       <section style={ sectionStyle }/>
                       
                     </center>
-                      <p className="text-muted">Sign In to your account</p>
+                      <p className="text-muted">Inice sesio con su cuenta</p>
 
                       <Form onSubmit={this.onSubmit}>
                       <InputGroup className="mb-3">
@@ -96,25 +97,17 @@ let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:
                       
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4" type="submit" onClick={this.handleSubmit} href="/">Login</Button>
+                          <Button color="primary" className="px-4" type="submit" onClick={this.handleSubmit} >Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
-                          <Button color="link" className="px-0">Forgot password?</Button>
+                         
                         </Col>
                       </Row>
                     </Form>
                     
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }} >
-                  <center>
-                    <h1>EDUCLOOK</h1>
-                  </center>
-                  <br />
-                      <img width="100%" height="80%" src="https://st3.depositphotos.com/4239987/12529/i/950/depositphotos_125294094-stock-photo-happy-girls-studying-together.jpg" alt="EDUCLOCK" />
-                    
-                 
-                </Card>
+                
                
               </CardGroup>
             </Col>

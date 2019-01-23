@@ -48,8 +48,8 @@ componentDidMount() {
                     <th>{data[i].fingerprint}</th>
                     <th>{data[i].code}</th>
                     <th>{data[i].order_number}</th>
-                     <th>{data[i].school}</th>
-                     <th>{data[i].tutor}</th>
+                     <th>Colegio Juventus</th>
+                     <th>jerson huayta</th>
                    
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
