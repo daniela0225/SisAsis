@@ -133,6 +133,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				case "/findByDNI": return "readAny"; break;
 				default: return ""; break;
 			}
 			break;

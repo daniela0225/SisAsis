@@ -10,5 +10,6 @@ router.post('/update',checkAuth, accessRules,Tutor.update);
 router.post('/delete',checkAuth, accessRules,Tutor.delete);
 router.get('/',checkAuth, accessRules,Tutor.show);
 router.post('/',checkAuth, accessRules, Tutor.create);
+router.post('/searchByDNI',checkAuth, accesRules, Tutor.findByDNI);
 
 module.exports = router;
