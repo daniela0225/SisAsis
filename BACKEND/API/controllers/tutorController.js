@@ -121,5 +121,26 @@ module.exports = {
 					error: err
 				});
 			});
+	},
+	searchByDNI: (req,res,next)=>{
+		const string = req.body.string;
+		Student.find({dni: { $regex: string , $options:'i'}})
+			.select('_id DNI name last_name address cellphone telephone email')
+			.exec()
+			.then(doc=> {
+				if (doc) {
+					res.status(200).json({
+						tutor: doc
+					});
+				}else{
+					res.status(404).json({message: 'No valid entry found for provided ID'});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
 	}
 }
