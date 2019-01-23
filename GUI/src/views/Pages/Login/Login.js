@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Background from '../../../assets/img/brand/fondo.JPG';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardImg, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import axios from '../../../AxiosFiles/axios.js';
 import { Redirect } from 'react-router-dom';
 
@@ -12,49 +12,56 @@ var sectionStyle = {
 };
 class Login extends Component {
 
-  getInitialState() {
-            return {
-                
-                email: '',
-                password: '',
+  constructor(props){
+    super(props);
+    this.state = {
+      email:'',
+      password:''
+    };
 
-            }
-        }
-
+    this.handleAttribute = this.handleAttribute.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   
+  handleAttribute(e){
+    var attr = e.target.value;
+    var attrName = e.target.id;
+    this.setState({ [attrName]: attr });
+  }
 
-  handleSubmit(e) {
-            
-            //var _this = this;
-            this.serverRequest = axios
-            //console.log(_this.ref.firstName)
-            .post("usuarios/login", {
-                
-                email: 'juan17091998@gmail.com',
-                password: 'ABCD@1234'
-            })
-            .then(function(response) {
-                sessionStorage.setItem('jwtToken', response.data.token);
-                alert(response.token);
-                console.log(response);
-            }) .catch(function (error) {
-                alert("Error con la credenciales");
-                console.log(error);
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let obj ={}
+    obj.email = this.state.email;
+    obj.password = this.state.password;
 
-            });
+  axios.post("usuarios/login", {
+            email: obj.email,
+            password: obj.password
+           
+  })
+  .then((response) => {
+          sessionStorage.setItem('jwtToken', response.data.token);
+          window.location.reload();
+          alert("Verificado")
+            console.log(response);
+  }) .catch((error) => {
+          alert("Error")
+            console.log(error);
+        });
   }
 
 
-
+ 
   render() {
-let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:null;
+
 
      
     return (
       
  
- <section style={ sectionStyle }>
- {redirect}
+ <section >
+
       <div className="app flex-row align-items-center" >
         <Container>
           <Row className="justify-content-center">
@@ -68,8 +75,7 @@ let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:
                       <section style={ sectionStyle }/>
                       
                     </center>
-                      <p className="text-muted">Sign In to your account</p>
-                        
+                      <p className="text-muted">Inice sesio con su cuenta</p>
 
                       <Form onSubmit={this.onSubmit}>
                       <InputGroup className="mb-3">
@@ -78,7 +84,7 @@ let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" name="email" ref={(input) => { this.uemail = input; }}/>
+                        <Input type="text" placeholder="Email" autoComplete="username" id="email" name="email" onChange={this.handleAttribute} value={this.state.email} />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -86,21 +92,22 @@ let redirect = (sessionStorage.getItem('jwtToken')!="null")?<Redirect to="/" />:
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" name="password" ref={(input) => { this.upassword = input; }}  />
+                        <Input type="password" placeholder="Password" autoComplete="current-password" id="password" name="password" onChange={this.handleAttribute} value={this.state.password} />
                       </InputGroup>
                       
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4" type="submit"  onClick={this.handleSubmit}>Login</Button>
+                          <Button color="primary" className="px-4" type="submit" onClick={this.handleSubmit} >Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
-                          <Button color="link" className="px-0">Forgot password?</Button>
+                         
                         </Col>
                       </Row>
                     </Form>
                     
                   </CardBody>
                 </Card>
+                
                
               </CardGroup>
             </Col>

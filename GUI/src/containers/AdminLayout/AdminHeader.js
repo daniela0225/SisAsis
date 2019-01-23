@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/instd.png'
@@ -14,19 +15,24 @@ const propTypes = {
 const defaultProps = {};
 
 class AdminHeader extends Component {
+
+
+
   render() {
+   
 
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
 
     return (
+
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         <AppNavbarBrand>
           
-          <h1>SISASIS</h1>
+          <h1>EDUCLOCK</h1>
           
         </AppNavbarBrand>
         
@@ -45,7 +51,13 @@ class AdminHeader extends Component {
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               
-              <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
+              <DropdownItem  onClick={
+                        () => {
+                                sessionStorage.setItem('jwtToken', null );
+                                //props.action();
+                                
+                            }
+            } href="/"><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
           </AppHeaderDropdown>
         </Nav>

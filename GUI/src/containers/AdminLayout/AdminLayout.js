@@ -2,6 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
+
 import {
   AppAside,
   AppBreadcrumb,
@@ -27,14 +28,12 @@ class AdminLayout extends Component {
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
-  signOut(e) {
-    e.preventDefault()
-    this.props.history.push('/login')
-  }
-
+  
   render() {
+   
     return (
       <div className="app">
+
         <AppHeader fixed>
           <Suspense  fallback={this.loading()}>
             <AdminHeader onLogout={e=>this.signOut(e)}/>
@@ -67,7 +66,7 @@ class AdminLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/Admin" to="/Admin" />
+                  <Redirect from="/Admin" to="Admin" />
                 </Switch>
               </Suspense>
             </Container>
