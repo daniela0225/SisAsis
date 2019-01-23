@@ -148,6 +148,10 @@ handleSubmit(e) {
       .catch( (response) => {
         //handle error
         alert("Error");
+        console.log(obj.email);
+        console.log(obj.password);
+        console.log(obj.type);
+        console.log(obj.school);
         console.log(response);
         
       });
