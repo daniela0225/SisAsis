@@ -380,7 +380,7 @@ handleSubmit = (e) => {
                      <Button block color="secondary" onClick={this.toggle}>Seleccionar Tutor</Button>
                      </Col>
                       <Col col="6" sm="4" md="3" xl className="mb-3 mb-xl-0">
-                     <h4>Nombre del tutor</h4>
+                     <h4>DNI del tutor</h4>
                      </Col>
                      
                       
@@ -391,7 +391,7 @@ handleSubmit = (e) => {
                   <FormGroup row>
                     <Col md="12">
                       <InputGroup>
-                        <Input type="text" id="input1-group2" name="input1-group2" placeholder="Nombre del tutor" />
+                        <Input type="text" id="input1-group2" name="input1-group2" placeholder="DNI del tutor" />
                         <InputGroupAddon addonType="prepend">
                           <Button type="button" color="primary"><i className="fa fa-search"></i> Buscar</Button>
                         </InputGroupAddon>
