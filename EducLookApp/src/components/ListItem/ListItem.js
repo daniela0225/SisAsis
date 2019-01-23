@@ -2,6 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 /*
+    Touchable can not be instance by itself, you have to use:
+        -TouchableWithoutFeedback
+        -TouchableHighlight
+        -TouchableOpacity
+        -TouchableNativeFeedback
 	Touchable let elements be... touchable (-_-) and can only have one child.
 	TouchableHighlight and TouchableOpacity have feedback and vary the animation.
 */

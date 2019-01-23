@@ -1,6 +1,6 @@
 import {
 	SIGN_IN
-} from '../userActions/actionTypes';
+} from '../actions/userActions/actionTypes';
 
 const initialState = {
 	email: '',

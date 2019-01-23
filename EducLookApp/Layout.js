@@ -1,12 +1,37 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 
 import PlaceInput from "./src/components/PlaceInput/PlaceInput";
 import PlaceList from "./src/components/PlaceList/PlaceList";
 import PlaceDetail from "./src/components/PlaceDetail/PlaceDetail";
-import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index';
+//import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index';
 
+import Login from './src/containers/Login/Login';
+
+class Layout extends Component {
+	render() {
+		return (
+			<View style={styles.container}>
+				<Login />
+			</View>
+		);
+	}
+}
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: 35,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "flex-start"
+	}
+});
+
+export default Layout;
+
+/*
 class Layout extends Component {
 
 	placeAddedHandler = placeName => {
@@ -69,3 +94,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+*/
