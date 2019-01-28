@@ -57,7 +57,37 @@ componentDidMount() {
                     </Col>
                     <br/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
+                     <Button block color="danger" onClick={() => {
+
+
+                          let url = 'alumnos/delete';
+                          
+
+                          const params = {
+                            method: 'post',
+                            url: url,
+                            data: {
+                              studentId: data[i]._id ,
+                              
+                            },
+                            headers: {
+                              "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+                            }
+                          };
+
+                          axios(params) 
+                          .then( (response) => {
+                            //handle success
+                           window.location.reload();   
+
+                            
+                            console.log(response);
+                          })
+                          .catch( (response) => {
+                           
+                            console.log(response);
+                          });
+                     }}>Eliminar</Button>
                      </Col>
                     </td>
                    

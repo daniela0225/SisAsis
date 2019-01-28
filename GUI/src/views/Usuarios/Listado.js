@@ -36,14 +36,44 @@ componentDidMount() {
                     <td>{data[i].email}</td>
                   
                     <td>{data[i].type}</td>
-                    <td>{data[i].school}</td>
+                    <td>Juventus</td>
                      <td>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning">Editar</Button>
                     </Col>
                     <br/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
+                     <Button block color="danger"  onClick={() => {
+
+
+                                    let url = 'usuarios/delete?userId='+data[i]._id;
+                                    
+
+                                    const params = {
+                                      method: 'get',
+                                      url: url,
+                                      
+                                        
+                                        
+                                      
+                                      headers: {
+                                        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+                                      }
+                                    };
+
+                                    axios(params) 
+                                    .then( (response) => {
+                                      //handle success
+                                     window.location.reload();   
+
+                                      
+                                      console.log(response);
+                                    })
+                                    .catch( (response) => {
+                                     
+                                      console.log(response);
+                                    });
+                                                 }} >Eliminar</Button>
                      </Col>
                     </td>
                    

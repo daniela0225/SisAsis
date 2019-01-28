@@ -52,9 +52,11 @@ const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
 const ListadoUsuarios = React.lazy(() => import('./views/Usuarios/Listado'));
 const ListadoTutores = React.lazy(() => import('./views/Tutores/Listado'));
 const FormularioColegio = React.lazy(() => import('./views/Colegios/Formulario'));
+const FormularioRegistro = React.lazy(() => import('./views/Registros/Formulario'));
 const FormularioAlumno = React.lazy(() => import('./views/Alumnos/Formulario'));
 const FormularioUsuario = React.lazy(() => import('./views/Usuarios/Formulario'));
 const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
+const EditarRegistro = React.lazy(() => import('./views/Registros/Editar'));
 
 
 
@@ -77,6 +79,8 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/Data', name: 'Data', exact: true, component: ListadoRegistros },
   { path: '/Home/Registros', exact:true, name: 'Registros', component: ListadoRegistros },
+  { path: '/Home/Registros/Formulario', name: 'Nuevo Registro', component: FormularioRegistro },
+  { path: '/Home/Registros/Editar', name: 'Editar Registro', component: EditarRegistro },
   { path: '/Home/Colegios',exact:true, name: 'Colegios', component: ListadoColegios },
   { path: '/Home/Colegios/Formulario', name: 'Formulario Colegio', component: FormularioColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },

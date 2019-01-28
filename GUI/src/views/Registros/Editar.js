@@ -27,7 +27,7 @@ import {
   Row,
 } from 'reactstrap';
 
-class Formulario extends Component {
+class Editar extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +37,7 @@ class Formulario extends Component {
     this.state = {
 
       
+      id: typeof props.match.params.id,
       student:'',
       date:'',
       school:'',
@@ -103,6 +104,39 @@ componentDidMount = () =>{
 
 
       axios.get('alumnos', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dataa = res.data.students;
+        let students = this.state.students;
+        console.log("students");
+        console.log(dataa);
+        students.push(<option key="4" >Opciones...</option>);
+
+        for(let i = 0; i < dataa.length ; i++){
+          console.log(dataa[i]);
+          students.push(
+            
+
+              <option  key={dataa[i]._id} value={dataa[i]._id}>{dataa[i].name}</option>
+                       
+          );
+        }
+
+        this.setState({ students: students });
+
+      })
+      .catch( res => {
+        console.log("ERROR STUDENTS");
+       
+        console.log(res);
+      })
+
+       axios.get('registros', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -254,4 +288,4 @@ handleSubmit = (e) => {
   }
 }
 
-export default Formulario;
+export default Editar;

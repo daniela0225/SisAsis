@@ -124,7 +124,8 @@ module.exports = {
 			});
 	},
 	delete: (req,res,next)=>{
-		const id = req.userData.userId;
+		if(req.userData.type == "ADMIN"){
+		const id = req.query.userId;
 		User.findById(id)
 			.select('_id')
 			.exec()
@@ -155,6 +156,12 @@ module.exports = {
 					error: err
 				});
 			});
+		}
+		else{
+			res.status(401).json({
+				message: "Dont have permissions"
+			});
+		}
 	},
 	password: (req,res,next)=>{
 		const email = req.body.email;

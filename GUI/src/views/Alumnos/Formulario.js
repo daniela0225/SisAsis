@@ -54,6 +54,8 @@ class Formulario extends Component {
       order_number:'',
       school:'',
       tutor:'',
+      DNIT:'',
+      DNIV:'',
       schools:[],
       tutors:[],
 
@@ -120,28 +122,47 @@ class Formulario extends Component {
       })
 
 
-      axios.get('tutores', {
-          headers: {
-            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
-          }
         }
-      )
-      .then( res => {
+
+ 
+searchByDNI = (e) => {
+
+  e.preventDefault(); 
+
+    const data = this.state;
+
+   // let url = 'usuarios/';
+
+    const params = {
+      method: 'post',
+      url: 'tutores/searchByDNI',
+      data: {string: data.DNIT },
+      headers: {
+        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+      }
+    };
+
+    axios(params) 
+    .then( (response) => {
+
+      const dataa = response.data.tutor;
+      let tutors = this.state.tutors;
+      if(dataa.length > 0){
         
-        const dataa = res.data.tutors;
-        let tutors = this.state.tutors;
         console.log("tutors");
         console.log(dataa);
        
 
         for(let i = 0; i < dataa.length ; i++){
           console.log(dataa[i]);
+          
+
 
           tutors.push(
             
 
               
-               <tr key={dataa[i]._id}>
+               <tr  key={Math.random()}>
                     <td>{dataa[i].name} {dataa[i].last_name}</td>
                     
                     <td>{dataa[i].DNI}</td>
@@ -149,7 +170,16 @@ class Formulario extends Component {
 
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="dark">Seleccionar Tutor</Button>
+                     <Button block color="dark" id="tutor" name="tutor" value={dataa[i]._id} onClick={ () => {
+                                this.setState({ collapse: !this.state.collapse });
+                                this.setState({
+                                   modal: !this.state.modal,
+                                  });
+                                this.state.tutor =dataa[i]._id;
+                                this.state.DNIV =dataa[i].DNI;
+
+                                
+                            }} >Seleccionar Tutor</Button>
                     </Col>
                     
                     </td>
@@ -158,89 +188,68 @@ class Formulario extends Component {
                        
           );
         }
+      }else{
+
+      tutors.push(<tr  key={Math.random()}><td>No hay tutores que coincidan con la busqueda</td><td>-</td><td>-</td></tr>);
+
+    }
+      
+      
 
         this.setState({ tutors: tutors });
-
-      })
-      .catch( res => {
-        console.log("ERROR TUTORS");
-       
-        console.log(res);
-      })
-  }
-
- 
-handleSubmit = (e) => {
-  e.preventDefault();
-      
-
-      let obj ={}
-    obj.name = this.state.name;
-    obj.last_name = this.state.last_name;
-    obj.gender = this.state.gender;
-    obj.DNI = this.state.DNI;
-    obj.birthdate = this.state.birthdate;
-    obj.year = this.state.year;
-    obj.section = this.state.section;
-    obj.fingerprint = this.state.fingerprint;
-    obj.code = this.state.code;
-    obj.order_number = this.state.order_number;
-    obj.school = this.state.school;
-    obj.tutor = this.state.tutor;
-     
-
-      const formData = new FormData();
-      formData.append("name",obj.name);
-      formData.append("last_name",obj.last_name);
-      formData.append("gender",obj.gender);
-      formData.append("DNI",obj.DNI);
-      formData.append("birthdate",obj.birthdate);
-      formData.append("year",obj.year);
-      formData.append("section",obj.section);
-      formData.append("fingerprint",obj.fingerprint);
-      formData.append("code",obj.code);
-      formData.append("order_number",obj.order_number);
-      formData.append("school",obj.school);
-      formData.append("tutor",obj.tutor);
-      
-      
-      
-      let url = 'alumnos/';
-
-      
-
-      const params = {
-        method: 'post',
-        url: url,
-        data: formData,
-        headers: {
-       
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken')
-      }
-      };
-
-      axios(params)
-      .then( (response) => {
-        //handle success
-        let redirect = <Redirect to="/Home/Alumnos" />;
-        this.setState({
-          redirect: redirect
-        });
-
-        alert("Se creo correctamente el alumno");
-        console.log(response);
-      })
-      .catch( (response) => {
-        //handle error
-        console.log(obj.name);
-        console.log(formData);
-        
-        alert("Error");
-        console.log(response);
-        
-      });
+    })
+    .catch( (response) => {
+      //handle error
+      alert("Error");
+      console.log(data.DNIT);
+      console.log(response);
+    });
+  
     }
+handleSubmit = () =>{
+  const data = this.state;
 
+   // let url = 'usuarios/';
+
+    const params = {
+      method: 'post',
+      url: 'alumnos/',
+      data: {
+            name: data.name,
+            last_name: data.last_name,
+            gender: data.gender,
+            DNI: data.DNI,
+            birthdate: data.birthdate,
+            year: data.year,
+            section: data.section,
+            fingerprint: data.fingerprint,
+            code: data.code,
+            order_number: data.order_number,
+            school: data.school,
+            tutor: data.tutor },
+      headers: {
+        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+      }
+    };
+
+    axios(params) 
+    .then( (response) => {
+      //handle success
+      let redirect = <Redirect to="/Home/Alumnos" />;
+      this.setState({
+        redirect: redirect
+      });
+
+      alert("Se creo correctamente al alumno");
+      console.log(response);
+    })
+    .catch( (response) => {
+      //handle error
+      alert("Error");
+      console.log(response);
+    });
+
+}
 
   render() {
     return (
@@ -380,7 +389,7 @@ handleSubmit = (e) => {
                      <Button block color="secondary" onClick={this.toggle}>Seleccionar Tutor</Button>
                      </Col>
                       <Col col="6" sm="4" md="3" xl className="mb-3 mb-xl-0">
-                     <h4>DNI del tutor</h4>
+                     <h4>{this.state.DNIV}</h4>
                      </Col>
                      
                       
@@ -391,9 +400,9 @@ handleSubmit = (e) => {
                   <FormGroup row>
                     <Col md="12">
                       <InputGroup>
-                        <Input type="text" id="input1-group2" name="input1-group2" placeholder="DNI del tutor" />
+                        <Input type="text" id="DNIT" name="DNIT" placeholder="DNI del tutor" onChange={this.handleAttribute} value={this.state.DNIT} />
                         <InputGroupAddon addonType="prepend">
-                          <Button type="button" color="primary"><i className="fa fa-search"></i> Buscar</Button>
+                          <Button type="button" color="primary" onClick={this.searchByDNI}><i className="fa fa-search"></i> Buscar</Button>
                         </InputGroupAddon>
                         
                       </InputGroup>
@@ -408,7 +417,7 @@ handleSubmit = (e) => {
                       </tr>
                       </thead>
                       <tbody>
-                      { (this.state.tutors !== null)?this.state.tutors:(<tr><td></td></tr>) }
+                      { (this.state.tutors.length > 0 )?this.state.tutors:(<tr key={Math.random()}><td>No hay tutores que coincidan con la busqueda</td><td>-</td><td>-</td></tr>) }
                       </tbody>
                       </Table>
                     </Col>

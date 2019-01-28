@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
-import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+import { Badge, Card, CardBody, CardHeader, Col,  Modal, 
+  ModalBody,
+  ModalFooter,
+  ModalHeader,Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
 class Listado extends Component {
-    state = {
-    records: []
-  }
+    
+  constructor (props) {
+    super(props);
 
 
-  componentDidMount() {
+   
+    this.state = {
+      records: [],
+    messages:[]  
+
+}
+this.componentDidMount = this.componentDidMount.bind(this);
+}
+ 
+  
+
+
+  componentDidMount = () => {
     axios.get('registros', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
@@ -23,20 +39,54 @@ class Listado extends Component {
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
+          let edit = "/#/Home/Registros/Editar/" + data[i]._id;
+          //console.log(edit);
           records.push(
             
-              <tr key={data[i]._id}>
+              <tr key={Math.random()}>
                     <td>{data[i].student.name} {data[i].student.last_name}</td>
                     <td>{data[i].date}</td>
-                    <td>{data[i].school}</td>
+                    <td>Juventus</td>
                     <td>{data[i].type}</td>
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
+                     <Button block color="warning" href={edit}>Editar</Button>
                     </Col>
                     <br/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="danger">Eliminar</Button>
+                     <Button block color="danger" onClick={() => {
+
+
+                          let url = 'registros/delete';
+                          
+
+                          const params = {
+                            method: 'post',
+                            url: url,
+                            data: {
+                              recordId: data[i]._id ,
+                              
+                            },
+                            headers: {
+                              "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+                            }
+                          };
+
+                          axios(params) 
+                          .then( (response) => {
+                            //handle success
+                           window.location.reload();   
+
+                            
+                            console.log(response);
+                          })
+                          .catch( (response) => {
+                           
+                            console.log(response);
+                          });
+                     }}>Eliminar</Button>
+                    
+                    
                      </Col>
                     </td>
                    
@@ -52,6 +102,7 @@ class Listado extends Component {
         console.log(res);
       })
   }
+  
 
 
 
@@ -59,11 +110,12 @@ class Listado extends Component {
   render() {
     return (
       <div className="animated fadeIn">
+      
        <Card>
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <Button block color="success">Nuevo Registro</Button>
+                 <a href="/#/Home/Registros/Formulario"><Button block color="success">Nuevo Registro</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>
@@ -88,6 +140,7 @@ class Listado extends Component {
        
 
       </div>
+
 
     );
   }

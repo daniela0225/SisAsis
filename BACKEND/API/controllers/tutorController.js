@@ -123,11 +123,12 @@ module.exports = {
 			});
 	},
 	searchByDNI: (req,res,next)=>{
-		const string = req.body.string;
-		Student.find({dni: { $regex: string , $options:'i'}})
+		const string = req.body.string + '';
+		console.log(string);
+		Tutor.find({DNI: { $regex: string , $options:'i'}})
 			.select('_id DNI name last_name address cellphone telephone email')
 			.exec()
-			.then(doc=> {
+			.then( (doc) => {
 				if (doc) {
 					res.status(200).json({
 						tutor: doc
