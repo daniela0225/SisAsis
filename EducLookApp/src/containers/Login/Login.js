@@ -5,9 +5,9 @@ import styles from './Styles.js';
 import {	View, ScrollView, Image,
 			Text, TextInput, 
 			TouchableOpacity,
-			Animated,
-			Keyboard,
-			KeyboardAvoidingView } from 'react-native';
+			Animated } from 'react-native';
+
+import Divider from '../../components/Divider/Divider';
 
 class Login extends Component {
 
@@ -21,31 +21,7 @@ class Login extends Component {
 		};
 
 		this.animate();
-	};
-
-	componentWillMount () {
-		this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-		this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
-	};
-
-	componentWillUnmount () {
-		this.keyboardWillShowSub.remove();
-		this.keyboardWillHideSub.remove();
-	};
-
-	keyboardWillShow = (event) => {
-		Animated.timing(this.imgSize, {
-			duration: event.duration,
-			toValue: 50,
-		}).start();
-	};
-
-	keyboardWillHide = (event) => {
-		Animated.timing(this.imgSize, {
-			duration: event.duration,
-			toValue: 150,
-		}).start();
-	};
+	}
 
 	animate = () => {
 		Animated.sequence([
@@ -84,7 +60,7 @@ class Login extends Component {
 		})
 		.catch((response) => {
 		  //handle error
-			alert('Usuario no encontrado.');
+			alert('Usuario o contraseña incorrectos.');
 		});
 	}
 
@@ -93,14 +69,12 @@ class Login extends Component {
 		let imgSize = this.state.imgSize;
 
 		return (
-				<KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
-					<View
-						style={[ styles.divider, styles.topDivider ]}
-					/>
+				<ScrollView contentContainerStyle={styles.loginContainer} behavior='padding' enabled>
+					<Divider type='top'/>
 					<Animated.View
 						style={ {
 							borderWidth: 2,
-							borderColor: '#1769ed',
+							borderColor: '#0083ff',
 							borderRadius: imgBorderRadius
 						} }>
 						<Animated.Image resizeMode='contain' source={appLogo} 
@@ -128,10 +102,8 @@ class Login extends Component {
 					<TouchableOpacity onPress={this.submitHandler} style={styles.buttonContainer}>
 						<Text style={styles.buttonText}> Ingresar </Text>
 					</TouchableOpacity>
-					<View
-						style={[ styles.divider, styles.bottomDivider ]}
-					/>
-				</KeyboardAvoidingView>
+					<Divider type='bottom'/>
+				</ScrollView>
 		);
 	}
 }

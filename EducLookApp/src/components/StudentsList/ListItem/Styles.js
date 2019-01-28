@@ -1,0 +1,40 @@
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+	listItem: {
+		flex: 1,
+		flexDirection: 'column',
+		width: "100%",
+		marginBottom: 5,
+		padding: 10,
+		backgroundColor: "#0083ff",
+		alignItems: "center",
+		borderRadius: 20
+	},
+	barContainer: {
+		backgroundColor: '#fff',
+		width: "100%",
+		height: 30,
+		borderRadius: 20,
+		borderWidth: 1,
+		borderColor: '#fff',
+		borderWidth: 2,
+		borderColor: '#ffbf00'
+	},
+	absencesText: {
+		color: '#0083ff',
+		fontSize: 20,
+		fontWeight: 'bold',
+		justifyContent:'center',
+		alignItems:'center',
+		alignSelf:'center',
+		position:'absolute'
+	},
+	nameContainer: {
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: '#fff'
+	}
+});
+
+export default styles;

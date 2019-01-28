@@ -1,0 +1,18 @@
+C:\Users\cesar alonso\source\repos\nse\nse\bin\Debug\nse.exe.config
+C:\Users\cesar alonso\source\repos\nse\nse\bin\Debug\nse.exe
+C:\Users\cesar alonso\source\repos\nse\nse\bin\Debug\nse.pdb
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\Interop.zkemkeeper.dll
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\nse.csproj.ResolveComReference.cache
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\nse.csproj.CoreCompileInputs.cache
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\nse.exe
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\nse.pdb
+C:\Users\cesar alonso\source\repos\nse\nse\obj\Debug\nse.csprojResolveAssemblyReference.cache
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\bin\Debug\nse.exe.config
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\bin\Debug\nse.exe
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\bin\Debug\nse.pdb
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\nse.csprojAssemblyReference.cache
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\Interop.zkemkeeper.dll
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\nse.csproj.ResolveComReference.cache
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\nse.csproj.CoreCompileInputs.cache
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\nse.exe
+D:\Tecsup\Practicas\Github\SisAsis\ScannerMiddlewareC#\nse\obj\Debug\nse.pdb

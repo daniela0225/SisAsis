@@ -1,21 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-	container: {
+	loginContainer: {
+		paddingTop:35,
 		flex: 1,
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'flex-start'
-	},
-	divider: {
-		borderRadius: 10,
-		backgroundColor: '#1769ed',
-		width: 300,
-		height: 3
-	},
-	topDivider: {
-			marginTop: 15,
-			marginBottom: 30
 	},
 	appLogo: {
 		height: 150,
@@ -27,11 +18,11 @@ const styles = StyleSheet.create({
 		textTransform: 'capitalize',
 		fontSize: 22,
 		fontWeight: 'bold',
-		color: '#1769ed'
+		color: '#0083ff'
 	},
 	input: {
 		borderWidth: 2,
-		borderColor: '#1769ed',
+		borderColor: '#0083ff',
 		marginTop: 20,
 		width: 250,
 		backgroundColor: 'white',
@@ -44,7 +35,7 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		width: 180,
 		alignItems: 'center',
-		backgroundColor: '#1769ed',
+		backgroundColor: '#0083ff',
 		borderRadius: 25,
 		padding: 10
 	},
@@ -53,9 +44,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: 'bold',
 		color: 'white'
-	},
-	bottomDivider: {
-		marginTop: 90
 	}
 });
 
