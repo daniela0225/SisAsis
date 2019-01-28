@@ -36,7 +36,7 @@ componentDidMount() {
                     <td>{data[i].email}</td>
                   
                     <td>{data[i].type}</td>
-                    <td>Juventus</td>
+                    <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
                      <td>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning">Editar</Button>

@@ -96,6 +96,7 @@ function tranformAction(table,url,method){
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
 				case "recordsByStudent": return "readOwn" ; break;
+				case "recordById": return "readOwn" ; break;
 				case "recordsByDay": return "readAny" ; break;
 				default: return ""; break;
 			}
@@ -143,7 +144,7 @@ function tranformAction(table,url,method){
 				case "/password": return "updateAny"; break;
 				case "/login": return "readOwn"; break;
 				case "/search": return "readAny"; break;
-				case "/menu": return "readOwn"; break;
+				case "/headers": return "readOwn"; break;
 				case "/edit": return "updateOwn"; break;
 				case "/getUserById": return "readAny"; break;
 				case "/update": return "updateAny"; break;

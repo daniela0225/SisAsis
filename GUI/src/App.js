@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import Loadable from 'react-loadable';
 import './App.scss';
+import axios from './AxiosFiles/axios.js';
 
 const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
 
@@ -76,6 +77,27 @@ class App extends Component {
 
   componentWillUpdate = () => {
     window.scrollTo(0, 0)
+  }
+  getUser = () => {
+    axios.get('usuarios/headers',{
+      headers: { 
+        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+      }
+    })
+    .then(response => {
+      const data = response.data.usuario;
+      console.log(data);
+      
+      this.setState({
+        email: data.email,
+        foto: data.foto,
+        nombres: data.nombres,
+        load: true
+      });
+
+    }).catch(response => {
+      console.log(response);
+    });
   }
   render() {
    

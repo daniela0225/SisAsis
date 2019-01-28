@@ -31,7 +31,14 @@ module.exports = {
 			});
 	},
 	create: (req,res,next)=>{
-		
+		/* Aun no es funcional */
+		console.log(req.body);
+		const fingerprint = req.body[0]["ID"];
+		const date = req.body[0]["date"];
+		console.log("ID: " + fingerprint);
+		console.log("date: " + date);
+		res.status(200).json({ message: 'Created succesfully' });
+
 		const record = new Record({
 			_id: new mongoose.Types.ObjectId(),
 			student: req.body.student,
@@ -141,6 +148,33 @@ module.exports = {
 				});
 			});
 	},
+	recordById: (req,res,next)=>{
+		Record.find({school:req.query.recordId})
+			.select('_id student date school type')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					records: docs.map(doc => {
+						return {
+							_id: doc._id,
+							student: doc.student,
+							date: doc.date,
+							school: doc.school,
+							type: doc.type
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+
 	recordsByDay: (req,res,next)=>{
 		Record.find({date:
 				{

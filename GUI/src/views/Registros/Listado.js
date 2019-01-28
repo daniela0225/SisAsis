@@ -39,14 +39,14 @@ this.componentDidMount = this.componentDidMount.bind(this);
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
-          let edit = "/#/Home/Registros/Editar/" + data[i]._id;
+          let edit = "/#/Home/Registros/Editar?recordId" + data[i]._id;
           //console.log(edit);
           records.push(
             
               <tr key={Math.random()}>
                     <td>{data[i].student.name} {data[i].student.last_name}</td>
                     <td>{data[i].date}</td>
-                    <td>Juventus</td>
+                    <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
                     <td>{data[i].type}</td>
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
