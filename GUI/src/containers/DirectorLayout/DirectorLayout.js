@@ -67,7 +67,7 @@ class DirectorLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/Director" />
+                  <Redirect from="/" to="/Home" />
                 </Switch>
               </Suspense>
             </Container>

@@ -7,7 +7,7 @@ const School = require('../controllers/schoolController');
 
 const storage = multer.diskStorage({
 	destination: function(req, file, cb){
-		cb(null,'./uploads/');
+		cb(null,'./Uploads/');
 	},
 	filename: function(req, file, cb){
 		cb(null, new Date().toISOString().replace(/:/g,'-') + file.originalname);
@@ -36,6 +36,7 @@ const upload = multer({
 router.get('/find',checkAuth, accessRules,School.find);
 router.post('/update',checkAuth, accessRules, upload.single('logo'), School.update);
 router.post('/delete',checkAuth, accessRules,School.delete);
+router.get('/img',checkAuth, accessRules, School.img);
 router.get('/',checkAuth, accessRules, School.show);
 router.post('/',checkAuth, accessRules, upload.single('logo'), School.create);
 

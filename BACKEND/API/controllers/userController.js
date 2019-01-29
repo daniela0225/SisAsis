@@ -305,7 +305,7 @@ module.exports = {
 	headers:(req,res,next)=>{
 		User.findById(req.userData.userId)
 			.select('_id email type school')
-			.populate('school','name')
+			.populate('school','name logo')
 			.exec()
 			.then(doc => {
 				if (doc) {

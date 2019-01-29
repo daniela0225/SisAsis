@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/instd.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
+import axios from '../../AxiosFiles/axios.js';
 
 const propTypes = {
   children: PropTypes.node,
@@ -16,6 +17,43 @@ const defaultProps = {};
 
 class AdminHeader extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+     
+      logo: ''
+     
+    }
+    //localStorage.setItem('path','http://35.238.122.18/');
+    //localStorage.setItem('path','http://localhost:3000/');
+    
+    this.getUser = this.getUser.bind(this);
+  }
+  componentWillMount(){
+   
+    this.getUser();
+  }
+  getUser = () => {
+    axios.get('usuarios/headers',{
+      headers: { 
+        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+      }
+    })
+    .then(response => {
+      const data = response.data.usuario;
+      console.log(data);
+      console.log("si jalo img");
+      
+      this.setState({
+        logo: data.school.logo,
+        
+      });
+
+    }).catch(response => {
+      console.log(response);
+    });
+  }
+
 
 
   render() {
@@ -23,6 +61,7 @@ class AdminHeader extends Component {
 
     // eslint-disable-next-line
     const { children, ...attributes } = this.props;
+    const urlImg = 'http://localhost:3000/'+this.state.logo;
 
     return (
 
@@ -47,7 +86,7 @@ class AdminHeader extends Component {
          
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
-              <img src={'../../assets/img/avatars/instd.png'} className="img-avatar"  />
+              <img src={(this.state.logo !== '')?urlImg:'../../assets/img/avatars/instd.png'} className="img-avatar"  />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               

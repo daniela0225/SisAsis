@@ -67,7 +67,7 @@ class PorteroLayout extends Component {
                         )} />
                     ) : (null);
                   })}
-                  <Redirect from="/" to="/Padre" />
+                  <Redirect from="/" to="/Home" />
                 </Switch>
               </Suspense>
             </Container>
