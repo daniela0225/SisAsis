@@ -150,6 +150,7 @@ handleSubmit(e) {
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="kinder" id="kinder" bsSize="lg" onChange={this.handleAttribute} value={this.state.kinder}>
                         
+                         <option >OPCIONES...</option>
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         
@@ -163,6 +164,7 @@ handleSubmit(e) {
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="primary" id="primary" bsSize="lg" onChange={this.handleAttribute} value={this.state.primary}>
                         
+                         <option >OPCIONES...</option>
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         
@@ -176,6 +178,7 @@ handleSubmit(e) {
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="highschool" id="highschool" bsSize="lg" onChange={this.handleAttribute} value={this.state.highschool}>
                         
+                         <option >OPCIONES...</option>
                         <option value="true">SI</option>
                         <option value="false">NO</option>
                         

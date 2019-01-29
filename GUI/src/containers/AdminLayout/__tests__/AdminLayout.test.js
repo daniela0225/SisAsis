@@ -5,6 +5,6 @@ import AdminLayout from '../AdminLayout';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<MemoryRouter><Route path="/Admin" name="Home" component={AdminLayout} /></MemoryRouter>, div);
+  ReactDOM.render(<MemoryRouter><Route path="/Home" name="Home" component={AdminLayout} /></MemoryRouter>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const School = require('../models/school');
 const fs = require('fs');
 const defaultPicture = 'Uploads\\default.jpeg';
+const route = 'http://localhost:3000/';
 const cron = require('node-cron');
 
 module.exports = {
@@ -238,5 +239,26 @@ module.exports = {
 				console.log(err);
 				res.status(500).json({error:err});
 			});
+	},
+	img:(req,res,next) =>{
+		School.findById(req.query.schoolId)
+			.select('logo')
+			.exec()
+			.then(doc => {
+				if (doc) {
+					const url = 'http://localhost:3000/'+doc.logo;
+
+					res.status(200).json({
+						logo: url
+					});
+				}else{
+					res.status(404).json({message: 'No valid entry found for provided ID'});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({error: err});
+			});
 	}
+
 }

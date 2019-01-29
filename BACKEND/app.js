@@ -24,7 +24,6 @@ app.get('/',function(req,res){
 
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'));
-app.use('/profilePictures',express.static('profilePictures'));
 app.use('/react',express.static('static'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

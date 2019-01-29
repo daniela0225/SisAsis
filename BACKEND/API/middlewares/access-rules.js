@@ -106,6 +106,7 @@ function tranformAction(table,url,method){
 				case "/find": return "readAny"; break;
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
+				case "/img": return "readAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
 				case "/edit": return "updateOwn"; break;

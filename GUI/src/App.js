@@ -21,6 +21,15 @@ const PadreLayout = Loadable({
   loading
 });
 
+const DirectorLayout = Loadable({
+  loader: () => import('./containers/DirectorLayout'),
+  loading
+});
+const PorteroLayout = Loadable({
+  loader: () => import('./containers/PorteroLayout'),
+  loading
+});
+
 
 // Pages
 const Login = Loadable({
@@ -53,11 +62,13 @@ class App extends Component {
     super(props);
     this.state = {
       token: sessionStorage.getItem('jwtToken'),
+      type: '',
       showSideDrawer: false
     }
     //localStorage.setItem('path','http://35.238.122.18/');
     localStorage.setItem('path','http://localhost:3000/');
     this.UserLogged = this.UserLogged.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
   componentWillMount(){
@@ -67,6 +78,7 @@ class App extends Component {
     this.setState({
       token: sessionStorage.getItem('jwtToken')
     });
+    this.getUser();
   }
 
   UserLogged = () => {
@@ -89,10 +101,8 @@ class App extends Component {
       console.log(data);
       
       this.setState({
-        email: data.email,
-        foto: data.foto,
-        nombres: data.nombres,
-        load: true
+        type: data.type,
+        
       });
 
     }).catch(response => {
@@ -102,9 +112,15 @@ class App extends Component {
   render() {
    
     return (
+
       <HashRouter>
 
-        {(this.state.token !== "null")?(
+
+        {
+
+
+
+          (this.state.type === "ADMIN")?(
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
             <Route exact path="/register" name="Register Page" component={Register} />
@@ -113,9 +129,43 @@ class App extends Component {
             //<Route exact path="/sisasis" name="Home" component={AdminLayout} />
             <Route  path="/" name="Sistema de asistencias" component={AdminLayout} />
           </Switch>
-     
+                      ):(this.state.type === "DIRECTOR")?
 
-              ):(
+                        (
+                          <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Register Page" component={Register} />
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            //<Route exact path="/sisasis" name="Home" component={AdminLayout} />
+            <Route  path="/" name="Sistema de asistencias" component={DirectorLayout} />
+          </Switch>
+
+          )
+
+                      :(this.state.type === "TUTOR")?(
+                        <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Register Page" component={Register} />
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            //<Route exact path="/sisasis" name="Home" component={AdminLayout} />
+            <Route  path="/" name="Sistema de asistencias" component={PadreLayout} />
+          </Switch>
+
+
+                        ):(this.state.type === "DOORMAN")?(
+
+                      <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Register Page" component={Register} />
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            //<Route exact path="/sisasis" name="Home" component={AdminLayout} />
+            <Route  path="/" name="Sistema de asistencias" component={PorteroLayout} />
+          </Switch>
+
+                      ):(
 
     
           <Switch>
