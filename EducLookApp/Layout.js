@@ -5,9 +5,10 @@ import { StyleSheet, View } from "react-native";
 //import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index';
 
 import Login from './src/containers/Login/Login';
+import Home from './src/containers/Home/Home';
 
 import StatusBar from './src/components/StatusBar/StatusBar';
-import Home from './src/containers/Home/Home';
+import MenuBar from './src/components/MenuBar/MenuBar';
 
 import SideMenu from './src/containers/SideMenu/SideMenu';
 
@@ -20,30 +21,32 @@ class Layout extends Component {
 		};
 
 		this.showSideMenu = this.showSideMenu.bind(this);
+		this.setView = this.setView.bind(this);
 	}
 
 	showSideMenu = () => {
 		const showSideMenu = !this.state.showSideMenu;
 		this.setState({ showSideMenu: showSideMenu });
-		console.log(showSideMenu);
 	}
 
-	render() {
-		
-		const statusBar = (this.state.viewName === "Login" || this.state.viewName === "SideMenu")? 
-			(<View />):(<StatusBar viewName={this.state.viewName} showSideMenu={this.showSideMenu} />);
+	setView = (viewName) => {
+		this.setState({viewName: viewName});
+	}
 
-		const content = (this.state.viewName === 'SideMenu')?(
+	render() {	
+		const statusBar = (this.state.viewName === "Login")? 
+							(<View />):(<StatusBar viewName={this.state.viewName}/>);
+		const menuBar = (this.state.viewName === "Login")? 
+							(<View />):(<MenuBar showSideMenu={this.showSideMenu}/>);
+
+		const content = (
 				<View style={ styles.screen }>
-					<SideMenu />
-				</View>
-			):(
-				<View style={ styles.screen }>
-					<SideMenu show={this.state.showSideMenu} hide={this.showSideMenu} />
+					<SideMenu show={this.state.showSideMenu} hide={this.showSideMenu} setView={this.setView} />
 					{statusBar}
 					<View style={styles.viewContainer}>
-						<Home />
+						{(this.state.viewName == 'Login')?(<Login setView={this.setView} />):(<Home />)}
 					</View>
+					{menuBar}
 				</View>
 			);
 

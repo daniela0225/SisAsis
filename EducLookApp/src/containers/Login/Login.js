@@ -45,6 +45,7 @@ class Login extends Component {
 	}
 
 	submitHandler = () => {
+		/*
 		const data = this.state;
 		let url = 'usuarios/login';
 
@@ -62,6 +63,8 @@ class Login extends Component {
 		  //handle error
 			alert('Usuario o contraseña incorrectos.');
 		});
+		*/
+		this.props.setView('Login');
 	}
 
 	render() {

@@ -62,7 +62,9 @@ class Home extends Component {
 
 		return (
 				<ScrollView contentContainerStyle={styles.homeContainer} behavior='padding'>
-					<Image resizeMode='contain' source={appLogo} style={styles.schoolLogo} />
+					<View style={styles.schoolLogoContainer}>
+						<Image resizeMode='contain' source={appLogo} style={styles.schoolLogo} />
+					</View>
 					<Text style={styles.schoolName}> {this.state.schoolName} </Text>
 					<Text style={styles.textContainer}> Porcentajes de Inasistencia </Text>
 					<View style={styles.studentsListContainer}>

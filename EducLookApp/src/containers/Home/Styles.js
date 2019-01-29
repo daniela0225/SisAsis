@@ -22,9 +22,15 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: '#0083ff'
 	},
+	schoolLogoContainer: {
+		padding: 10,
+		borderRadius: 20,
+		borderWidth: 2,
+		borderColor: '#0083ff'
+	},
 	schoolLogo: {
-		width: 200,
-		height: 200
+		width: 160,
+		height: 160
 	},
 	studentsListContainer: {
 		width: '100%'

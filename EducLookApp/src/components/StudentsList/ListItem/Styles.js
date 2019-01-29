@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		width: "100%",
-		marginBottom: 5,
+		height: 65,
+		marginBottom: 10,
 		padding: 10,
 		backgroundColor: "#0083ff",
 		alignItems: "center",
@@ -16,14 +17,12 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 30,
 		borderRadius: 20,
-		borderWidth: 1,
-		borderColor: '#fff',
 		borderWidth: 2,
 		borderColor: '#ffbf00'
 	},
 	absencesText: {
 		color: '#0083ff',
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		justifyContent:'center',
 		alignItems:'center',
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
 		position:'absolute'
 	},
 	nameContainer: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		color: '#fff'
 	}

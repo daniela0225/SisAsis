@@ -1,16 +1,39 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-		sideMenuContainer: {
+	sideMenuContainer: {
+		width: '100%',
+		height: '100%',
+		flexDirection: 'row'
+	},
+	menuContainer: {
 		width: '80%',
 		height:'100%',
 		backgroundColor: '#0083ff',
-		padding: 30
+		paddingLeft: 30,
+		paddingRight: 30,
+		paddingBottom: 30
+	},
+	menuBackground:{
+		width: '20%',
+		height: '100%',
+		backgroundColor: 'rgba(0,0,0,0.3)'
+	},
+	row: {
+		flexDirection: 'row'
+	},
+	closeButtonContainer: {
+		marginTop: 10,
+		marginLeft: 20
+	},
+	closeIcon: {
+		height: 40,
+		width: 40
 	},
 	tutorInfoContainer: {
-		width: '100%',
+		width: '80%',
 		height: 200,
-		paddingTop: 10,
+		marginTop: 10,
 		marginBottom: 30
 	},
 	tutorIcon: {

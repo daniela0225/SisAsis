@@ -4,24 +4,12 @@ const styles = StyleSheet.create({
     statusBarContainer: {
         backgroundColor: '#0083ff',
         width: '100%',
-        height: 75,
+        height: 70,
         paddingTop: 25,
         flexDirection: 'row'
     },
-    sideMenuButtonContainer: {
-        paddingTop: 5,
-        paddingLeft: 15,
-        alignItems: 'center'
-    },
-    menuBars:{
-        flexDirection: 'column',
-        height: 4,
-        width: 30,
-        backgroundColor: '#fff',
-        margin: 4,
-    },
     statusBarText: {
-        marginTop: 10,
+        marginTop: 6,
         marginLeft: 20,
         fontSize: 20,
         color: '#fff',
