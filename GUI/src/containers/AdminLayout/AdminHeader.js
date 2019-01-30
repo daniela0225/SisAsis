@@ -17,11 +17,14 @@ const defaultProps = {};
 
 class AdminHeader extends Component {
 
+
   constructor(props){
     super(props);
     this.state = {
      
-      logo: ''
+      logo: '',
+      email: '',
+      schoolName: ''
      
     }
     //localStorage.setItem('path','http://35.238.122.18/');
@@ -43,16 +46,29 @@ class AdminHeader extends Component {
       const data = response.data.usuario;
       console.log(data);
       console.log("si jalo img");
+      if(response.data.usuario.school !== null){
       
       this.setState({
         logo: data.school.logo,
+        email: data.email,
+        schoolName: data.school.name
         
       });
+    }else{
+      this.setState({
+        
+        email: data.email,
+       
+        
+      });
+
+    }
 
     }).catch(response => {
       console.log(response);
     });
   }
+
 
 
 
@@ -69,28 +85,36 @@ class AdminHeader extends Component {
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         
         <AppSidebarToggler className="d-md-down-none" display="lg" />
-        <AppNavbarBrand>
-          
-          <h1>EDUCLOCK</h1>
-          
-        </AppNavbarBrand>
+
+        
+        <Nav className="d-md-down-none" navbar>
+          <center>
+          <h1>EDUCLOOCK</h1>
+          </center>
+        </Nav>
+
         
 
         
         
 
-        <Nav className="ml-auto" navbar>
+       <Nav className="ml-auto" navbar>
 
         
-          
-         
+          <div align="right">
+         <h7>{this.state.email}</h7>
+         <br/>
+          <h6>{(this.state.schoolName !== '')?this.state.schoolName:'Administrador'}</h6>
+         </div>
+
           <AppHeaderDropdown direction="down">
+
             <DropdownToggle nav>
               <img src={(this.state.logo !== '')?urlImg:'../../assets/img/avatars/instd.png'} className="img-avatar"  />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
               
-              <DropdownItem  onClick={
+              <DropdownItem onClick={
                         () => {
                                 sessionStorage.setItem('jwtToken', null );
                                 //props.action();

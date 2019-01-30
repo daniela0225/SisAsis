@@ -37,7 +37,7 @@ class Editar extends Component {
     this.state = {
 
       
-      id: typeof props.match.params.id,
+      id: props.match.params.id,
       student:'',
       date:'',
       school:'',
@@ -51,6 +51,7 @@ class Editar extends Component {
     };
     this.handleAttribute = this.handleAttribute.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getRecord = this.getRecord.bind(this);
   }
 
   toggle() {
@@ -64,6 +65,46 @@ class Editar extends Component {
     var attr = e.target.value;
     var attrName = e.target.id;
     this.setState({ [attrName]: attr });
+  }
+
+  getRecord = (id) => {
+    axios.get('anuncios/find?anuncioId=' + id,
+        {headers: { "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken') }})
+      .then((response) => {
+        const data = response.data.anuncio;
+
+        this.setState({
+          _id: data._id,
+        id_cat: data.categoria._id,
+        nom_cat: data.categoria.nombre,
+        fec_pub: data.fec_pub,
+        imagenUrl: data.imagen,
+        imagenUrlPreviews: [],
+        precio: data.precio,
+        sub_cat: data.subcategoria,
+        titulo: data.titulo,
+        descripcion: data.descripcion,
+        usuario: data.usuario._id,
+        nombres: data.usuario.nombres,
+        cambiarImagen: false
+        });
+        let array = [];
+        for(let i=0, l=this.state.imagenUrl.length;i < l; i++){
+          array.push(<img src={localStorage.getItem('path') + this.state.imagenUrl[i]} />);
+        }
+        this.setState({
+          imagenUrlPreviews: array,
+          load:true
+        });
+      })
+      .catch((response) => {
+        console.log("Error");
+      });   
+  }
+  componentWillMount = () => {
+   
+      this.getRecord(this.props.match.params.id);
+
   }
 
 

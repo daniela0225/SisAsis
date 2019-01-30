@@ -32,12 +32,14 @@ module.exports = {
 	},
 	create: (req,res,next)=>{
 		/* Aun no es funcional */
+		/*
 		console.log(req.body);
 		const fingerprint = req.body[0]["ID"];
 		const date = req.body[0]["date"];
 		console.log("ID: " + fingerprint);
 		console.log("date: " + date);
 		res.status(200).json({ message: 'Created succesfully' });
+		*/
 
 		const record = new Record({
 			_id: new mongoose.Types.ObjectId(),

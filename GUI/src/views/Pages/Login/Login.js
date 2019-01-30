@@ -75,7 +75,7 @@ class Login extends Component {
                       <section style={ sectionStyle }/>
                       
                     </center>
-                      <p className="text-muted">Inice sesio con su cuenta</p>
+                      <p className="text-muted">Inice sesion con su cuenta</p>
 
                       <Form onSubmit={this.onSubmit}>
                       <InputGroup className="mb-3">
@@ -105,6 +105,16 @@ class Login extends Component {
                       </Row>
                     </Form>
                     
+                  </CardBody>
+
+                </Card>
+                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }} color="warning">
+                  <CardBody className="text-center">
+                    <div>
+                      
+                      <img src={'./logo.png'} height="100%" width="100%"/>
+                      
+                    </div>
                   </CardBody>
                 </Card>
                 

@@ -80,7 +80,7 @@ const routes = [
   { path: '/Data', name: 'Data', exact: true, component: ListadoRegistros },
   { path: '/Home/Registros', exact:true, name: 'Registros', component: ListadoRegistros },
   { path: '/Home/Registros/Formulario', name: 'Nuevo Registro', component: FormularioRegistro },
-  { path: '/Home/Registros/Editar', name: 'Editar Registro', component: EditarRegistro },
+  //{ path: '/Home/Registros/Editar/:id', name: 'Editar Registro', component: EditarRegistro },
   { path: '/Home/Colegios',exact:true, name: 'Colegios', component: ListadoColegios },
   { path: '/Home/Colegios/Formulario', name: 'Formulario Colegio', component: FormularioColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },

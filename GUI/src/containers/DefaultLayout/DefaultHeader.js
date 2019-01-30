@@ -24,11 +24,12 @@ class DefaultHeader extends Component {
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         
         <AppSidebarToggler className="d-md-down-none" display="lg" />
-        <AppNavbarBrand>
-          
-          <h1>SISASIS</h1>
-          
-        </AppNavbarBrand>
+         <Nav className="d-md-down-none" navbar>
+          <center>
+          <h1>EDUCLOOCK</h1>
+          </center>
+        </Nav>
+
         
 
         
