@@ -31,7 +31,7 @@ class listItem extends Component{
 							<View style={styles.optionIcon} /> 
 							<Text style={styles.optionText}>Asistencias Semanales</Text>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.option} onPress={ () => {} }>
+						<TouchableOpacity style={styles.option} onPress={ () => {this.props.setView('MonthRecords');this.props.hideMenu()} }>
 							<View style={styles.optionIcon} /> 
 							<Text style={styles.optionText}>Asistencias Mensuales</Text>
 						</TouchableOpacity>

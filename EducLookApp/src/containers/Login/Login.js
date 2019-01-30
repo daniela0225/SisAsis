@@ -64,7 +64,7 @@ class Login extends Component {
 			alert('Usuario o contraseña incorrectos.');
 		});
 		*/
-		this.props.setView('Login');
+		this.props.setView('Home');
 	}
 
 	render() {

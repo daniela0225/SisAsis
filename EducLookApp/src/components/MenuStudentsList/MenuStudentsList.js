@@ -29,6 +29,8 @@ class menuStudentsList extends Component{
 						key={info.item.key}
 						fullName={info.item.fullName}
 						setSelectedItem={() => {this.setSelectedItem(info.item.key)}}
+						setView={this.props.setView}
+						hideMenu={this.props.hideMenu}
 					/>
 				)}
 			/>

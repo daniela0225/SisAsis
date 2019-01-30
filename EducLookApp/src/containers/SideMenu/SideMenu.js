@@ -56,7 +56,7 @@ class sideMenu extends Component {
 						</View>
 						<View style={styles.studentsInfoContainer}>
 							<Text style={[styles.text, styles.primaryText]}> Alumnos </Text>
-							<MenuStudentsList items={this.state.students}/>
+							<MenuStudentsList items={this.state.students} setView={this.props.setView} hideMenu={this.props.hide}/>
 						</View>
 						<TouchableOpacity style={styles.settingsContainer} onPress={this.onLogoutHandler}>
 							<Image resizeMode='contain' source={logoutIcon} style={styles.logoutIcon} /> 
