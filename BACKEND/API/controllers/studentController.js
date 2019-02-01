@@ -85,7 +85,7 @@ module.exports = {
 			});
 	},
 	find: (req,res,next)=>{
-		const id = req.query.studentId;
+		const id = req.body.studentId;
 		Student.findById(id)
 			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
 			.populate('school','name')

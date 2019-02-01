@@ -28,6 +28,7 @@ class Listado extends Component {
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
           let urlImg = "http://localhost:3000/"+data[i].logo;
+          let editar = "/#/Home/Colegios/Editar/"+data[i]._id;
           schools.push(
             <tr key={data[i]._id}>
                     <td>{data[i].name}</td>
@@ -42,7 +43,7 @@ class Listado extends Component {
                     </td>
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
+                     <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
                     <br/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">

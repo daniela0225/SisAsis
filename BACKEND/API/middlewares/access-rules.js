@@ -27,6 +27,7 @@ class TableRules {
 		this.DIRECTOR_RULES = roles[1];
 		this.TUTOR_RULES = roles[2];
 		this.DOORMAN_RULES = roles[3];
+		this.TEACHER_RULES = roles[4];
 	}
 }
 
@@ -38,15 +39,18 @@ function can(role,action,table){
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
 						)),
 		school : new TableRules(new Array(
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
 						)),
 		student : new TableRules(new Array(
+							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
@@ -59,6 +63,14 @@ function can(role,action,table){
 							[true,true,true,true,true,true,true,true]
 						)),
 		user : new TableRules(new Array(
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true]
+						)),
+		teacher : new TableRules(new Array(
+							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
@@ -81,6 +93,7 @@ function transformTable(table){
 		case "alumnos": return "student" ;break;
 		case "tutores": return "tutor" ;break;
 		case "usuarios": return "user" ;break;
+		case "profesores": return "teacher" ;break;
 	}
 		
 }
@@ -155,6 +168,17 @@ function tranformAction(table,url,method){
 				case "/usersByType": return "readAny"; break;
 				case "/usersBySchool": return "readOwn"; break;
 				case "/usersByTypeAndSchool": return "readOwn"; break;
+				default: return ""; break;
+			}
+			break;
+		case "profesores":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+
+
 				default: return ""; break;
 			}
 			break;

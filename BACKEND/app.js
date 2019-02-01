@@ -10,6 +10,7 @@ const schoolRoutes = require('./api/routes/schools');
 const studentRoutes = require('./api/routes/students');
 const userRoutes = require('./api/routes/users');
 const tutorRoutes = require('./api/routes/tutors');
+const teacherRoutes = require('./api/routes/teachers');
 /* let */
 
 mongoose.connect('mongodb://localhost:27017/asistencias');
@@ -50,6 +51,7 @@ app.use('/colegios',schoolRoutes);
 app.use('/alumnos',studentRoutes);
 app.use('/usuarios',userRoutes);
 app.use('/tutores',tutorRoutes);
+app.use('/profesores',teacherRoutes);
 /* let */
 
 app.use((req,res,next)=>{

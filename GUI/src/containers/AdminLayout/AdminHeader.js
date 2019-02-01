@@ -102,7 +102,7 @@ class AdminHeader extends Component {
 
         
           <div align="right">
-         <h7>{this.state.email}</h7>
+         {this.state.email}
          <br/>
           <h6>{(this.state.schoolName !== '')?this.state.schoolName:'Administrador'}</h6>
          </div>
