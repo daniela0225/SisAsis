@@ -4,9 +4,10 @@ const Student = require('../models/student');
 module.exports = {
 	show: (req,res,next)=>{
 		Student.find()
-			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
 			.populate('tutor','DNI')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -25,7 +26,8 @@ module.exports = {
 							code: doc.code,
 							order_number: doc.order_number,
 							school: doc.school,
-							tutor: doc.tutor
+							tutor: doc.tutor,
+							teacher: doc.teacher
 						}
 					})
 				};
@@ -53,7 +55,8 @@ module.exports = {
 			code: req.body.code,
 			order_number: req.body.order_number,
 			school: req.body.school,
-			tutor: req.body.tutor
+			tutor: req.body.tutor,
+			teacher: req.body.teacher
 		});
 		student
 			.save()
@@ -73,7 +76,8 @@ module.exports = {
 						code: result.code,
 						order_number: result.order_number,
 						school: result.school,
-						tutor: result.tutor
+						tutor: result.tutor,
+						teacher: result.teacher
 					}
 				});
 			})
@@ -87,9 +91,10 @@ module.exports = {
 	find: (req,res,next)=>{
 		const id = req.body.studentId;
 		Student.findById(id)
-			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
 			.populate('tutor','DNI')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(doc=> {
 				if (doc) {
@@ -143,8 +148,9 @@ module.exports = {
 	},
 	studentsBySchool: (req, res, next)=>{
 		Student.find({school:(req.body.schoolId != null)?req.body.schoolId:req.query.schoolId})
-			.select('_id DNI name last_name gender year tutor')
+			.select('_id DNI name last_name gender year tutor teacher')
 			.populate('tutor','DNI name last_name')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -157,7 +163,8 @@ module.exports = {
 							gender: doc.gender,
 							DNI: doc.DNI,
 							year: doc.year,
-							tutor: doc.tutor
+							tutor: doc.tutor,
+							teacher: doc.teacher
 						}
 					})
 				};
@@ -172,8 +179,9 @@ module.exports = {
 	},
 	studentsBySchoolAndYear: (req, res, next)=>{
 		Student.find({school:req.body.school, year:req.body.year})
-			.select('_id DNI name last_name section tutor order_number')
+			.select('_id DNI name last_name section tutor order_number teacher')
 			.populate('tutor','DNI name last_name')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -186,7 +194,8 @@ module.exports = {
 							DNI: doc.DNI,
 							section: doc.section,
 							order_number: doc.order_number,
-							tutor: doc.tutor
+							tutor: doc.tutor,
+							teacher: doc.teacher
 						}
 					})
 				};
@@ -202,9 +211,10 @@ module.exports = {
 	searchByName: (req, res, next)=>{
 		const string = req.body.string;
 		Student.find({name: { $regex: string , $options:'i'}})
-			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
 			.populate('tutor','DNI')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -223,7 +233,8 @@ module.exports = {
 							code: doc.code,
 							order_number: doc.order_number,
 							school: doc.school,
-							tutor: doc.tutor
+							tutor: doc.tutor,
+							teacher: doc.teacher
 						}
 					})
 				};
@@ -239,9 +250,10 @@ module.exports = {
 	searchByLastName: (req, res, next)=>{
 		const string = req.body.string;
 		Student.find({last_name: { $regex: string , $options:'i'}})
-			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor')
+			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
 			.populate('tutor','DNI')
+			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -260,7 +272,8 @@ module.exports = {
 							code: doc.code,
 							order_number: doc.order_number,
 							school: doc.school,
-							tutor: doc.tutor
+							tutor: doc.tutor,
+							teacher: doc.teacher
 						}
 					})
 				};

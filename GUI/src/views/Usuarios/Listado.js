@@ -26,6 +26,7 @@ componentDidMount() {
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
+          let editar = "/#/Home/Usuarios/Editar/"+data[i]._id;
           users.push(
             
               
@@ -39,7 +40,7 @@ componentDidMount() {
                     <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
                      <td>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                     <Button block color="warning">Editar</Button>
+                     <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
                     <br/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">

@@ -312,7 +312,7 @@ handleSubmit = () =>{
          
             <Card>
               <CardHeader>
-                <strong>Formulario de Alumno</strong> 
+                <strong>Editar Alumno</strong> 
               </CardHeader>
               <CardBody>
                 <Form onSubmit={this.onSubmit}  className="form-horizontal">

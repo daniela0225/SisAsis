@@ -15,6 +15,7 @@ const studentSchema = mongoose.Schema({
 	code: {type:Number, required: true},
 	order_number: {type:Number, required: true},
 	school: {type: mongoose.Schema.Types.ObjectId, ref:'School', required: true},
-	tutor: {type: mongoose.Schema.Types.ObjectId, ref:'Tutor', required: true}
+	tutor: {type: mongoose.Schema.Types.ObjectId, ref:'Tutor', required: true},
+	teacher: {type: mongoose.Schema.Types.ObjectId, ref:'Teacher', required: true}
 });
 module.exports = mongoose.model('Student', studentSchema,'students');

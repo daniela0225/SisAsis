@@ -7,12 +7,12 @@ class Listado extends Component {
 
 
   state = {
-    tutors: []
+    teachers: []
   }
 
 
 componentDidMount() {
-    axios.get('tutores', {
+    axios.get('profesores', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -20,14 +20,14 @@ componentDidMount() {
       )
       .then( res => {
         
-        const data = res.data.tutors;
-        let tutors = this.state.tutors;
+        const data = res.data.teachers;
+        let teachers = this.state.teachers;
         console.log(data);
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
-          let editar = "/#/Home/Tutores/Editar/"+data[i]._id;
-          tutors.push(
+          let editar = "/#/Home/Profesores/Editar/"+data[i]._id;
+          teachers.push(
             
               
 
@@ -36,11 +36,8 @@ componentDidMount() {
                      <tr key={data[i]._id}>
                     <td>{data[i].name}</td>
                     <td>{data[i].last_name}</td>
-                    <td>{data[i].DNI}</td>
-                    <td>{data[i].address}</td>
-                    <td>{data[i].cellphone}</td>
-                    <td>{data[i].telephone}</td>
-                    <td>{data[i].email}</td>
+                    <td>{data[i].school.name}</td>
+                   
 
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
@@ -51,14 +48,14 @@ componentDidMount() {
                      <Button block color="danger" onClick={() => {
 
 
-                          let url = 'tutores/delete';
+                          let url = 'profesores/delete';
                           
 
                           const params = {
                             method: 'post',
                             url: url,
                             data: {
-                              tutorId: data[i]._id ,
+                              teacherId: data[i]._id ,
                               
                             },
                             headers: {
@@ -86,7 +83,7 @@ componentDidMount() {
           );
         }
 
-        this.setState({ tutors: tutors });
+        this.setState({ teachers: teachers });
 
       })
       .catch( res => {
@@ -107,7 +104,7 @@ componentDidMount() {
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <a href="/#/Home/Tutores/Formulario"> <Button block color="success">Nuevo Tutor</Button></a>
+                <a href="/#/Home/Profesores/Formulario"> <Button block color="success">Nuevo Tutor</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>
@@ -116,17 +113,14 @@ componentDidMount() {
                   <tr>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                     <th>DNI</th>
-                    <th>Direccion</th>
-                     <th>Celular</th>
-                    <th>Telefono</th>
-                    <th>Email</th>
+                     <th>Colegio</th>
+                    
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
                
-                { (this.state.tutors !== null)?this.state.tutors:(<tr><td></td></tr>) }
+                { (this.state.teachers !== null)?this.state.teachers:(<tr><td></td></tr>) }
                   </tbody>
                 </Table>
                 

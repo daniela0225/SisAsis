@@ -176,7 +176,7 @@ handleSubmit(e) {
          
             <Card>
               <CardHeader>
-                <strong>Formulario de Colegio</strong> 
+                <strong>Editar Colegio</strong> 
               </CardHeader>
               
               <CardBody>

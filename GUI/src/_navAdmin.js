@@ -35,6 +35,11 @@ export default {
       url: '/Home/Tutores',
       icon: 'icon-pencil',
     },
+    {
+      name: 'Profesores',
+      url: '/Home/Profesores',
+      icon: 'icon-pencil',
+    },
     
     
     

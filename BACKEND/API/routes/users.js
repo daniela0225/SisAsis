@@ -9,7 +9,7 @@ router.post('/login',User.login);
 router.get('/find',checkAuth, accessRules, User.find);
 router.post('/search',checkAuth, accessRules, User.search);
 router.get('/headers',checkAuth, accessRules, User.headers);
-router.get('/edit',checkAuth, accessRules, User.edit);
+router.post('/edit',checkAuth, accessRules, User.edit);
 router.get('/getUserById', checkAuth, accessRules, User.getUserById);
 router.post('/update',checkAuth, accessRules, User.update);
 router.get('/delete',checkAuth, accessRules, User.delete);

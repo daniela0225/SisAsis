@@ -32,6 +32,11 @@ export default {
       icon: 'icon-pencil',
     },
     {
+      name: 'Profesores',
+      url: '/Home/Profesores',
+      icon: 'icon-pencil',
+    },
+    {
       title: true,
       name: 'Reportes',
       wrapper: {

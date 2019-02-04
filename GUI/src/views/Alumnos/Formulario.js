@@ -58,6 +58,7 @@ class Formulario extends Component {
       DNIV:'',
       schools:[],
       tutors:[],
+      teachers:[],
 
 
       modal: false,
@@ -117,6 +118,42 @@ class Formulario extends Component {
       })
       .catch( res => {
         console.log("ERROR SCHOOLS");
+       
+        console.log(res);
+      })
+
+
+
+
+   axios.get('profesores', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dataa = res.data.teachers;
+        let teachers = this.state.teachers;
+        console.log("teachers");
+        console.log(dataa);
+        teachers.push(<option key="4" >Opciones...</option>);
+
+        for(let i = 0; i < dataa.length ; i++){
+          console.log(dataa[i]);
+          teachers.push(
+            
+
+              <option  key={dataa[i]._id} value={dataa[i]._id}>{dataa[i].name} {dataa[i].last_name}</option>
+                       
+          );
+        }
+
+        this.setState({ teachers: teachers });
+
+      })
+      .catch( res => {
+        console.log("ERROR TEACHERS");
        
         console.log(res);
       })
@@ -226,7 +263,8 @@ handleSubmit = () =>{
             code: data.code,
             order_number: data.order_number,
             school: data.school,
-            tutor: data.tutor },
+            tutor: data.tutor,
+            teacher: data.teacher },
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -374,6 +412,18 @@ handleSubmit = () =>{
                       <Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
                          
                          { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
+                        
+                      </Input>
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="selectLg">Profesor</Label>
+                    </Col>
+                    <Col xs="12" md="9" size="lg">
+                      <Input type="select" name="teacher" id="teacher" bsSize="lg" onChange={this.handleAttribute} value={this.state.teacher}>
+                         
+                         { (this.state.teachers !== null)?this.state.teachers:( <option>No se ecnuentran profesores</option>) }
                         
                       </Input>
                     </Col>

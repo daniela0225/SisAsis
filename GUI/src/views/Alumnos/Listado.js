@@ -42,15 +42,17 @@ componentDidMount() {
                     <td>{data[i].last_name}</td>
                     <td>{data[i].gender}</td>
                     <td>{data[i].DNI}</td>
-                    <th>{data[i].birthdate}</th>
-                    <th>{data[i].year}</th>
-                    <th>{data[i].section}</th>
+                    <td>{data[i].birthdate}</td>
+                    <td>{data[i].year}</td>
+                    <td>{data[i].section}</td>
                     
-                    <th>{data[i].fingerprint}</th>
-                    <th>{data[i].code}</th>
-                    <th>{data[i].order_number}</th>
-                     <th>{(data[i].school !== null)?data[i].school.name:"NULL"}</th>
-                     <th>{(data[i].tutor !== null)?data[i].tutor.DNI:"NULL"} </th>
+                    <td>{data[i].fingerprint}</td>
+                    <td>{data[i].code}</td>
+                    <td>{data[i].order_number}</td>
+                     <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
+                     <td>{(data[i].tutor !== null)?data[i].tutor.DNI:"NULL"} </td>
+                     <td>{(data[i].teacher !== null)?data[i].teacher.last_name:"NULL"} </td>
+
                    
                     <td>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
@@ -131,6 +133,7 @@ componentDidMount() {
                     <th>Nro. Orden</th>
                     <th>Colegio </th>
                     <th>Tutor</th>
+                    <th>Profesor</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>

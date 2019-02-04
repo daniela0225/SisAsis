@@ -37,6 +37,7 @@ class Editar extends Component {
 		this.state = {
 
 			
+			id:props.match.params.id,
 			email:'',
 			password:'',
 			type:'',
@@ -73,12 +74,13 @@ getuser = () =>{
 
     const data = this.state;
 
-    let url = 'colegios/edit';
+    let url = 'usuarios/edit';
 
     const params = {
       method: 'post',
       url: url,
-      data: {schoolId:data.id},
+      data:{userId: data.id},
+   
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -86,16 +88,28 @@ getuser = () =>{
 
     axios(params) 
     .then( (response) => {
+
+    if(response.data.usuario.school == null){
       
       this.setState({
-        name: response.data.school.name,
-        kinder:response.data.school.kinder,
-        primary:response.data.school.primary,
-        highschool:response.data.school.highschool,
-        url: response.data.school.logo
+        email: response.data.usuario.email,
+        password:response.data.usuario.password,
+        type:response.data.usuario.type,
+        
         
 
       });
+  }
+      else{
+      this.setState({
+        email: response.data.usuario.email,
+        password:response.data.usuario.password,
+        type:response.data.usuario.type,
+        school:response.data.usuario.school._id
+        
+
+      });
+  }
 
       
       console.log(response);
@@ -152,12 +166,12 @@ handleSubmit = (e) => {
 
 		const data = this.state;
 
-		let url = 'usuarios/';
+		let url = 'usuarios/update';
 
 		const params = {
 			method: 'post',
 			url: url,
-			data: {email: data.email ,password: data.password ,type: data.type ,school: data.school},
+			data: {userId: data.id ,email: data.email ,password: data.password ,type: data.type ,school: data.school},
 			headers: {
 				"Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
 			}
@@ -171,7 +185,7 @@ handleSubmit = (e) => {
 				redirect: redirect
 			});
 
-			alert("Se creo correctamente el usuario");
+			alert("Se edito correctamente el usuario");
 			console.log(response);
 		})
 		.catch( (response) => {
@@ -189,7 +203,7 @@ handleSubmit = (e) => {
 				 
 						<Card>
 							<CardHeader>
-								<strong>Formulario de Usuario</strong> 
+								<strong>Editar Usuario</strong> 
 							</CardHeader>
 							<CardBody>
 								<Form onSubmit={this.onSubmit} method="post" className="form-horizontal">
@@ -244,7 +258,7 @@ handleSubmit = (e) => {
 								</Form>
 							</CardBody>
 							<CardFooter>
-								<Button type="submit" size="sm" color="primary" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"   ></i>Crear nuevo usuario</Button>
+								<Button type="submit" size="sm" color="primary" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"   ></i>Editar usuario</Button>
 								<Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
 							</CardFooter>
 						</Card>

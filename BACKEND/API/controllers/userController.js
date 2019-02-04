@@ -104,7 +104,7 @@ module.exports = {
 			})
 	},
 	update: (req,res,next)=>{
-		const id = req.userData.userId;
+		const id = req.body.userId;
 		const obj = req.body;
 		delete obj.userId;
 		delete obj.password;
@@ -284,7 +284,7 @@ module.exports = {
 		});
 	},
 	edit:(req,res,next)=>{
-		User.findById(req.userData.userId)
+		User.findById(req.body.userId)
 			.select('_id email type school')
 			.populate('school','name')
 			.exec()
