@@ -7,9 +7,12 @@ import { StyleSheet, View } from 'react-native';
 import Login from './src/containers/Login/Login';
 import Home from './src/containers/Home/Home';
 import MonthRecords from './src/containers/MonthRecords/MonthRecords';
+import WeekRecords from './src/containers/WeekRecords/WeekRecords';
+import DailyRecords from './src/containers/DailyRecords/DailyRecords';
+import Profile from './src/containers/Profile/Profile';
+import StudentProfile from './src/containers/StudentProfile/StudentProfile';
 
 import StatusBar from './src/components/StatusBar/StatusBar';
-import MenuBar from './src/components/MenuBar/MenuBar';
 import SideMenu from './src/containers/SideMenu/SideMenu';
 
 class Layout extends Component {
@@ -35,10 +38,8 @@ class Layout extends Component {
 
 	render() {	
 		const statusBar =	(this.state.viewName === 'Login')? 
-								(<View />):(<StatusBar viewName={this.state.viewName}/>);
-		const menuBar	= 	(this.state.viewName === 'Login')? 
-								(<View />):(<MenuBar showSideMenu={this.showSideMenu}/>);
-		
+								(<View />):(<StatusBar viewName={this.state.viewName} showSideMenu={this.showSideMenu} />);
+	
 		const sideMenu	=	(this.state.viewName === 'Login')?
 								(<View />):(<SideMenu show={this.state.showSideMenu} hide={this.showSideMenu} setView={this.setView} />);
 		
@@ -47,6 +48,8 @@ class Layout extends Component {
 		switch(this.state.viewName){
 			case 'Home': view = (<Home />); break;
 			case 'MonthRecords': view = (<MonthRecords />); break;
+			case 'Perfil': view =(<Perfil/>); break;
+			case 'WeekRecords': view =(<WeekRecords/>); break;
 			default: break;
 		}
 
@@ -57,7 +60,6 @@ class Layout extends Component {
 					<View style={styles.viewContainer}>
 						{ view }
 					</View>
-					{menuBar}
 				</View>
 			);
 
