@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
 		borderColor: '#0083ff'
 	},
 	schoolLogo: {
-		width: 160,
-		height: 160
+		width: 100,
+		height: 100
 	},
 	studentsListContainer: {
 		width: '100%'

@@ -24,7 +24,7 @@ const studentsList = (props) => {
 const styles = StyleSheet.create({
     listContainer: {
       width: '100%',
-      height: 220,
+      height: 230,
       padding: 10
     }
 });
