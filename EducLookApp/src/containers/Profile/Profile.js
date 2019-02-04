@@ -5,7 +5,7 @@ import { Image, Text, ScrollView, View, ListView} from 'react-native';
 
 import StudentsReg from '../../components/StudentsReg/PlaceList/PlaceList';
 
-class Perfil extends Component {
+class Profile extends Component {
 
 constructor(props){
       super(props);
@@ -67,4 +67,4 @@ constructor(props){
 		}
 }
 
-export default Perfil;
+export default Profile;

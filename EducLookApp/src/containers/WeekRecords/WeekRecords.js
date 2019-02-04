@@ -4,7 +4,7 @@ import styles from './estilos';
 
 import Registros from '../../components/RegSemanal/PlaceList/PlaceList';
    
-class RegSemanal extends Component {
+class WeekRecords extends Component {
 
    constructor(props){
       super(props);
@@ -61,5 +61,5 @@ class RegSemanal extends Component {
    }
 }
 
-export default RegSemanal;
+export default WeekRecords;
 

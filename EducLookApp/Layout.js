@@ -7,6 +7,10 @@ import { StyleSheet, View } from 'react-native';
 import Login from './src/containers/Login/Login';
 import Home from './src/containers/Home/Home';
 import MonthRecords from './src/containers/MonthRecords/MonthRecords';
+import WeekRecords from './src/containers/WeekRecords/WeekRecords';
+import DailyRecords from './src/containers/DailyRecords/DailyRecords';
+import Profile from './src/containers/Profile/Profile';
+import StudentProfile from './src/containers/StudentProfile/StudentProfile';
 
 import StatusBar from './src/components/StatusBar/StatusBar';
 import SideMenu from './src/containers/SideMenu/SideMenu';
@@ -44,6 +48,8 @@ class Layout extends Component {
 		switch(this.state.viewName){
 			case 'Home': view = (<Home />); break;
 			case 'MonthRecords': view = (<MonthRecords />); break;
+			case 'Perfil': view =(<Perfil/>); break;
+			case 'WeekRecords': view =(<WeekRecords/>); break;
 			default: break;
 		}
 

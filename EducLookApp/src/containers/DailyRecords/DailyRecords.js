@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, TouchableOpacity, StyleSheet, View } from 'react-native';
 import estilos from './estilos';
    
-class RegDiario extends Component {
+class DailyRecords extends Component {
    state = {
       names: [
          {
@@ -41,5 +41,5 @@ class RegDiario extends Component {
    }
 }
 
-export default RegDiario;
+export default DailyRecords;
 

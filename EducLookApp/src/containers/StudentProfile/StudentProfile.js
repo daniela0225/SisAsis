@@ -6,7 +6,7 @@ import { Image, Text, ScrollView} from 'react-native';
 //Daniela
 //import StudentsReg from '../../components/StudentsReg/PlaceList/PlaceList';
 
-class PerfilAlumno extends Component {
+class StudentProfile extends Component {
 
 constructor(props){
       super(props);
@@ -44,7 +44,7 @@ constructor(props){
 		}
 }
 
-export default PerfilAlumno;
+export default StudentProfile;
 
 /*
    name: 
