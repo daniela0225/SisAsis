@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import axios from '../../Axios/axios.js';
+
 import appLogo from '../../assets/appLogo.png';
 import styles from './Styles.js';
 import {	View, ScrollView, Image,
-			Text, TextInput, 
+			Text, TextInput,
 			TouchableOpacity,
-			Animated } from 'react-native';
+			Animated	} from 'react-native';
 
 import Divider from '../../components/Divider/Divider';
+
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/userActions/index';
+import { setActualView } from '../../store/actions/viewActions/index';
+
+import { AsyncStorage } from 'react-native';
 
 class Login extends Component {
 
@@ -44,27 +51,39 @@ class Login extends Component {
 		this.setState( { [name]: value } );
 	}
 
-	submitHandler = () => {
-		/*
-		const data = this.state;
-		let url = 'usuarios/login';
+	componentDidMount = () => {
+		AsyncStorage.getItem('USER_CREDENTIALS', (err, result) => {
+			const userData = JSON.parse(result);
+			if(userData !== null){
+				this.setState({
+					email: userData.email,
+					password: userData.password
+				});
+				this.submitHandler();
+			}
+		});
+	}
 
-		axios({
-			method: 'post',
-			url: url,
-			data: data,
-			config: { headers: {'Content-Type': 'multipart/form-data'} }
-		})
+	submitHandler = () => {
+		const data = {
+			email: this.state.email,
+			password: this.state.password
+		};
+
+		axios.post( 'usuarios/login', data )
 		.then((response) => {
 			//handle success
-			alert('token: ' + response.data.token);
+			AsyncStorage.removeItem('USER_CREDENTIALS', () => {
+				AsyncStorage.setItem('USER_CREDENTIALS', JSON.stringify(data), () => {
+					this.props.onSignIn(response.data.token);
+					this.props.onSetActualView('Home');
+				});
+			});
 		})
-		.catch((response) => {
+		.catch( (response) => {
 		  //handle error
 			alert('Usuario o contraseña incorrectos.');
 		});
-		*/
-		this.props.setView('Home');
 	}
 
 	render() {
@@ -111,4 +130,17 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+const mapStateToProps = state => {
+	return {
+		token: state.users.token
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onSignIn: (token) => dispatch(signIn(token)),
+		onSetActualView: (view) => dispatch(setActualView(view))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

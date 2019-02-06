@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	nameContainer: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		color: '#fff',
 		padding: 5 

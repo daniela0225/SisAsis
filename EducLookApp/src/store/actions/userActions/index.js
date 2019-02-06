@@ -1,1 +1,1 @@
-export { signIn } from './users';
+export { signIn, signOut, setHeaders } from './users';

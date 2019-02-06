@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity, Animated, Image } from 'react-native';
 import styles from './Styles.js';
 import triangleIcon from './triangleIcon.png';
 
+import { connect } from 'react-redux';
+import { setActualView } from '../../../store/actions/viewActions/index';
+
 class listItem extends Component{
 
 	constructor (props) {
@@ -17,21 +20,25 @@ class listItem extends Component{
 	onSelectHandler = () => {
 		let selected = !this.state.selected;
 		this.setState({selected: selected});
-		if (selected == true) this.props.setSelectedItem();
+	}
+
+	optionSelectedHandler = (view) => {
+		this.props.onSetActualView(view);
+		this.props.hideMenu();
 	}
 
 	render () {
 		let options = (this.state.selected == false)? (<View></View>) : (
 					<View>
-						<TouchableOpacity style={styles.option} onPress={ () => {} }>
-							<View style={[styles.optionIcon, styles.optionIconSelected]} /> 
+						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('MonthRecords');} }>
+							<View style={[styles.optionIcon, styles.optionIconSelected]} />
 							<Text style={styles.optionText}>Asistencia del Día</Text>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.option} onPress={ () => {} }>
+						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('MonthRecords');}}>
 							<View style={styles.optionIcon} /> 
 							<Text style={styles.optionText}>Asistencias Semanales</Text>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.option} onPress={ () => {this.props.setView('MonthRecords');this.props.hideMenu()} }>
+						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('MonthRecords');} }>
 							<View style={styles.optionIcon} /> 
 							<Text style={styles.optionText}>Asistencias Mensuales</Text>
 						</TouchableOpacity>
@@ -54,4 +61,15 @@ class listItem extends Component{
 	}
 }
 
-export default listItem;
+const mapStateToProps = state => {
+	return {
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onSetActualView: (view) => dispatch(setActualView(view))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(listItem);

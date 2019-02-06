@@ -149,6 +149,7 @@ function tranformAction(table,url,method){
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 				case "/searchByDNI": return "readAny"; break;
+				case "/appHeaders": return "readOwn"; break;
 				default: return ""; break;
 			}
 			break;

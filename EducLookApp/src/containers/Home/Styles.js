@@ -10,15 +10,15 @@ const styles = StyleSheet.create({
 		width: 300
 	},
 	schoolName: {
-		marginTop: 20,
+		marginTop: 15,
 		marginBottom: 10,
-		fontSize: 25,
+		fontSize: 20,
 		fontWeight: 'bold',
 		color: '#0083ff'
 	},
 	textContainer: {
 		marginBottom: 15,
-		fontSize: 18,
+		fontSize: 17,
 		fontWeight: 'bold',
 		color: '#0083ff'
 	},
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
 		borderColor: '#0083ff'
 	},
 	schoolLogo: {
-		width: 100,
-		height: 100
+		width: 120,
+		height: 120
 	},
 	studentsListContainer: {
 		width: '100%'

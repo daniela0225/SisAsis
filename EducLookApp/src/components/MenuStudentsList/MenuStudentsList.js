@@ -3,33 +3,24 @@ import { StyleSheet, FlatList } from 'react-native';
 
 import ListItem from './ListItem/ListItem';
 
+import { connect } from 'react-redux';
+
 class menuStudentsList extends Component{
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			items: props.items,
-			selectedItem: null
-		};
-
-		this.setSelectedItem = this.setSelectedItem.bind(this);
-	}
-
-	setSelectedItem = (i) => {
-		this.setState({selectedItem: i});
+		this.state = {};
 	}
 
 	render() {
 		return (
 			<FlatList 
 				style={styles.listContainer}
-				data={this.state.items}
+				data={this.props.students}
 				renderItem={ (info) => (
 					<ListItem
 						key={info.item.key}
 						fullName={info.item.fullName}
-						setSelectedItem={() => {this.setSelectedItem(info.item.key)}}
-						setView={this.props.setView}
 						hideMenu={this.props.hideMenu}
 					/>
 				)}
@@ -45,4 +36,17 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default menuStudentsList;
+const mapStateToProps = state => {
+	return {
+		token: state.users.token,
+		headers: state.users.headers,
+		students: state.students.list
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(menuStudentsList);

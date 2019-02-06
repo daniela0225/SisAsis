@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'column'
 	},
 	legendLine : {
-		flexDirection: 'row'
+		flexDirection: 'row',
+		margin: 5
 	},
 	legendLineIcon: {
 		width: 20,

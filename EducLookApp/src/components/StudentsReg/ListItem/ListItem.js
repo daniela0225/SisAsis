@@ -5,8 +5,8 @@ const listItem = (props) => (
 	<TouchableOpacity onPress={props.onItemPressed}>
     <View style={styles.listItem}>
         <Text style={styles.textName}>{props.name}</Text>
-        <Text> Grado: {props.grado}</Text>
-        <Text>Nro de Orden: {props.nroOrden}</Text>
+        <Text style={styles.attributes}> Grado: {props.grado}</Text>
+        <Text style={styles.attributes}>Nro de Orden: {props.nroOrden}</Text>
     </View>
     </TouchableOpacity>
 );
@@ -14,19 +14,29 @@ const listItem = (props) => (
 const styles = StyleSheet.create({
     listItem: {
         marginBottom: 5,
-        padding: 10,
-        backgroundColor: "#eee",
+        padding: 4,
+        backgroundColor: "#FBBA00",
         flexDirection: "column",
         alignItems: "center",
-        borderColor:'#0083CB',
+        justifyContent: 'flex-start',
+        borderColor:'#FBBA00',
         borderRadius: 10,
         borderWidth: 2,
+        marginRight: 5,
+        //height: '100%',
+        width: '100%',
     },
     textName: {
         flexDirection: "row",
-        color: '#0083CB',
+        color: '#fff',
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    attributes: {
+        flexDirection: "row",
+        color: '#fff',
+        fontSize: 16,
+        //fontWeight: 'bold',
     },
 });
 

@@ -143,5 +143,47 @@ module.exports = {
 					error: err
 				});
 			});
+	},
+	appHeaders: (req,res,next) => {
+		Tutor.find({email: req.userData.email})
+			.select('_id name last_name email')
+			.exec()
+			.then( (doc) => {
+				if (doc) {
+					console.log(doc[0].id);
+					Student.find({tutor: doc[0].id})
+					.select('_id name last_name')
+					.exec()
+					.then( (students) => {
+						const list = students.map( (element) => {
+							return { key: element._id , fullName: element.name + " " + element.last_name }
+						});
+
+						res.status(200).json({
+							tutor: {
+								email: doc[0].email,
+								fullName: doc[0].name + " " + doc[0].last_name
+							},
+							students: list
+						});
+					})
+					.catch(err => {
+						console.log(err);
+						res.status(500).json({
+							error: err
+						});
+					})
+
+				}else{
+					res.status(404).json({message: 'No valid entry found for provided ID'});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+
 	}
 }

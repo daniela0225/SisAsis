@@ -1,0 +1,1 @@
+export const SET_ACTUAL_VIEW = 'SET_ACTUAL_VIEW';

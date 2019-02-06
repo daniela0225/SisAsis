@@ -24,23 +24,22 @@ const styles = StyleSheet.create({
 	},
 	closeButtonContainer: {
 		marginTop: 10,
-		marginLeft: 20
+		marginLeft: '90%'
 	},
 	closeIcon: {
-		height: 40,
-		width: 40
+		height: 30,
+		width: 30
 	},
 	tutorInfoContainer: {
-		width: '80%',
-		height: 200,
-		marginTop: 10,
-		marginBottom: 30
+		width: '90%',
+		height: 170,
+		marginBottom: 20
 	},
 	tutorIcon: {
-		height: 120,
-		width: 120,
+		height: 100,
+		width: 100,
 		borderRadius: 100,
-		margin: 10
+		margin: 10,
 	},
 	text: {
 		color: '#fff',
@@ -48,19 +47,27 @@ const styles = StyleSheet.create({
 		marginBottom: 10
 	},
 	primaryText: {
-		fontSize: 20
+		fontSize: 18
 	},
 	secondaryText: {
 		fontSize: 15
 	},
+	homeButtonContainer: {
+		borderColor: '#fff',
+		borderWidth: 2,
+		marginTop: 10,
+		marginBottom: 10,
+		alignItems: 'center',
+		paddingTop: 5
+	},
 	studentsInfoContainer: {
 		width: '100%',
-		height: 320
+		height: 200
 	},
 	settingsContainer: {
 		width: '100%',
 		height: 120,
-		paddingTop: 20,
+		marginTop: 35,
 		flexDirection: 'row'
 	},
 	logoutIcon: {

@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-//import { connect } from 'react-redux';
-
-//import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index';
 
 import Login from './src/containers/Login/Login';
 import Home from './src/containers/Home/Home';
 import MonthRecords from './src/containers/MonthRecords/MonthRecords';
-import WeekRecords from './src/containers/WeekRecords/WeekRecords';
-import DailyRecords from './src/containers/DailyRecords/DailyRecords';
-import Profile from './src/containers/Profile/Profile';
-import StudentProfile from './src/containers/StudentProfile/StudentProfile';
 
 import StatusBar from './src/components/StatusBar/StatusBar';
 import SideMenu from './src/containers/SideMenu/SideMenu';
+
+import { connect } from 'react-redux';
 
 class Layout extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			viewName: 'Login',
 			showSideMenu: false
 		};
 
 		this.showSideMenu = this.showSideMenu.bind(this);
-		this.setView = this.setView.bind(this);
 	}
 
 	showSideMenu = () => {
@@ -32,36 +25,38 @@ class Layout extends Component {
 		this.setState({ showSideMenu: showSideMenu });
 	}
 
-	setView = (viewName) => {
-		this.setState({viewName: viewName});
-	}
-
-	render() {	
-		const statusBar =	(this.state.viewName === 'Login')? 
-								(<View />):(<StatusBar viewName={this.state.viewName} showSideMenu={this.showSideMenu} />);
-	
-		const sideMenu	=	(this.state.viewName === 'Login')?
-								(<View />):(<SideMenu show={this.state.showSideMenu} hide={this.showSideMenu} setView={this.setView} />);
-		
-		let view = (<Login setView={this.setView} />);
-
-		switch(this.state.viewName){
-			case 'Home': view = (<Home />); break;
-			case 'MonthRecords': view = (<MonthRecords />); break;
-			case 'Perfil': view =(<Perfil/>); break;
-			case 'WeekRecords': view =(<WeekRecords/>); break;
+	getViewName = (view = this.props.actualView) => {
+		switch(view){
+			case 'Login': return 'Login';
+			case 'Home': return 'Inicio';
+			case 'MonthRecords': return 'Registros del mes';
 			default: break;
 		}
+	}
 
-		let content = (
-				<View style={ styles.screen }>
-					{sideMenu}
-					{statusBar}
-					<View style={styles.viewContainer}>
-						{ view }
-					</View>
-				</View>
-			);
+	getViewComponent = (view = this.props.actualView) => {
+		switch(view){
+			case 'Login': return (<Login />);
+			case 'Home': return (<Home />);
+			case 'MonthRecords': return (<MonthRecords />);
+			default: break;
+		}
+	}
+
+	render() {
+
+		let sideMenu = (this.props.actualView == 'Login')?(<View />):(<SideMenu show={this.state.showSideMenu} hide={this.showSideMenu} />);
+		let statusBar = (this.props.actualView == 'Login')?(<View />):(<StatusBar viewName={this.getViewName()} showSideMenu={this.showSideMenu} />);
+	
+		let view = this.getViewComponent();
+
+		content = (	<View style={ styles.screen }>
+						{sideMenu}
+						{statusBar}
+						<View style={styles.viewContainer}>
+							{ view }
+						</View>
+					</View>	);
 
 		return content;
 	}
@@ -82,4 +77,16 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Layout;
+const mapStateToProps = state => {
+	return {
+		token: state.users.token,
+		actualView: state.views.actualView
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

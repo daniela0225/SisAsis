@@ -3,17 +3,19 @@ import { createStore, combineReducers } from 'redux';
 /*
 import recordsReducer from './reducers/records';
 import schoolsReducer from './reducers/schools';
-import studentsReducer from './reducers/students';
 import tutorsReducer from './reducers/tutors';
 */
 import usersReducer from './reducers/users';
+import studentsReducer from './reducers/students';
+import viewsReducer from './reducers/views';
 
 const rootReducer = combineReducers({
 /*	records: recordsReducer,
 	schools: schoolsReducer,
-	students: studentsReducer,
 	tutors: tutorsReducer, */
-	users: usersReducer
+	users: usersReducer,
+	students: studentsReducer,
+	views: viewsReducer
 });
 
 const configureStore = () => {

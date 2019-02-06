@@ -1,10 +1,12 @@
 import {
-	SIGN_IN
+	SIGN_IN,
+	SIGN_OUT,
+	SET_HEADERS
 } from '../actions/userActions/actionTypes';
 
 const initialState = {
-	email: '',
-	password: ''
+	token: null,
+	headers: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,14 +14,18 @@ const reducer = (state = initialState, action) => {
 		case SIGN_IN:
 			return {
 				...state,
-				places: state.places.concat({
-					key: Math.random(),
-					name: action.placeName,
-					image: {
-						uri: "https://www.coleurope.eu/sites/default/files/uploads/page/coe_brugespage_img5.jpg"
-					}
-				})
+				token: action.token
 			};
+		case SIGN_OUT:
+			return {
+				token: null,
+				headers: {}
+			};
+		case SET_HEADERS:
+			return {
+				...state,
+				headers: action.headers
+			}
 		default:
 			return state;
 	}

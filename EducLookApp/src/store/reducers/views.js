@@ -1,17 +1,17 @@
 import {
-	SET_STUDENTS
-} from '../actions/studentActions/actionTypes';
+	SET_ACTUAL_VIEW
+} from '../actions/viewActions/actionTypes';
 
 const initialState = {
-	list: []
+	actualView: 'Login'
 };
 
 const reducer = (state = initialState, action) => {
 	switch (action.type){
-		case SET_STUDENTS:
+		case SET_ACTUAL_VIEW: 
 			return {
-				list: action.list
-			}
+				actualView: action.actualView
+			};
 		default:
 			return state;
 	}

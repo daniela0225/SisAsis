@@ -6,7 +6,7 @@ const listItem = (props) => (
 	<TouchableOpacity onPress={props.onItemPressed}>
     <View style={styles.listItem}>
         <Text style={styles.textDay}>{props.day}</Text>
-        <Text>{props.date}</Text>
+        <Text style={styles.date}>{props.date}</Text>
         <View style={styles.containerView}>
             <View  style={styles.containerEntrada}>
                 <Text style={styles.text}> Entrada: {props.entrada}</Text>

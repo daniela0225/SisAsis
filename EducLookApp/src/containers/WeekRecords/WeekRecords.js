@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, TouchableOpacity, StyleSheet, View } from 'react-native';
-import styles from './estilos';
+import styles from './Styles.js';
 
 import Registros from '../../components/RegSemanal/PlaceList/PlaceList';
    
@@ -52,7 +52,7 @@ class WeekRecords extends Component {
       return (
          <View  style={styles.view}>
             <Text style={styles.title}>Registro Semanal</Text>
-            <ScrollView style={styles.view}>
+            <ScrollView contentContainerStyle={styles.view}>
             <Registros dates={this.state.dates} />
             </ScrollView>         
             

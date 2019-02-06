@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
 		padding: 15,
 		width: '100%',
 		marginTop: 15
+	},
+	image: {
+		alignItems: 'center',
+		height: 150,
+		width: 150
 	}
 });
 
