@@ -11,8 +11,6 @@ const styles = StyleSheet.create ({
       borderColor:'#0083CB',
       borderRadius: 10,
       borderWidth: 2,
-      //width: 300,
-      //height: 300
    },
    textDay: {
       color: '#fff',
@@ -31,9 +29,7 @@ const styles = StyleSheet.create ({
       padding: 1.5,     
    },
    containerView: {
-      //flex: 1,
       backgroundColor: '#0083ff',
-      //backgroundColor: 'tomato',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-start',
@@ -56,7 +52,6 @@ const styles = StyleSheet.create ({
       color: '#fff',
       fontSize: 15,
       fontWeight: 'bold',
-      //flexDirection: 'row',
       alignItems: 'center',
       padding: 1.5,     
    }

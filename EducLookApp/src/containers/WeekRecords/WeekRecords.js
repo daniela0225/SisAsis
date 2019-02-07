@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, TouchableOpacity, StyleSheet, View } from 'react-native';
 import styles from './Styles.js';
 
-import Registros from '../../components/RegSemanal/PlaceList/PlaceList';
+import Registros from '../../components/WeekRecord/PlaceList/PlaceList';
    
 class WeekRecords extends Component {
 
