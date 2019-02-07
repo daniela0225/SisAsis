@@ -1,69 +1,22 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create ({
-	view: {
-		flex: 1,
-		backgroundColor: '#fff',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		marginTop: 15,
-		marginRight: 1,
-		marginLeft: 1,
-		width: 300,
-		height: 300
+	weekRecordsContainer: {
+		height: '80%',
+		margin: 20
 	},
-	container: {
-		backgroundColor: '#FBBA00',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-		flexDirection: 'column',
-		borderColor:'#0083CB',
-		borderRadius: 10,
-		borderWidth: 2,
-		marginTop: 10
-	},
-	title:{
+	title: {
 		color: '#0083ff',
-		flexDirection: 'row',
-		alignItems: 'center',
+		fontSize: 18,
 		fontWeight: 'bold',
-		fontSize: 30
+		textAlign: 'center'
 	},
 	text: {
-		color: '#fff',
+		color: '#0083ff',
 		fontSize: 15,
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 1.5   
+		textAlign: 'center'	
 	},
-	textDay: {
-		color: '#fff',
-		fontSize: 20,
-		fontWeight: 'bold',
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 1.5   
-	},
-	containerView: {
-		borderColor:'blue',
-		borderRadius: 10,
-		borderWidth: 2,
-		backgroundColor: 'tomato',
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'flex-start'
-	},
-	
-	viewPrincipal: {
-		borderColor: 'green',
-		borderRadius: 5,
-		borderRightWidth: 5,
-		backgroundColor: 'black',
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: 'space-between',
-		padding: 10,
+	recordsContainer: {
 		margin: 10
 	}
 });

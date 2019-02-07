@@ -4,24 +4,34 @@ const styles = StyleSheet.create({
 	monthRecordsContainer : {
 		height: '70%',
 		width: '95%',
-		marginTop: 30,
-		flexDirection: 'column',
-		alignItems: 'center'
+		marginTop: 20,
+		flexDirection: 'column'
+	},
+	title: {
+		color: '#0083ff',
+		fontSize: 18,
+		fontWeight: 'bold',
+		marginBottom: 10
 	},
 	text : {
 		color: '#0083ff',
-		fontSize: 17,
-		fontWeight: 'bold',
-		marginBottom: 15
+		fontSize: 15,
+		marginBottom: 10
 	},
 	legendContainer : {
-		marginTop: 15,
-		marginBottom: 20,
+		marginTop: 10,
+		marginBottom: 10,
 		flexDirection: 'column'
+	},
+	legendTitle: {
+		color: '#0083ff',
+		fontSize: 15,
+		marginBottom: 5,
+		fontWeight: 'bold'
 	},
 	legendLine : {
 		flexDirection: 'row',
-		margin: 5
+		margin: 3
 	},
 	legendLineIcon: {
 		width: 20,
@@ -36,8 +46,7 @@ const styles = StyleSheet.create({
 	},
 	legendLineText: {
 		color: '#0083ff',
-		fontSize: 15,
-		fontWeight: 'bold'
+		fontSize: 15
 	}
 });
 

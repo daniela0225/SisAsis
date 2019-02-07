@@ -48,6 +48,11 @@ class sideMenu extends Component {
 		});
 	}
 
+	TutorInfoButtonHandler = () => {
+		this.props.hide();
+		this.props.onSetActualView('TutorProfile');
+	}
+
 	HomeButtonPressedHandler = () => {
 		this.props.hide();
 		this.props.onSetActualView('Home');
@@ -73,7 +78,7 @@ class sideMenu extends Component {
 							<TouchableOpacity style={styles.closeButtonContainer} onPress={this.props.hide}>
 								<Image resizeMode='contain' source={closeIcon} style={styles.closeIcon} />
 							</TouchableOpacity>
-							<TouchableOpacity style={styles.tutorInfoContainer} onPress={() => {} }>
+							<TouchableOpacity style={styles.tutorInfoContainer} onPress={this.TutorInfoButtonHandler }>
 								<View>
 									<Image resizeMode='contain' source={tutorIcon} 
 									style={styles.tutorIcon} /> 

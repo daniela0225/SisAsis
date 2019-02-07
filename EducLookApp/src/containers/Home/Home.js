@@ -44,18 +44,7 @@ class Home extends Component {
 	};
 
 	componentDidMount () {
-		/*
-		axios.get().then();
-		this.setState({
-			schoolName: ,
-			schoolLogo: ,
-			students:
-		});
-		*/
-	}
 
-	onItemPressed = () => {
-		
 	}
 
 	render() {
@@ -68,7 +57,7 @@ class Home extends Component {
 					<Text style={styles.schoolName}> {this.state.schoolName} </Text>
 					<Text style={styles.textContainer}> Porcentajes de Inasistencia </Text>
 					<View style={styles.studentsListContainer}>
-						<StudentsList students={this.state.students} onItemPressed={this.onItemPressed} />
+						<StudentsList students={this.state.students}/>
 					</View>
 				</ScrollView>
 		);

@@ -34,7 +34,7 @@ class listItem extends Component{
 							<View style={[styles.optionIcon, styles.optionIconSelected]} />
 							<Text style={styles.optionText}>Asistencia del Día</Text>
 						</TouchableOpacity>
-						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('MonthRecords');}}>
+						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('WeekRecords');}}>
 							<View style={styles.optionIcon} /> 
 							<Text style={styles.optionText}>Asistencias Semanales</Text>
 						</TouchableOpacity>

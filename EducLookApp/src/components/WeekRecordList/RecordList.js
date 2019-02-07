@@ -1,22 +1,20 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 
-import ListItem from '../ListItem/ListItem';
+import ListItem from './ListItem/ListItem';
 
-const placeList = (props) => {
+const recordList = (props) => {
 		
 	return (
 		<FlatList 
 			style={styles.listContainer}
-			data={props.tutor}
+			data={props.dates}
 			renderItem={(info) => (
 				<ListItem 
-					name={info.item.name}
-					last_name={info.item.last_name}
-					adress={info.item.adress}
-					email={info.item.email}
-					telephone={info.item.telephone}
-					celphone={info.item.celphone}
+					day={info.item.day}
+					date={info.item.date}
+					entrada={info.item.entrada}
+					salida={info.item.salida}
 					onItemPressed={() => props.onItemSelected(info.item.key)}
 				/>
 			)}
@@ -30,4 +28,4 @@ const styles = StyleSheet.create ({
 	}
 });
 
-export default placeList;
+export default recordList;

@@ -3,6 +3,11 @@ import { StyleSheet, View } from 'react-native';
 
 import Login from './src/containers/Login/Login';
 import Home from './src/containers/Home/Home';
+
+import TutorProfile from './src/containers/TutorProfile/TutorProfile';
+import StudentProfile from './src/containers/StudentProfile/StudentProfile';
+
+import WeekRecords from './src/containers/WeekRecords/WeekRecords';
 import MonthRecords from './src/containers/MonthRecords/MonthRecords';
 
 import StatusBar from './src/components/StatusBar/StatusBar';
@@ -29,7 +34,10 @@ class Layout extends Component {
 		switch(view){
 			case 'Login': return 'Login';
 			case 'Home': return 'Inicio';
-			case 'MonthRecords': return 'Registros del mes';
+			case 'TutorProfile': return 'Mi Perfil';
+			case 'StudentProfile': return 'Perfil del estudiante';
+			case 'WeekRecords': return 'Registros';
+			case 'MonthRecords': return 'Registros';
 			default: break;
 		}
 	}
@@ -38,6 +46,9 @@ class Layout extends Component {
 		switch(view){
 			case 'Login': return (<Login />);
 			case 'Home': return (<Home />);
+			case 'TutorProfile': return (<TutorProfile />);
+			case 'StudentProfile': return (<StudentProfile />);
+			case 'WeekRecords': return (<WeekRecords />);
 			case 'MonthRecords': return (<MonthRecords />);
 			default: break;
 		}

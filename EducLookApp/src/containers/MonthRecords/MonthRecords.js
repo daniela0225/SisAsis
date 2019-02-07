@@ -13,8 +13,7 @@ class monthRecords extends Component {
 		super(props);
 
 		this.state = {
-			selectedDate: {},
-			circleSelectionStyle: {selected: true, marked: true},	
+			selectedDate: {}
 		};
 	};
 
@@ -24,16 +23,18 @@ class monthRecords extends Component {
 	}
 
 	render() {
-
-		const entry = { key: 'entry', color: '#00ff0c' };
-		const out = { key: 'out', color: '#ff1447' };
-
 		return (
 			<View style={ styles.monthRecordsContainer }>
+				<Text style={styles.title}>
+					Registros mensuales de Pedro Perez
+				</Text>
 				<Text style={styles.text}>
 					Para ver los detalles de un día, presione el mismo en el calendario.
 				</Text>
 				<View style={styles.legendContainer}>
+					<Text style={styles.legendTitle}>
+						Leyenda
+					</Text>
 					<View style={styles.legendLine}>
 						<View style={[styles.legendLineIcon, styles.colorGreen]} />
 						<Text style={styles.legendLineText}> Entrada a tiempo </Text>
