@@ -27,7 +27,7 @@ import {
 	Row,
 } from 'reactstrap';
 
-class Formulario extends Component {
+class FormularioC extends Component {
 	constructor(props) {
 		super(props);
 
@@ -41,7 +41,7 @@ class Formulario extends Component {
 			password:'',
 			type:'',
 			school:'',
-			schools:[],
+			
 
 			collapse: true,
 			fadeIn: true,
@@ -64,8 +64,8 @@ class Formulario extends Component {
 		this.setState({ [attrName]: attr });
 	}
 
-componentDidMount = () =>{
-		axios.get('colegios', {
+componentDidMount = () => {
+		axios.get('usuarios/headers', {
 					headers: {
 						"Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
 					}
@@ -73,27 +73,16 @@ componentDidMount = () =>{
 			)
 			.then( res => {
 				
-				const dat = res.data.orders;
-				let schools = this.state.schools;
-				console.log("schools");
-				console.log(dat);
-				schools.push(<option key="4" >Opciones...</option>);
+				const dat = res.data.usuario;				
+				
+				console.log('Reconocio school')
+				console.log(dat);			
 
-				for(let i = 0; i < dat.length ; i++){
-					console.log(dat[i]);
-					schools.push(
-						
-
-							<option  key={dat[i]._id} value={dat[i]._id}>{dat[i].name}</option>
-											 
-					);
-				}
-
-				this.setState({ schools: schools });
+				this.setState({ school: dat.school._id });
 
 			})
 			.catch( res => {
-				console.log("ERROR SCHOOLS");
+				console.log("ERROR SCHOOL");
 			 
 				console.log(res);
 			})
@@ -119,11 +108,12 @@ handleSubmit = (e) => {
 				"Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
 			}
 		};
+		console.log(params);
 
 		axios(params)	
 		.then( (response) => {
 			//handle success
-			let redirect = <Redirect to="/Home/Usuarios" />;
+			let redirect = <Redirect to="/Home/Users" />;
 			this.setState({
 				redirect: redirect
 			});
@@ -176,8 +166,7 @@ handleSubmit = (e) => {
 										<Col xs="12" md="9" size="lg">
 											<Input type="select" name="type" id="type" bsSize="lg" onChange={this.handleAttribute} value={this.state.type}>
 												<option >Opciones..</option>
-												<option value="ADMIN">Administrador</option>
-												<option value="DIRECTOR">Director</option>
+												
 												<option value="TEACHER">Profesor</option>
 												<option value="DOORMAN">Portero</option>
 												<option value="TUTOR">Tutor</option>
@@ -186,17 +175,7 @@ handleSubmit = (e) => {
 											</Input>
 										</Col>
 									</FormGroup>
-									<FormGroup row>
-										<Col md="3">
-											<Label htmlFor="selectLg">Colegio</Label>
-										</Col>
-										<Col xs="12" md="9" size="lg">
-											<Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
-												 { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
-												
-											</Input>
-										</Col>
-									</FormGroup>
+									
 									
 									
 
@@ -217,4 +196,4 @@ handleSubmit = (e) => {
 	}
 }
 
-export default Formulario;
+export default FormularioC;

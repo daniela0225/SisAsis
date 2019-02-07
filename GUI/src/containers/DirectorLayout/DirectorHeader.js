@@ -88,9 +88,10 @@ class DirectorHeader extends Component {
 
         
           <div align="right">
-         <h7>{this.state.email}</h7>
+         {this.state.email}
          <br/>
-          <h6>{(this.state.schoolName !== '')?this.state.schoolName:'No se cnuentra colegio'}</h6>
+
+          <h6>Director-{(this.state.schoolName !== '')?this.state.schoolName:'No se cnuentra colegio'}</h6>
          </div>
 
           <AppHeaderDropdown direction="down">

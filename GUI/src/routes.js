@@ -3,6 +3,7 @@ import DefaultLayout from './containers/DefaultLayout';
 import AdminLayout from './containers/AdminLayout';
 import DirectorLayout from './containers/DirectorLayout';
 import PadreLayout from './containers/PadreLayout';
+import ProfesorLayout from './containers/PadreLayout';
 import PorteroLayout from './containers/PorteroLayout';
 import InicioLayout from './containers';
 
@@ -46,22 +47,27 @@ const User = React.lazy(() => import('./views/Users/User'));
 const Sisasis = React.lazy(() => import('./views/Pages/sisasis/sisasis'));
 const Home = React.lazy(() => import('./views/Home/Home'));
 const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
+const AlumnoDetalle = React.lazy(() => import('./views/Alumnos/AlumnoDetalle'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
 const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
-const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
+//const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
+const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/AlumnosTutores'));
 const ListadoUsuarios = React.lazy(() => import('./views/Usuarios/Listado'));
+const ListadoUsuariosC = React.lazy(() => import('./views/Usuarios/ListadoC'));
 const ListadoTutores = React.lazy(() => import('./views/Tutores/Listado'));
 const ListadoProfesores = React.lazy(() => import('./views/Profesores/Listado'));
 const FormularioColegio = React.lazy(() => import('./views/Colegios/Formulario'));
 const FormularioRegistro = React.lazy(() => import('./views/Registros/Formulario'));
 const FormularioAlumno = React.lazy(() => import('./views/Alumnos/Formulario'));
 const FormularioUsuario = React.lazy(() => import('./views/Usuarios/Formulario'));
+const FormularioUsuarioC = React.lazy(() => import('./views/Usuarios/FormularioC'));
 const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 const FormularioProfesor = React.lazy(() => import('./views/Profesores/Formulario'));
 const EditarRegistro = React.lazy(() => import('./views/Registros/Editar'));
 const EditarColegio = React.lazy(() => import('./views/Colegios/Editar'));
 const EditarAlumno = React.lazy(() => import('./views/Alumnos/Editar'));
 const EditarUsuario = React.lazy(() => import('./views/Usuarios/Editar'));
+const EditarUsuarioC = React.lazy(() => import('./views/Usuarios/EditarC'));
 const EditarTutor = React.lazy(() => import('./views/Tutores/Editar'));
 const EditarProfesor = React.lazy(() => import('./views/Profesores/Editar'));
 
@@ -79,6 +85,7 @@ const EditarProfesor = React.lazy(() => import('./views/Profesores/Editar'));
 const routes = [
   //{ path: '/', exact: true, name: 'Sistema de asistencias', component: Sisasis },
   { path: '/Director', exact: true, name: 'Sistema de asistencias', component: DirectorLayout },
+    { path: '/Profesor', exact: true, name: 'Sistema de asistencias', component: ProfesorLayout },
   { path: '/Portero', exact: true, name: 'Sistema de asistencias', component: PorteroLayout },
   { path: '/Padre', exact: true, name: 'Sistema de asistencias', component: PadreLayout },
   { path: '/Home', name: 'Home', component: Home, exact:true },
@@ -92,11 +99,16 @@ const routes = [
   { path: '/Home/Colegios/Formulario', exact:true, name: 'Formulario Colegio', component: FormularioColegio },
   { path: '/Home/Colegios/Editar/:id', exact:true,name: 'Editar Colegio', component: EditarColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },
+  //{ path: '/Home/AlumnosTutores',exact:true, name: 'Alumnos', component: ListadoAlumnosTutores },
+  { path: '/Home/Alumnos/Detalle/:id',exact:true, name: 'Alumno Info', component: AlumnoDetalle },
   { path: '/Home/Alumnos/Formulario', name: 'Formulario Alumno', component: FormularioAlumno },
   { path: '/Home/Alumnos/Editar/:id', exact:true,name: 'Editar Alumno', component: EditarAlumno },
   { path: '/Home/Usuarios',exact:true, name: 'Usuarios', component: ListadoUsuarios },
+  { path: '/Home/Users',exact:true, name: 'Usuarios', component: ListadoUsuariosC },
   { path: '/Home/Usuarios/Formulario', name: 'Formulario Usuario', component: FormularioUsuario },
+  { path: '/Home/Users/Form', name: 'Formulario Usuario', component: FormularioUsuarioC },
   { path: '/Home/Usuarios/Editar/:id', exact:true,name: 'Editar Usuario', component: EditarUsuario },
+  { path: '/Home/Users/Edit/:id', exact:true,name: 'Editar Usuario', component: EditarUsuarioC },
   { path: '/Home/Tutores',exact:true, name: 'Tutores', component: ListadoTutores },
   { path: '/Home/Tutores/Formulario', name: 'Formulario Tutor', component: FormularioTutor },
   { path: '/Home/Tutores/Editar/:id', exact:true,name: 'Editar Tutor', component: EditarTutor },

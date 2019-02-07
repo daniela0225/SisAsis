@@ -393,7 +393,10 @@ module.exports = {
 			});		
 	},
 	usersBySchool:(req,res,next)=>{
-		User.find({school: (req.body.school != null)?req.body.school:req.query.school})
+		//User.find({school: (req.userData.school != null)?req.body.school:req.query.school})
+		const school = req.query.schoolId;
+		User.find({school: school })
+
 			.select('_id email type')
 			.populate('school','name')
 			.exec()

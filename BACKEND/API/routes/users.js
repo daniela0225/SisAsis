@@ -19,7 +19,7 @@ router.get('/',checkAuth, accessRules, User.show);
 router.get('/usersByType',checkAuth,accessRules,User.usersByType);
 router.post('/usersByType',checkAuth,accessRules,User.usersByType);
 router.get('/usersBySchool',checkAuth,accessRules,User.usersBySchool);
-router.post('/usersBySchool',checkAuth,accessRules,User.usersBySchool);
+//router.post('/usersBySchool',checkAuth,accessRules,User.usersBySchool);
 router.post('/usersByTypeAndSchool',checkAuth,accessRules,User.usersByTypeAndSchool);
 
 module.exports = router;

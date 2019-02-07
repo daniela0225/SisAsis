@@ -2,17 +2,67 @@ import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
-class Listado extends Component {
+class ListadoC extends Component {
 
 
+constructor(props) {
+    super(props);
 
-  state = {
-    users: []
+
+    
+    this.state = {
+
+      users:[],
+      school:''
+      
+    }
+
+    
+
+    
+  }
+
+componentWillMount(){
+  this.getschool();
+}
+ getschool(){
+    axios.get('usuarios/headers', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
+
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
+       this.getUsers();
+
+        
+
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOL");
+       
+        console.log(res);
+      })
+
+
   }
 
 
-componentDidMount() {
-    axios.get('usuarios', {
+
+getUsers(){
+
+  
+   const url ='usuarios/usersBySchool?schoolId='+this.state.school;
+  
+    axios.get(url , {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -25,8 +75,9 @@ componentDidMount() {
         console.log(data);
 
         for(let i = 0; i < data.length ; i++){
+          
           console.log(data[i]);
-          let editar = "/#/Home/Usuarios/Editar/"+data[i]._id;
+          let editar = "/#/Home/Users/Edit/"+data[i]._id;
           users.push(
             
               
@@ -37,7 +88,7 @@ componentDidMount() {
                     <td>{data[i].email}</td>
                   
                     <td>{data[i].type}</td>
-                    <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
+                    
                      <td>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning" href={editar}>Editar</Button>
@@ -80,6 +131,7 @@ componentDidMount() {
                    
                   </tr>
           );
+        
         }
 
         this.setState({ users: users });
@@ -88,10 +140,11 @@ componentDidMount() {
       .catch( res => {
      
         console.log(res);
+        console.log(url);
       })
   }
-
-
+  
+ 
 
   render() {
     return (
@@ -100,7 +153,7 @@ componentDidMount() {
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <a href="/#/Home/Usuarios/Formulario"> <Button block color="success">Nuevo Usuario</Button></a>
+                <a href="/#/Home/Users/Form"> <Button block color="success">Nuevo Usuario</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>
@@ -110,7 +163,7 @@ componentDidMount() {
                     <th>Email</th>
                   
                     <th>Tipo de usuario</th>
-                    <th>Colegio</th>
+                   
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -130,4 +183,4 @@ componentDidMount() {
   }
 }
 
-export default Listado;
+export default ListadoC;

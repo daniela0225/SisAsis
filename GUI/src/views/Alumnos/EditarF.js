@@ -59,7 +59,6 @@ class Editar extends Component {
       DNIV:'',
       schools:[],
       tutors:[],
-      teachers:[],
 
 
       modal: false,
@@ -88,11 +87,11 @@ class Editar extends Component {
     var attrName = e.target.id;
     this.setState({ [attrName]: attr });
   }
-componentWillMount(){
+  componentWillMount(){
 
     this.getstudent();
   }
-getstudent = () =>{
+  getstudent = () =>{
 
 
 
@@ -111,24 +110,13 @@ getstudent = () =>{
 
     axios(params) 
     .then( (response) => {
-      let date = new Date(response.data.student.birthdate);
-          let day = date.getDate();
-          let month = date.getMonth();
-          if (month < 9) {
-             month = '0'+date.getMonth();
-           }else{
-             month = '1'+date.getMonth();
-           }
-         
-          let year = date.getFullYear();
-          let fec = year+"-"+month+"-"+day;
       
       this.setState({
         name:response.data.student.name,
       last_name:response.data.student.last_name,
       gender:response.data.student.gender,
       DNI:response.data.student.DNI,
-      birthdate:fec,
+      birthdate:response.data.student.birthdate,
       year:response.data.student.year,
       section:response.data.student.section,
       fingerprint:response.data.student.fingerprint,
@@ -150,7 +138,6 @@ getstudent = () =>{
       console.log(response);
     });
 }
-
 
 
  componentDidMount = () =>{
@@ -183,42 +170,6 @@ getstudent = () =>{
       })
       .catch( res => {
         console.log("ERROR SCHOOLS");
-       
-        console.log(res);
-      })
-
-
-
-
-   axios.get('profesores', {
-          headers: {
-            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
-          }
-        }
-      )
-      .then( res => {
-        
-        const dataa = res.data.teachers;
-        let teachers = this.state.teachers;
-        console.log("teachers");
-        console.log(dataa);
-        teachers.push(<option key="4" >Opciones...</option>);
-
-        for(let i = 0; i < dataa.length ; i++){
-          console.log(dataa[i]);
-          teachers.push(
-            
-
-              <option  key={dataa[i]._id} value={dataa[i]._id}>{dataa[i].name} {dataa[i].last_name}</option>
-                       
-          );
-        }
-
-        this.setState({ teachers: teachers });
-
-      })
-      .catch( res => {
-        console.log("ERROR TEACHERS");
        
         console.log(res);
       })
@@ -317,7 +268,6 @@ handleSubmit = () =>{
       method: 'post',
       url: 'alumnos/update',
       data: {
-            studentId: data.id,
             name: data.name,
             last_name: data.last_name,
             gender: data.gender,
@@ -329,8 +279,7 @@ handleSubmit = () =>{
             code: data.code,
             order_number: data.order_number,
             school: data.school,
-            tutor: data.tutor,
-            teacher: data.teacher },
+            tutor: data.tutor },
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -415,7 +364,7 @@ handleSubmit = () =>{
                       <Label htmlFor="date-input">Fecha de Nacimiento </Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="date" id="birthdate" name="birthdate"  onChange={this.handleAttribute} value={this.state.birthdate} />
+                      <Input type="datetime-local" id="birthdate" name="birthdate"  onChange={this.handleAttribute} value={this.state.birthdate} />
                     </Col>
                   </FormGroup>
 
@@ -466,7 +415,7 @@ handleSubmit = () =>{
                       <Label htmlFor="text-input">Nro. Orden</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="number" id="order_number" name="order_number" onChange={this.handleAttribute} value={this.order_number} />
+                      <Input type="text" id="order_number" name="order_number" onChange={this.handleAttribute} value={this.order_number} />
                       
                     </Col>
                   </FormGroup>
@@ -478,18 +427,6 @@ handleSubmit = () =>{
                       <Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
                          
                          { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
-                        
-                      </Input>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="selectLg">Profesor</Label>
-                    </Col>
-                    <Col xs="12" md="9" size="lg">
-                      <Input type="select" name="teacher" id="teacher" bsSize="lg" onChange={this.handleAttribute} value={this.state.teacher}>
-                         
-                         { (this.state.teachers !== null)?this.state.teachers:( <option>No se ecnuentran profesores</option>) }
                         
                       </Input>
                     </Col>
@@ -553,7 +490,7 @@ handleSubmit = () =>{
               </CardBody>
               <CardFooter>
               <center>
-                <Button type="submit" size="sm" color="primary"  onClick={this.handleSubmit} ><i className="fa fa-dot-circle-o"></i> Edita Alumno</Button>
+                <Button type="submit" size="sm" color="primary"  onClick={this.handleSubmit} ><i className="fa fa-dot-circle-o"></i> Editar Alumno</Button>
                 <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
               </center>
               </CardFooter>

@@ -14,8 +14,8 @@ const propTypes = {
 
 const defaultProps = {};
 
-class PadreHeader extends Component {
-constructor(props){
+class ProfesorHeader extends Component {
+ constructor(props){
     super(props);
     this.state = {
      
@@ -88,8 +88,8 @@ constructor(props){
           <div align="right">
          <h7>{this.state.email}</h7>
          <br/>
-
-          <h6>Padre-{(this.state.schoolName !== '')?this.state.schoolName:'No se cnuentra colegio'}</h6>
+         
+          <h6>Profesor-{(this.state.schoolName !== '')?this.state.schoolName:'No se cnuentra colegio'}</h6>
          </div>
 
           <AppHeaderDropdown direction="down">
@@ -114,7 +114,7 @@ constructor(props){
     );
   }
 }
-PadreHeader.propTypes = propTypes;
-PadreHeader.defaultProps = defaultProps;
+ProfesorHeader.propTypes = propTypes;
+ProfesorHeader.defaultProps = defaultProps;
 
-export default PadreHeader;
+export default ProfesorHeader;

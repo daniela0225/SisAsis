@@ -349,7 +349,7 @@ handleSubmit = () =>{
                       <Label htmlFor="date-input">Fecha de Nacimiento </Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="datetime-local" id="birthdate" name="birthdate"  onChange={this.handleAttribute} value={this.state.birthdate} />
+                      <Input type="date" id="birthdate" name="birthdate"  onChange={this.handleAttribute} value={this.state.birthdate} />
                     </Col>
                   </FormGroup>
 

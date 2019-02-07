@@ -6,7 +6,7 @@ module.exports = {
 		Student.find()
 			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
-			.populate('tutor','DNI')
+			.populate('tutor','name last_name cellphone DNI')
 			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
@@ -93,7 +93,7 @@ module.exports = {
 		Student.findById(id)
 			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
-			.populate('tutor','DNI')
+			.populate('tutor','name last_name DNI')
 			.populate('teacher','name last_name')
 			.exec()
 			.then(doc=> {

@@ -10,10 +10,6 @@ import {
   CardFooter,
   CardHeader,
   Col,
-  Modal, 
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
   Collapse,
   DropdownItem,
   DropdownMenu,
@@ -28,26 +24,25 @@ import {
   InputGroupAddon,
   InputGroupText,
   Label,
-  Table,
   Row,
 } from 'reactstrap';
 
 class Editar extends Component {
- constructor(props) {
+  constructor(props) {
     super(props);
 
 
+    this.toggle = this.toggle.bind(this);
+    this.toggleFade = this.toggleFade.bind(this);
     this.state = {
 
       
       id:props.match.params.id,
       name:'',
       last_name:'',
+      school:'',
       schools:[],
-     
 
-
-      
       collapse: true,
       fadeIn: true,
       timeout: 300
@@ -57,12 +52,18 @@ class Editar extends Component {
     this.getteacher = this.getteacher.bind(this);
   }
 
+toggle() {
+    this.setState({ collapse: !this.state.collapse });
+}
 
-  handleAttribute = (e) =>{
+toggleFade() {
+    this.setState((prevState) => { return { fadeIn: !prevState }});
+}
+handleAttribute(e){
     var attr = e.target.value;
     var attrName = e.target.id;
     this.setState({ [attrName]: attr });
-  }
+}
 componentWillMount(){
   this.getteacher();
 }
@@ -107,9 +108,7 @@ getteacher = () =>{
       console.log(response);
     });
 }
-
-
- componentDidMount = () =>{
+componentDidMount = () =>{
     axios.get('colegios', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
@@ -144,23 +143,22 @@ getteacher = () =>{
       })
 
 
+  }
 
-
-        }
 
  
-handleSubmit = () =>{
-  const data = this.state;
+handleSubmit = (e) => {   
 
-   // let url = 'usuarios/';
+  e.preventDefault(); 
+
+    const data = this.state;
+
+    let url = 'profesores/update';
 
     const params = {
       method: 'post',
-      url: 'profesores/update',
-      data: {
-            name: this.state.name,
-            last_name: this.state.last_name,
-            school: this.state.school },
+      url: url,
+      data: {teacherId: data.id ,name: data.name ,last_name: data.last_name ,school: data.school},
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -174,7 +172,7 @@ handleSubmit = () =>{
         redirect: redirect
       });
 
-      alert("Se edito correctamente al profesor");
+      alert("Se edito correctamente el profesor");
       console.log(response);
     })
     .catch( (response) => {
@@ -182,28 +180,27 @@ handleSubmit = () =>{
       alert("Error");
       console.log(response);
     });
-
-}
+  }
 
   render() {
     return (
       <div className="animated fadeIn">
         
-        {this.state.redirect}
+            {this.state.redirect}
          
             <Card>
               <CardHeader>
                 <strong>Editar Profesor</strong> 
               </CardHeader>
               <CardBody>
-                <Form onSubmit={this.onSubmit}  className="form-horizontal">
+                <Form onSubmit={this.onSubmit} method="post" className="form-horizontal">
                   
                   <FormGroup row>
                     <Col md="3">
                       <Label htmlFor="text-input">Nombres</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="name" name="name"  onChange={this.handleAttribute} value={this.state.name} />
+                      <Input type="text" id="name" name="name" onChange={this.handleAttribute} value={this.state.name}/>
                       
                     </Col>
                   </FormGroup>
@@ -212,11 +209,10 @@ handleSubmit = () =>{
                       <Label htmlFor="text-input">Apellidos</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="text" id="last_name" name="last_name"  onChange={this.handleAttribute} value={this.state.last_name} />
+                      <Input type="text" id="last_name" name="last_name" onChange={this.handleAttribute} value={this.state.last_name}/>
                       
                     </Col>
                   </FormGroup>
-
                   
                   <FormGroup row>
                     <Col md="3">
@@ -224,7 +220,6 @@ handleSubmit = () =>{
                     </Col>
                     <Col xs="12" md="9" size="lg">
                       <Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
-                         
                          { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
                         
                       </Input>
@@ -232,15 +227,12 @@ handleSubmit = () =>{
                   </FormGroup>
                   
                   
-                  
 
                 </Form>
               </CardBody>
               <CardFooter>
-              <center>
-                <Button type="submit" size="sm" color="primary"  onClick={this.handleSubmit} ><i className="fa fa-dot-circle-o"></i> Editar Profesor</Button>
+                <Button type="submit" size="sm" color="primary" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"   ></i>Editar profesor</Button>
                 <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-              </center>
               </CardFooter>
             </Card>
             

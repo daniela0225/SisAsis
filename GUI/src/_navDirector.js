@@ -23,7 +23,7 @@ export default {
     },
     {
       name: 'Usuarios',
-      url: '/Home/Usuarios',
+      url: '/Home/Users',
       icon: 'icon-pencil',
     },
     {

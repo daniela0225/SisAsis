@@ -32,6 +32,14 @@ componentDidMount() {
 
         for(let i = 0; i < data.length ; i++){
           let editar = "/#/Home/Alumnos/Editar/"+data[i]._id;
+          let date = new Date(data[i].birthdate);
+          let day = date.getDate();
+          let month = date.getMonth();
+          let year = date.getFullYear();
+          let fec = day+"/"+month+"/"+year;
+
+          let fecv = new Date(fec);
+
           console.log(data[i]);
           students.push(
             
@@ -42,7 +50,7 @@ componentDidMount() {
                     <td>{data[i].last_name}</td>
                     <td>{data[i].gender}</td>
                     <td>{data[i].DNI}</td>
-                    <td>{data[i].birthdate}</td>
+                    <td>{fec}</td>
                     <td>{data[i].year}</td>
                     <td>{data[i].section}</td>
                     

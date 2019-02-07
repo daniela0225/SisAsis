@@ -29,6 +29,10 @@ const PorteroLayout = Loadable({
   loader: () => import('./containers/PorteroLayout'),
   loading
 });
+const ProfesorLayout = Loadable({
+  loader: () => import('./containers/ProfesorLayout'),
+  loading
+});
 
 
 // Pages
@@ -141,9 +145,18 @@ class App extends Component {
             <Route  path="/" name="Sistema de asistencias" component={DirectorLayout} />
           </Switch>
 
-          )
+          ):(this.state.type === "TEACHER")?(
+                       <Switch>
+            <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Register Page" component={Register} />
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            //<Route exact path="/sisasis" name="Home" component={AdminLayout} />
+            <Route  path="/" name="Sistema de asistencias" component={ProfesorLayout} />
+          </Switch>
 
-                      :(this.state.type === "TUTOR")?(
+
+                      ):(this.state.type === "TUTOR")?(
                         <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
             <Route exact path="/register" name="Register Page" component={Register} />

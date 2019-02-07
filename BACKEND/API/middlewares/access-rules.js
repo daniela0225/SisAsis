@@ -17,9 +17,10 @@ class TableRules {
 	constructor(roleRules){
 		var roles = new Array();
 
-		for(var i = 0; i < 4; i++){
+		for(var i = 0; i < 5; i++){
 			var rules = new Rules(	roleRules[i][0], roleRules[i][1], roleRules[i][2], roleRules[i][3],
-									roleRules[i][4], roleRules[i][5], roleRules[i][6], roleRules[i][7]	);
+									roleRules[i][4], roleRules[i][5], roleRules[i][6], roleRules[i][7],
+									roleRules[i][8], roleRules[i][9]	);
 			roles.push(rules);
 		}
 
@@ -57,6 +58,7 @@ function can(role,action,table){
 							[true,true,true,true,true,true,true,true]
 						)),
 		tutor : new TableRules(new Array(
+							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],

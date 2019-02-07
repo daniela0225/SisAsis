@@ -10,39 +10,23 @@ export default {
       },
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
-     
     {
-      name: 'Registros',
-      url: '/Home/Registros',
-      icon: 'icon-pencil',
+      name: 'Por fecha',
+      url: '/base/breadcrumbs',
+      icon: 'icon-puzzle',
     },
     {
-      name: 'Alumnos',
-      url: '/Home/Alumnos',
-      icon: 'icon-pencil',
-    },
-    {
-      name: 'Colegios',
+      name: 'Por alumno',
       url: '/Home/Colegios',
       icon: 'icon-pencil',
     },
-   
     {
-      name: 'Usuarios',
-      url: '/Home/Usuarios',
-      icon: 'icon-pencil',
-    },
-    {
-      name: 'Tutores',
-      url: '/Home/Tutores',
-      icon: 'icon-pencil',
-    },
-    {
-      name: 'Profesores',
-      url: '/Home/Profesores',
+      name: 'General',
+      url: '/Home/Colegios',
       icon: 'icon-pencil',
     },
     
+  
     
     
   ],
