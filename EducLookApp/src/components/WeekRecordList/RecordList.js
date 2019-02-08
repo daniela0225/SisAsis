@@ -4,18 +4,17 @@ import { FlatList, StyleSheet } from 'react-native';
 import ListItem from './ListItem/ListItem';
 
 const recordList = (props) => {
-		
 	return (
-		<FlatList 
+		<FlatList
 			style={styles.listContainer}
 			data={props.dates}
 			renderItem={(info) => (
-				<ListItem 
+				<ListItem
+					key={info.item.id}
 					day={info.item.day}
 					date={info.item.date}
-					entrada={info.item.entrada}
-					salida={info.item.salida}
-					onItemPressed={() => props.onItemSelected(info.item.key)}
+					in={info.item.in}
+					out={info.item.out}
 				/>
 			)}
 		/>
@@ -24,7 +23,8 @@ const recordList = (props) => {
 	
 const styles = StyleSheet.create ({
 	listContainer: {
-		width: "100%"
+		width: '100%',
+		padding: 10
 	}
 });
 

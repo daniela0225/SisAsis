@@ -17,7 +17,10 @@ const styles = StyleSheet.create ({
 		textAlign: 'center'	
 	},
 	recordsContainer: {
-		margin: 10
+		height: '80%',
+		marginLeft: 20,
+		marginRight: 20,
+		marginTop: 20
 	}
 });
 export default styles;

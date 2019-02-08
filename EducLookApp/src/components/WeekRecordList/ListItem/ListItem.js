@@ -3,21 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import styles from './Styles';
 
 const listItem = (props) => (
-	<TouchableOpacity onPress={props.onItemPressed}>
-    <View style={styles.listItem}>
-        <Text style={styles.textDay}>{props.day}</Text>
-        <Text style={styles.date}>{props.date}</Text>
-        <View style={styles.containerView}>
-            <View  style={styles.containerEntrada}>
-                <Text style={styles.text}> Entrada: {props.entrada}</Text>
-            </View>
-            <View style={styles.containerSalida}>
-                <Text style={styles.text}> Salida: {props.salida}</Text>
-            </View>
-        </View>
-        
-    </View>
-    </TouchableOpacity>
+	<TouchableOpacity onPress={() => {}}>
+		<View style={ styles.listItemContainer }>
+			<View style={ styles.rowContainer }>
+				<Text style={ styles.primaryText }>{ props.day }</Text>
+				<Text style={[ styles.primaryText, styles.rightAlign ] }>{ props.date }</Text>
+			</View>
+			<View style={ [styles.green, styles.hourContainer ] }>
+				<Text style={ styles.secondaryText }> Entrada: { props.in } </Text>
+			</View>
+			<View style={ [styles.red, styles.hourContainer ] }>
+				<Text style={ styles.secondaryText }> Salida: { props.out } </Text>
+			</View>
+		</View>
+	</TouchableOpacity>
 );
 
 export default listItem;

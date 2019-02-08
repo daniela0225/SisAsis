@@ -2,58 +2,43 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create ({
 
-   listItem: {
-      marginBottom: 5,
-      padding: 10,
-      backgroundColor: "#0083ff",
-      flexDirection: "column",
-      alignItems: "center",
-      borderColor:'#0083CB',
-      borderRadius: 10,
-      borderWidth: 2,
-   },
-   textDay: {
-      color: '#fff',
-      fontSize: 20,
-      fontWeight: 'bold',
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: 1.5,     
-   },
-   date: {
-      color: '#fff',
-      fontSize: 17,
-      fontWeight: 'bold',
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: 1.5,     
-   },
-   containerView: {
-      backgroundColor: '#0083ff',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-   },
-   containerEntrada:{
-      borderColor:'#07b721',
-      borderRadius: 10,
-      borderWidth: 2,
-      margin: 5,
-      backgroundColor: '#07b721',
-   },
-   containerSalida:{
-      borderColor:'#f41a1a',
-      borderRadius: 10,
-      borderWidth: 2,
-      margin: 5,
-      backgroundColor: '#f41a1a',
-   },
-   text: {
-      color: '#fff',
-      fontSize: 15,
-      fontWeight: 'bold',
-      alignItems: 'center',
-      padding: 1.5,     
-   }
+	listItemContainer: {
+		marginBottom: 5,
+		padding: 5,
+		backgroundColor: '#0083ff',
+		borderRadius: 10,
+		width: '100%'
+	},
+	primaryText: {
+		fontSize: 18,
+		color: '#fff',
+		fontWeight: 'bold',
+		width: '50%'
+	},
+	secondaryText: {
+		fontSize: 15,
+		color: '#fff',
+		fontWeight: 'bold',
+		alignSelf: 'center'
+	},
+	rowContainer: {
+		flexDirection: 'row',
+		margin: 5
+	},
+	rightAlign: {
+		width: '85%',
+		marginLeft: '10%'
+	},
+	hourContainer: {
+		padding: 5,
+		borderRadius: 10,
+		margin: 5
+	},
+	green: {
+		backgroundColor: '#0bed0b'
+	},
+	red: {
+		backgroundColor: '#ff1447'
+	}
 });
 export default styles;

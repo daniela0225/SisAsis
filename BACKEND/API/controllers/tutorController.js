@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Tutor = require('../models/tutor');
 
+const Student = require('../models/student');
+
 module.exports = {
 	show: (req,res,next)=>{
 		Tutor.find()

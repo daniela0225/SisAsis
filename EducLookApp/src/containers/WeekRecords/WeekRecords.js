@@ -11,39 +11,39 @@ class weekRecords extends Component {
 		this.state = {
 			dates: [
 				{
-					key: Math.random(),
+					id: Math.random(),
 					day: 'Lunes',
 					date:'14-01-2019',
-					entrada:'08:45 am',
-					salida:'03:55 pm'
+					in:'08:45 am',
+					out:'03:55 pm'
 				},
 				{
-					key: Math.random(),
+					id: Math.random(),
 					day: 'Martes',
 					date:'15-01-2019',
-					entrada:'08:45 am',
-					salida:'03:55 pm'
+					in:'08:45 am',
+					out:'03:55 pm'
 				},
 				{
-					key: Math.random(),
+					id: Math.random(),
 					day: 'Miercoles',
 					date:'16-01-2019',
-					entrada:'08:45 am',
-					salida:'03:55 pm'
+					in:'08:45 am',
+					out:'03:55 pm'
 				},
 				{
-					key: Math.random(),
+					id: Math.random(),
 					day: 'Jueves',
 					date:'17-01-2019',
-					entrada:'08:45 am',
-					salida:'03:55 pm'
+					in:'08:45 am',
+					out:'03:55 pm'
 				},
 				{
-					key: Math.random(),
+					id: Math.random(),
 					day: 'Viernes',
 					date:'18-01-2019',
-					entrada:'08:45 am',
-					salida:'03:55 pm'
+					in:'08:45 am',
+					out:'03:55 pm'
 				}
 			]
 		};
