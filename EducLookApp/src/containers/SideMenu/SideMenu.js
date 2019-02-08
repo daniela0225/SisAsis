@@ -15,6 +15,7 @@ import logoutIcon from './logoutIcon.png';
 import { connect } from 'react-redux';
 import { setHeaders, signOut } from '../../store/actions/userActions/index';
 import { setStudents } from '../../store/actions/studentActions/index';
+import { setSchoolData } from '../../store/actions/schoolActions/index';
 import { setActualView } from '../../store/actions/viewActions/index';
 
 import { AsyncStorage } from 'react-native';
@@ -37,15 +38,16 @@ class sideMenu extends Component {
 		})
 		.then((response) => {
 			//handle success
-			console.log(response.data.school);
 			const headers = response.data.tutor;
 			const students = response.data.students;
+			const school = response.data.school;
 			this.props.onSetHeaders(headers);
 			this.props.onSetStudents(students);
+			this.props.onSetSchoolData(school);
 		})
 		.catch( (response) => {
 		  //handle error
-			alert('Error.');
+			alert(response);
 		});
 	}
 
@@ -121,6 +123,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		onSetHeaders: (headers) => dispatch(setHeaders(headers)),
 		onSetStudents: (list) => dispatch(setStudents(list)),
+		onSetSchoolData: (school) => dispatch(setSchoolData(school)),
 		onSetActualView: (view) => dispatch(setActualView(view)),
 		onSignOut: () => dispatch(signOut())
 	};

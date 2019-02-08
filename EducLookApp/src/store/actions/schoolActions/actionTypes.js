@@ -1,0 +1,1 @@
+export const SET_SCHOOL_DATA = 'SET_SCHOOL_DATA';

@@ -9,14 +9,13 @@ import {	View, ScrollView, Image,
 
 import StudentsList from '../../components/StudentsList/StudentsList';
 
+import { connect } from 'react-redux';
 
 class Home extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-			schoolName: "Nombre del Colegio",
-			schoolLogo: null,
 			students: [
 				{
 					key: Math.random(),
@@ -54,7 +53,7 @@ class Home extends Component {
 					<View style={styles.schoolLogoContainer}>
 						<Image resizeMode='contain' source={appLogo} style={styles.schoolLogo} />
 					</View>
-					<Text style={styles.schoolName}> {this.state.schoolName} </Text>
+					<Text style={styles.schoolName}> {this.props.schoolName} </Text>
 					<Text style={styles.textContainer}> Porcentajes de Inasistencia </Text>
 					<View style={styles.studentsListContainer}>
 						<StudentsList students={this.state.students}/>
@@ -64,4 +63,15 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+const mapStateToProps = state => {
+	return {
+		schoolName: state.schools.name,
+		schoolLogo: state.schools.logo
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
