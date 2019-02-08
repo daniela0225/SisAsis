@@ -126,7 +126,6 @@ function tranformAction(table,url,method){
 
 				case "/edit": return "updateOwn"; break;
 				case "/search": return "readAny"; break;
-				case "/appSchoolInfo": return "readAny"; break;
 				default: return ""; break;
 			}
 			break;

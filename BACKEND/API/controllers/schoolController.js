@@ -259,25 +259,5 @@ module.exports = {
 				console.log(err);
 				res.status(500).json({error: err});
 			});
-	},
-	appSchoolInfo: (req,res,next) => {
-		School.findById(req.body.schoolId)
-			.select('name logo')
-			.exec()
-			.then(doc => {
-				if (doc) {
-					res.status(200).json({
-						name: doc.name,
-						logo: 'http://localhost:3000/'+doc.logo
-					});
-				} else {
-					res.status(404).json({message: 'No valid entry found for provided ID'});
-				}
-			})
-			.catch(err => {
-				console.log(err);
-				res.status(500).json({error: err});
-			})
 	}
-
 }

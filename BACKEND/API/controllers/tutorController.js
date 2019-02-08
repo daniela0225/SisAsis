@@ -153,13 +153,14 @@ module.exports = {
 	},
 	appHeaders: (req,res,next) => {
 		Tutor.find({email: req.userData.email})
-			.select('_id name last_name email')
+			.select('_id name last_name email school')
+			.populate('school','name logo')
 			.exec()
 			.then( (doc) => {
 				if (doc) {
 					console.log(doc[0].id);
 					Student.find({tutor: doc[0].id})
-					.select('_id name last_name')
+					.select('_id name last_name school')
 					.exec()
 					.then( (students) => {
 						const list = students.map( (element) => {
@@ -170,6 +171,10 @@ module.exports = {
 							tutor: {
 								email: doc[0].email,
 								fullName: doc[0].name + " " + doc[0].last_name
+							},
+							school: {
+								name:doc[0].school.name,
+								logo:doc[0].school.logo
 							},
 							students: list
 						});

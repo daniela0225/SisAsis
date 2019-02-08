@@ -37,6 +37,7 @@ class sideMenu extends Component {
 		})
 		.then((response) => {
 			//handle success
+			console.log(response.data.school);
 			const headers = response.data.tutor;
 			const students = response.data.students;
 			this.props.onSetHeaders(headers);
