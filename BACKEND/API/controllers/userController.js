@@ -124,7 +124,7 @@ module.exports = {
 			});
 	},
 	delete: (req,res,next)=>{
-		if(req.userData.type == "ADMIN"){
+		if(req.userData.type == "ADMIN" || req.userData.type == "DIRECTOR"){
 		const id = req.query.userId;
 		User.findById(id)
 			.select('_id')

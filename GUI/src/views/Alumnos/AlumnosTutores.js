@@ -62,10 +62,11 @@ componentDidMount() {
 
 				   
 					<td>
+					<Row>
 					<Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
 					 <Button block color="warning" href={editar}>Editar</Button>
 					</Col>
-					<br/>
+					
 					<Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
 					 <Button block color="danger" onClick={() => {
 
@@ -99,6 +100,7 @@ componentDidMount() {
 						  });
 					 }}>Eliminar</Button>
 					 </Col>
+					 </Row>
 					</td>
 				   
 				  </tr>

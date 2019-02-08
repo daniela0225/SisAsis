@@ -34,12 +34,14 @@ componentDidMount() {
 
 
                      <tr key={data[i]._id}>
-                    <td>{data[i].name}</td>
-                    <td>{data[i].last_name}</td>
+                    <td><a href={'/#/Home/Profesores/Detalle/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
+                   
                     <td>{data[i].school.name}</td>
+                    <td>{data[i].email}</td>
                    
 
                     <td>
+                    <Row>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
@@ -77,6 +79,7 @@ componentDidMount() {
                           });
                      }} >Eliminar</Button>
                      </Col>
+                     </Row>
                     </td>
                    
                   </tr>
@@ -111,9 +114,10 @@ componentDidMount() {
                 <Table responsive bordered>
                   <thead>
                   <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
+                    <th>Nombres y Apellidos</th>
+                    
                      <th>Colegio</th>
+                     <th>Email</th>
                     
                     <th>Acciones</th>
                   </tr>

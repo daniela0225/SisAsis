@@ -47,7 +47,10 @@ const User = React.lazy(() => import('./views/Users/User'));
 const Sisasis = React.lazy(() => import('./views/Pages/sisasis/sisasis'));
 const Home = React.lazy(() => import('./views/Home/Home'));
 const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
-const AlumnoDetalle = React.lazy(() => import('./views/Alumnos/AlumnoDetalle'));
+const AlumnoDetalle = React.lazy(() => import('./views/Alumnos/Detalle'));
+const TutorDetalle = React.lazy(() => import('./views/Tutores/Detalle'));
+const UsuarioDetalle = React.lazy(() => import('./views/Usuarios/Detalle'));
+const ProfesorDetalle = React.lazy(() => import('./views/Profesores/Detalle'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
 const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
 //const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
@@ -105,14 +108,18 @@ const routes = [
   { path: '/Home/Alumnos/Editar/:id', exact:true,name: 'Editar Alumno', component: EditarAlumno },
   { path: '/Home/Usuarios',exact:true, name: 'Usuarios', component: ListadoUsuarios },
   { path: '/Home/Users',exact:true, name: 'Usuarios', component: ListadoUsuariosC },
+  { path: '/Home/Usuarios/Detalle/:id',exact:true, name: 'Usuario Info', component: UsuarioDetalle },
+  { path: '/Home/Users/Detail/:id',exact:true, name: 'Usuario Info', component: UsuarioDetalle },
   { path: '/Home/Usuarios/Formulario', name: 'Formulario Usuario', component: FormularioUsuario },
   { path: '/Home/Users/Form', name: 'Formulario Usuario', component: FormularioUsuarioC },
   { path: '/Home/Usuarios/Editar/:id', exact:true,name: 'Editar Usuario', component: EditarUsuario },
   { path: '/Home/Users/Edit/:id', exact:true,name: 'Editar Usuario', component: EditarUsuarioC },
   { path: '/Home/Tutores',exact:true, name: 'Tutores', component: ListadoTutores },
+  { path: '/Home/Tutores/Detalle/:id',exact:true, name: 'Tutor Info', component: TutorDetalle },
   { path: '/Home/Tutores/Formulario', name: 'Formulario Tutor', component: FormularioTutor },
   { path: '/Home/Tutores/Editar/:id', exact:true,name: 'Editar Tutor', component: EditarTutor },
   { path: '/Home/Profesores',exact:true, name: 'Profesores', component: ListadoProfesores },
+  { path: '/Home/Profesores/Detalle/:id',exact:true, name: 'Profesor Info', component: ProfesorDetalle },
   { path: '/Home/Profesores/Formulario', name: 'Formulario Profesor', component: FormularioProfesor },
   { path: '/Home/Profesores/Editar/:id', exact:true,name: 'Editar Profesor', component: EditarProfesor },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

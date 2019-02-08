@@ -41,6 +41,7 @@ router.get('/',checkAuth, accessRules, School.show);
 router.post('/',checkAuth, accessRules, upload.single('logo'), School.create);
 
 router.post('/edit',checkAuth, accessRules, School.edit);
-router.post('search',checkAuth, accessRules, School.search);
+router.post('/search',checkAuth, accessRules, School.search);
+router.post('/appSchoolInfo',checkAuth, accessRules, School.appSchoolInfo);
 
 module.exports = router;

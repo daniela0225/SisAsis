@@ -40,6 +40,7 @@ class Editar extends Component {
       id:props.match.params.id,
       name:'',
       last_name:'',
+      email:'',
       school:'',
       schools:[],
 
@@ -93,7 +94,8 @@ getteacher = () =>{
       this.setState({
         name:response.data.teacher.name,
       last_name:response.data.teacher.last_name,
-      school:response.data.teacher.school._id
+      school:response.data.teacher.school._id,
+      email:response.data.teacher.email,
         
 
       });
@@ -158,7 +160,7 @@ handleSubmit = (e) => {
     const params = {
       method: 'post',
       url: url,
-      data: {teacherId: data.id ,name: data.name ,last_name: data.last_name ,school: data.school},
+      data: {teacherId: data.id ,name: data.name ,last_name: data.last_name ,school: data.school, email: data.email},
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -210,6 +212,15 @@ handleSubmit = (e) => {
                     </Col>
                     <Col xs="12" md="9">
                       <Input type="text" id="last_name" name="last_name" onChange={this.handleAttribute} value={this.state.last_name}/>
+                      
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="text-input">Email</Label>
+                    </Col>
+                    <Col xs="12" md="9">
+                      <Input type="email" id="email" name="email" onChange={this.handleAttribute} value={this.state.email}/>
                       
                     </Col>
                   </FormGroup>

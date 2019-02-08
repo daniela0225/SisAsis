@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
-import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Badge, Card, CardBody, CardHeader, Modal, ModalBody, ModalFooter, ModalHeader,Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 class AlumnoDetalle extends Component {
 
 
@@ -9,7 +9,8 @@ class AlumnoDetalle extends Component {
     super(props);
 
 
-   
+    this.toggle = this.toggle.bind(this);
+    this.toggleFade = this.toggleFade.bind(this);
     this.state = {
 
       
@@ -25,7 +26,14 @@ class AlumnoDetalle extends Component {
       code:'',
       order_number:'',
       school:'',
-      tutor:''
+      tutor:'',
+      tutorln:'',
+      tutorid:'',
+      teacher:'',
+      teacherln:'',
+      teacherid:'',
+      modal: false
+
 
 
     
@@ -36,6 +44,17 @@ class AlumnoDetalle extends Component {
   componentWillMount(){
 
     this.getstudent();
+  }
+toggle() {
+    this.setState({ collapse: !this.state.collapse });
+    this.setState({
+      modal: !this.state.modal,
+    });
+  }
+  
+
+  toggleFade() {
+    this.setState((prevState) => { return { fadeIn: !prevState }});
   }
 getstudent = () =>{
 
@@ -82,7 +101,12 @@ getstudent = () =>{
       code:data.code,
       order_number:data.order_number,
       school:data.school.name,
-      tutor:data.DNI,
+      tutor:data.tutor.name,
+      tutorln:data.tutor.last_name,
+      tutorid:data.tutor._id,
+      teacher:data.teacher.name,
+      teacherln:data.teacher.last_name,
+      teacherid:data.teacher._id,
       DNIV:data.tutor.DNI
         
 
@@ -113,10 +137,55 @@ getstudent = () =>{
                 <div align="right">
                 <Row>
                 		<Col>
-                		<Button block color="warning" >Editar</Button>
+                		<Button block color="warning"  href={'/#/Home/Alumnos/Editar/'+this.state.id} >Editar</Button>
                 		</Col>
                 		<Col>
-                		<Button block color="danger" >Eliminar</Button>
+                		<Button block color="danger" onClick={this.toggle} >Eliminar</Button>
+                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                  <ModalHeader toggle={this.toggle}>Confirmacion</ModalHeader>
+                  <ModalBody>
+                    <center>
+                        ¿Seguro que desea eliminar al alumno {this.state.name} {this.state.last_name} ?
+                        <br/>
+                        <br/>
+                        <br/>
+                    
+                    <Button color="danger"  onClick={() => {
+
+
+                          let url = 'alumnos/delete';
+                          
+
+                          const params = {
+                            method: 'post',
+                            url: url,
+                            data: {
+                              studentId: this.state.id ,
+                              
+                            },
+                            headers: {
+                              "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+                            }
+                          };
+
+                          axios(params) 
+                          .then( (response) => {
+                            //handle success
+                                                      
+                            console.log(response);
+                          })
+                          .catch( (response) => {
+                           
+                            console.log(response);
+                          });
+                     }}  href="#/Home/Alumnos">Eliminar Alumno </Button>
+                                       
+                    
+                    </center>
+                  </ModalBody>
+                  
+                </Modal>
+
                 		</Col>
                 </Row>		
                 </div>
@@ -152,6 +221,12 @@ getstudent = () =>{
                      		
                      		                             
                       </tr>
+                      <tr>    
+                        <td><strong>Profesor</strong></td>
+                        <td><a href={'/#/Home/Profesores/Detalle/'+this.state.teacherid}>{this.state.teacher} {this.state.teacherln}</a></td> 
+                        
+                                                     
+                      </tr>
 
                     </tbody>
                   </Table>
@@ -179,7 +254,7 @@ getstudent = () =>{
                      </tr>
                      <tr>
                      		<td><strong>Padre de Familia</strong></td>
-                     		<td>{this.state.tutor} </td> 
+                     		<td><a href={'/#/Home/Tutores/Detalle/'+this.state.tutorid}>{this.state.tutor} {this.state.tutorln}</a></td> 
                      		
                      		                             
                       </tr>

@@ -44,6 +44,10 @@ class Formulario extends Component {
       cellphone:'',
       telephone:'',
       email:'',
+      password:'',
+      type:'TUTOR',
+      school:'',
+      schools:[],
       collapse: true,
       fadeIn: true,
       timeout: 300
@@ -64,6 +68,44 @@ class Formulario extends Component {
     var attrName = e.target.id;
     this.setState({ [attrName]: attr });
   }
+componentDidMount = () =>{
+    axios.get('colegios', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dat = res.data.orders;
+        let schools = this.state.schools;
+        console.log("schools");
+        console.log(dat);
+        schools.push(<option key="4" >Opciones...</option>);
+
+        for(let i = 0; i < dat.length ; i++){
+          console.log(dat[i]);
+          schools.push(
+            
+
+              <option  key={dat[i]._id} value={dat[i]._id}>{dat[i].name}</option>
+                       
+          );
+        }
+
+        this.setState({ schools: schools });
+
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOLS");
+       
+        console.log(res);
+      })
+
+
+
+
+        }
 
 
 
@@ -86,7 +128,8 @@ handleSubmit = (e) => {
         cellphone: data.cellphone,
         telephone: data.telephone,
         address: data.address,
-        email: data.email
+        email: data.email,
+        school: data.school
       },
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
@@ -186,6 +229,18 @@ handleSubmit = (e) => {
                     <Col xs="12" md="9">
                       <Input type="email" id="email" name="email" onChange={this.handleAttribute} value={this.state.email}/>
                       
+                    </Col>
+                  </FormGroup>
+                  <FormGroup row>
+                    <Col md="3">
+                      <Label htmlFor="selectLg">Colegio</Label>
+                    </Col>
+                    <Col xs="12" md="9" size="lg">
+                      <Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
+                         
+                         { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
+                        
+                      </Input>
                     </Col>
                   </FormGroup>
                  

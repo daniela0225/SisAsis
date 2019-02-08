@@ -237,6 +237,7 @@ handleSubmit = (e) => {
 												<option value="DIRECTOR">Director</option>
 												<option value="DOORMAN">Portero</option>
 												<option value="TUTOR">Tutor</option>
+												<option value="TEACHER">Tutor</option>
 												
 											</Input>
 										</Col>

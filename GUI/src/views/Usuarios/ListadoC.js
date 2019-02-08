@@ -85,11 +85,12 @@ getUsers(){
               
 
                 <tr key={data[i]._id}>
-                    <td>{data[i].email}</td>
+                    <td><a href={'/#/Home/Users/Detail/'+data[i]._id}>{data[i].email}</a></td>
                   
                     <td>{data[i].type}</td>
                     
                      <td>
+                     <Row>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
@@ -127,6 +128,7 @@ getUsers(){
                                     });
                                                  }} >Eliminar</Button>
                      </Col>
+                     </Row>
                     </td>
                    
                   </tr>

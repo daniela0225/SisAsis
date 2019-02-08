@@ -6,7 +6,8 @@ const Student = require('../models/student');
 module.exports = {
 	show: (req,res,next)=>{
 		Tutor.find()
-			.select('_id DNI name last_name address cellphone telephone email')
+			.select('_id DNI name last_name address cellphone telephone email school')
+			.populate('school','name')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -20,7 +21,8 @@ module.exports = {
 							address: doc.address,
 							cellphone: doc.cellphone,
 							telephone: doc.telephone,
-							email: doc.email
+							email: doc.email,
+							school: doc.school
 						}
 					})
 				};
@@ -43,7 +45,8 @@ module.exports = {
 			address: req.body.address,
 			cellphone: req.body.cellphone,
 			telephone: req.body.telephone,
-			email: req.body.email
+			email: req.body.email,
+			school: req.body.school
 		});
 		tutor
 			.save()
@@ -58,7 +61,8 @@ module.exports = {
 						address: result.address,
 						cellphone: result.cellphone,
 						telephone: result.telephone,
-						email: result.email
+						email: result.email,
+						school: result.school
 					}
 				});
 			})
@@ -72,7 +76,8 @@ module.exports = {
 	find: (req,res,next)=>{
 		const id = req.query.tutorId;
 		Tutor.findById(id)
-			.select('_id DNI name last_name address cellphone telephone email')
+			.select('_id DNI name last_name address cellphone telephone email school')
+			.populate('school','name')
 			.exec()
 			.then(doc=> {
 				if (doc) {
@@ -126,9 +131,9 @@ module.exports = {
 	},
 	searchByDNI: (req,res,next)=>{
 		const string = req.body.string + '';
-		console.log(string);
 		Tutor.find({DNI: { $regex: string , $options:'i'}})
-			.select('_id DNI name last_name address cellphone telephone email')
+			.select('_id DNI name last_name address cellphone telephone email school')
+			.populate('school','name')
 			.exec()
 			.then( (doc) => {
 				if (doc) {
@@ -186,5 +191,26 @@ module.exports = {
 					error: err
 				});
 			});
-	}
+	},
+	appTutorInfo: (req,res,next)=>{
+		
+		Tutor.findOne({email: req.userData.email})
+			.select('_id DNI name last_name address cellphone telephone email')
+			.exec()
+			.then( (doc) => {
+				if (doc) {
+					res.status(200).json({
+						tutor: doc
+					});
+				}else{
+					res.status(404).json({message: 'No valid entry found for provided ID'});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
 }

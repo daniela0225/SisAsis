@@ -34,11 +34,12 @@ componentDidMount() {
               
 
                 <tr key={data[i]._id}>
-                    <td>{data[i].email}</td>
+                    <td><a href={'/#/Home/Usuarios/Detalle/'+data[i]._id}>{data[i].email}</a></td>
                   
                     <td>{data[i].type}</td>
                     <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
                      <td>
+                    <Row>
                       <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
@@ -76,6 +77,7 @@ componentDidMount() {
                                     });
                                                  }} >Eliminar</Button>
                      </Col>
+                     </Row>
                     </td>
                    
                   </tr>

@@ -9,5 +9,6 @@ const tutorSchema = mongoose.Schema({
 	cellphone: {type: String, required: false},
 	telephone: {type: String, required: true},
 	email: {type: String, required: true},
+	school: {type: mongoose.Schema.Types.ObjectId, ref:'School', required: true},
 });
 module.exports = mongoose.model('Tutor', tutorSchema,'tutors');

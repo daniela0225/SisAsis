@@ -167,9 +167,9 @@ handleSubmit = (e) => {
 											<Input type="select" name="type" id="type" bsSize="lg" onChange={this.handleAttribute} value={this.state.type}>
 												<option >Opciones..</option>
 												
-												<option value="TEACHER">Profesor</option>
+												
 												<option value="DOORMAN">Portero</option>
-												<option value="TUTOR">Tutor</option>
+												
 
 												
 											</Input>

@@ -4,7 +4,7 @@ const Teacher = require('../models/teacher');
 module.exports = {
 	show: (req,res,next)=>{
 		Teacher.find()
-			.select('_id name last_name school')
+			.select('_id name last_name school email')
 			.populate('school','name')
 			.exec()
 			.then(docs => {
@@ -15,7 +15,8 @@ module.exports = {
 							_id: doc._id,
 							name: doc.name,
 							last_name: doc.last_name,
-							school: doc.school
+							school: doc.school,
+							email: doc.email
 							}
 					})
 				};
@@ -34,7 +35,8 @@ module.exports = {
 			_id: new mongoose.Types.ObjectId(),
 			name: req.body.name,
 			last_name: req.body.last_name,
-			school: req.body.school
+			school: req.body.school,
+			email: req.body.email
 		});
 		teacher
 			.save()
@@ -45,7 +47,8 @@ module.exports = {
 						_id: result._id,
 						name: result.name,
 						last_name: result.last_name,
-						school: result.school
+						school: result.school,
+						email: result.email
 					}
 				});
 			})
@@ -59,7 +62,7 @@ module.exports = {
 	find: (req,res,next)=>{
 		const id = req.body.teacherId;
 		Teacher.findById(id)
-			.select('_id name last_name school')
+			.select('_id name last_name schoo email')
 			.populate('school','name')
 			.exec()
 			.then(doc=> {
