@@ -6,13 +6,13 @@ const styles = StyleSheet.create({
 			borderColor:'#0083ff',
 			borderRadius: 10,
 			borderWidth: 2,
-			padding: 15,
+			padding: 10,
 			paddingLeft: 25,
 			paddingRight: 25,
-			marginTop: 25
+			marginTop: 15
 		},
 		infoContainer: {
-			paddingBottom: 15
+			paddingBottom: 10
 		},
 		imageContainer: {
 			alignItems: 'center'
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		text: {
 			color: '#fff',
 			fontSize: 17,
-			margin: 3
+			margin: 2
 		}
 });
 

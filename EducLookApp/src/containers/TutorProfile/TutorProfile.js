@@ -3,19 +3,41 @@ import image from './tutorIcon.png';
 import styles from './Styles.js';
 import { Image, Text, ScrollView, View, ListView} from 'react-native';
 
+import axios from '../../Axios/axios';
+
+import { connect } from 'react-redux';
+
 class tutorProfile extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-					key: Math.random(),
-					name: 'Mariana',
-					last_name: 'Torres Cáceres',
-					email: 'm.paredes@example.com',
-					cellphone: '952146321',
-					telephone: '054-265315',
-					address: 'Urb. Las Torres M-25'
+			DNI: '',
+			name: '',
+			last_name: '',
+			email: '',
+			cellphone: '',
+			telephone: '',
+			address: ''
 		};
+	};
+
+	componentDidMount(){
+		const token = this.props.token;
+		axios.get('tutores/appTutorInfo',{
+			headers: { 
+				"Authorization": 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			//handle success
+			const tutorInfo = response.data.tutor;
+			this.setState(tutorInfo);
+		})
+		.catch( (response) => {
+		  //handle error
+			alert('No se pudo cargar la información.');
+		});
 	};
 
 	render() {
@@ -25,6 +47,8 @@ class tutorProfile extends Component {
 					<View style={styles.imageContainer}>
 						<Image source={image} style={styles.image} />
 					</View>
+					<Text style={[styles.text, styles.label]}> DNI: </Text>
+						<Text style={[styles.text, styles.bold]}> { this.state.DNI } </Text>
 					<Text style={[styles.text, styles.label]}> Nombre: </Text>
 						<Text style={[styles.text, styles.bold]}> { this.state.name + " " + this.state.last_name } </Text>
 					<Text style={[styles.text, styles.label]}> E-mail: </Text>
@@ -41,4 +65,14 @@ class tutorProfile extends Component {
 	}
 }
 
-export default tutorProfile;
+const mapStateToProps = state => {
+	return {
+		token: state.users.token
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return { };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(tutorProfile);
