@@ -12,6 +12,7 @@ router.get('/',checkAuth, accessRules, Record.show);
 router.post('/',checkAuth, accessRules, Record.create);
 
 router.get('/recordsByStudent',checkAuth, accessRules, Record.recordsByStudent);
+router.get('/recordsBySchool',checkAuth, accessRules, Record.recordsBySchool);
 router.post('/recordsByDay',checkAuth, accessRules, Record.recordsByDay);
 router.get('/recordById',checkAuth, accessRules, Record.recordsByDay);
 

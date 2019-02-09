@@ -14,6 +14,7 @@ const Sisasis = React.lazy(() => import('./views/Pages/sisasis/sisasis'));
 const Home = React.lazy(() => import('./views/Home/Home'));
 const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
 const DetalleAlumno = React.lazy(() => import('./views/Alumnos/Detalle'));
+const DetalleAlumnoC = React.lazy(() => import('./views/Alumnos/DetalleC'));
 const DetalleTutor = React.lazy(() => import('./views/Tutores/Detalle'));
 const DetalleTutorC = React.lazy(() => import('./views/Tutores/DetalleC'));
 const DetalleUsuario = React.lazy(() => import('./views/Usuarios/Detalle'));
@@ -24,6 +25,7 @@ const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
 const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
 //const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
 const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/AlumnosTutores'));
+const ListadoAlumnosC = React.lazy(() => import('./views/Alumnos/ListadoC'));
 const ListadoUsuarios = React.lazy(() => import('./views/Usuarios/Listado'));
 const ListadoUsuariosC = React.lazy(() => import('./views/Usuarios/ListadoC'));
 const ListadoTutores = React.lazy(() => import('./views/Tutores/Listado'));
@@ -33,6 +35,7 @@ const ListadoProfesoresC = React.lazy(() => import('./views/Profesores/ListadoC'
 const FormularioColegio = React.lazy(() => import('./views/Colegios/Formulario'));
 const FormularioRegistro = React.lazy(() => import('./views/Registros/Formulario'));
 const FormularioAlumno = React.lazy(() => import('./views/Alumnos/Formulario'));
+const FormularioAlumnoC = React.lazy(() => import('./views/Alumnos/FormularioC'));
 const FormularioUsuario = React.lazy(() => import('./views/Usuarios/Formulario'));
 const FormularioUsuarioC = React.lazy(() => import('./views/Usuarios/FormularioC'));
 const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
@@ -42,6 +45,7 @@ const FormularioProfesorC = React.lazy(() => import('./views/Profesores/Formular
 const EditarRegistro = React.lazy(() => import('./views/Registros/Editar'));
 const EditarColegio = React.lazy(() => import('./views/Colegios/Editar'));
 const EditarAlumno = React.lazy(() => import('./views/Alumnos/Editar'));
+const EditarAlumnoC = React.lazy(() => import('./views/Alumnos/EditarC'));
 const EditarUsuario = React.lazy(() => import('./views/Usuarios/Editar'));
 const EditarUsuarioC = React.lazy(() => import('./views/Usuarios/EditarC'));
 const EditarTutor = React.lazy(() => import('./views/Tutores/Editar'));
@@ -75,10 +79,14 @@ const routes = [
   { path: '/Home/Colegios/Formulario', exact:true, name: 'Formulario Colegio', component: FormularioColegio },
   { path: '/Home/Colegios/Editar/:id', exact:true,name: 'Editar Colegio', component: EditarColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },
+  { path: '/Home/Students',exact:true, name: 'Alumnos', component: ListadoAlumnosC },
   //{ path: '/Home/AlumnosTutores',exact:true, name: 'Alumnos', component: ListadoAlumnosTutores },
   { path: '/Home/Alumnos/Detalle/:id',exact:true, name: 'Alumno Info', component: DetalleAlumno },
+  { path: '/Home/Students/Detail/:id',exact:true, name: 'Alumno Info', component: DetalleAlumnoC },
   { path: '/Home/Alumnos/Formulario', name: 'Formulario Alumno', component: FormularioAlumno },
+  { path: '/Home/Students/Form', name: 'Formulario Alumno', component: FormularioAlumnoC },
   { path: '/Home/Alumnos/Editar/:id', exact:true,name: 'Editar Alumno', component: EditarAlumno },
+  { path: '/Home/Students/Edit/:id', exact:true,name: 'Editar Alumno', component: EditarAlumnoC },
   { path: '/Home/Usuarios',exact:true, name: 'Usuarios', component: ListadoUsuarios },
   { path: '/Home/Users',exact:true, name: 'Usuarios', component: ListadoUsuariosC },
   { path: '/Home/Usuarios/Detalle/:id',exact:true, name: 'Usuario Info', component: DetalleUsuario },

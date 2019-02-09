@@ -111,6 +111,7 @@ function tranformAction(table,url,method){
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
 				case "recordsByStudent": return "readOwn" ; break;
+				case "recordsBySchool": return "readAny" ; break;
 				case "recordById": return "readOwn" ; break;
 				case "recordsByDay": return "readAny" ; break;
 				default: return ""; break;

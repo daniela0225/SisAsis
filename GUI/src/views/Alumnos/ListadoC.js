@@ -1,17 +1,54 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
-class AlumnosTutores extends Component {
+class ListadoC extends Component {
+constructor(props) {
+    super(props);
 
 
+    
+    this.state = {
 
-  state = {
-	students: []
+      students:[],
+      school:''
+      
+    }
+
+    
+this.getschool();
+    
+  }
+ getschool = () => {
+    axios.get('usuarios/headers', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
+
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
+
+        this.getStudents();
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOL");
+       
+        console.log(res);
+      })
+
+
   }
 
-
-componentDidMount() {
-	axios.get('alumnos', {
+getStudents = () => {
+	 const url ='alumnos/studentsBySchool?schoolId='+this.state.school
+	axios.get(url, {
 		  headers: {
 			"Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
 		  }
@@ -24,7 +61,7 @@ componentDidMount() {
 		console.log(data);
 
 		for(let i = 0; i < data.length ; i++){
-		  let editar = "/#/Home/Alumnos/Editar/"+data[i]._id;
+		  let editar = "/#/Home/Students/Edit/"+data[i]._id;
 		  let date = new Date(data[i].birthdate);
 		  let day = date.getDate();
 		  let month = date.getMonth();
@@ -39,19 +76,16 @@ componentDidMount() {
 			  
 
 			  <tr key={data[i]._id}>
-					<td><a href={'/#/Home/Tutores/Detalle/'+data[i].tutor._id}>{data[i].tutor.name} {data[i].tutor.last_name} </a></td>
+					<td><a href={'/#/Home/Tutors/Detail/'+data[i].tutor._id}>{data[i].tutor.name} {data[i].tutor.last_name} </a></td>
 					<td>{data[i].tutor.cellphone} </td>
-					<td><a href={'/#/Home/Alumnos/Detalle/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
+					<td><a href={'/#/Home/Students/Detail/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
 					
 					
 					<td>{data[i].DNI}</td>
 					
 					<td>{data[i].year}</td>
 					<td>{data[i].section}</td>
-					
-					 <td>{data[i].school.name}</td>
-					
-					 <td>{data[i].teacher.name} {data[i].teacher.last_name} </td>
+					<td>{data[i].teacher.name} {data[i].teacher.last_name} </td>
 
 				   
 					<td>
@@ -116,7 +150,7 @@ componentDidMount() {
 			  <CardHeader>
 				  
 				<Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-			   <a href="/#/Home/Alumnos/Formulario"> <Button block color="success">Nuevo Alumno</Button></a>
+			   <a href="/#/Home/Students/Form"> <Button block color="success">Nuevo Alumno</Button></a>
 				</Col>
 			  </CardHeader>
 			  <CardBody>
@@ -136,7 +170,7 @@ componentDidMount() {
 				   <th>DNI</th>
 				   <th>Año</th>
 				   <th>Seccion</th>
-				   <th>Colegio</th>
+				   
 				   <th>Profesor</th> 
 				   <th>Acciones</th>                    
 					
@@ -160,4 +194,4 @@ componentDidMount() {
   }
 }
 
-export default AlumnosTutores;
+export default ListadoC;

@@ -18,7 +18,7 @@ export default {
     
     {
       name: 'Alumnos',
-      url: '/Home/Alumnos',
+      url: '/Home/Students',
       icon: 'icon-pencil',
     },
     {
