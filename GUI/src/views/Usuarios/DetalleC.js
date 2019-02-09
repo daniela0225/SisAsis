@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Modal, ModalBody, ModalFooter, ModalHeader,Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
-class TutorDetalle extends Component {
+class UsuarioDetalleC extends Component {
 
 
 
@@ -15,15 +15,11 @@ class TutorDetalle extends Component {
 
       
       id:props.match.params.id,
-      name:'',
-      last_name:'',
-     
-      DNI:'',
-      address:'',
-      cellphone:'',
-      telephone:'',
       email:'',
+      type:'',
+     
       school:'',
+      
       modal: false
 
 
@@ -31,11 +27,11 @@ class TutorDetalle extends Component {
     
     };
     
-    this.getstudent = this.getstudent.bind(this);
+    this.getsuser = this.getsuser.bind(this);
   }
   componentWillMount(){
 
-    this.getstudent();
+    this.getsuser();
   }
 toggle() {
     this.setState({ collapse: !this.state.collapse });
@@ -48,18 +44,18 @@ toggle() {
   toggleFade() {
     this.setState((prevState) => { return { fadeIn: !prevState }});
   }
-getstudent = () =>{
+getsuser = () =>{
 
 
 
     const data = this.state;
 
-    let url = 'tutores/find?tutorId='+ data.id;
+    let url = 'usuarios/edit';
 
     const params = {
-      method: 'get',
+      method: 'post',
       url: url,
-     
+     data:{userId:data.id},
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
       }
@@ -68,22 +64,23 @@ getstudent = () =>{
     axios(params) 
     .then( (response) => {
       
-          const data = response.data.tutor;
-         
+    const data = response.data.usuario;
+    if(response.data.usuario.school != null){
+
       
       this.setState({
-        name:data.name,
-      last_name:data.last_name,
-    
-      DNI:data.DNI,
-      address:data.address,
-      cellphone:data.cellphone,
-      telephone:data.telephone,
       email:data.email,
+      type:data.type,    
       school:data.school.name
-        
+         });
+    }else{
+      this.setState({
+      email:data.email,
+      type:data.type,    
+      school:'NULL'
+         });
 
-      });
+    }
 
       
       console.log(response);
@@ -104,13 +101,13 @@ getstudent = () =>{
               <CardHeader>
                <Row>
                <Col>
-                <h3>{this.state.name} {this.state.last_name}</h3>
+                <h3>{this.state.email}</h3>
                </Col>
                <Col>
                 <div align="right">
                 <Row>
                 		<Col>
-                		<Button block color="warning"  href={'/#/Home/Tutores/Editar/'+this.state.id} >Editar</Button>
+                		<Button block color="warning"  href={'/#/Home/Users/Edit/'+this.state.id} >Editar</Button>
                 		</Col>
                 		<Col>
                 		<Button block color="danger" onClick={this.toggle} >Eliminar</Button>
@@ -118,7 +115,7 @@ getstudent = () =>{
                   <ModalHeader toggle={this.toggle}>Confirmacion</ModalHeader>
                   <ModalBody>
                     <center>
-                        ¿Seguro que desea eliminar al tutor {this.state.name} {this.state.last_name} ?
+                        ¿Seguro que desea eliminar al usuario {this.state.email}  ?
                         <br/>
                         <br/>
                         <br/>
@@ -126,32 +123,27 @@ getstudent = () =>{
                     <Button color="danger"  onClick={() => {
 
 
-                          let url = 'tutores/delete';
-                          
+                                    let url = 'usuarios/delete?userId='+this.state.id;
+                                    
 
-                          const params = {
-                            method: 'post',
-                            url: url,
-                            data: {
-                              tutorId: this.state.id ,
-                              
-                            },
-                            headers: {
-                              "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
-                            }
-                          };
+                                    const params = {
+                                      method: 'get',
+                                      url: url,                                
+                                      headers: {
+                                        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+                                      }
+                                    };
 
-                          axios(params) 
-                          .then( (response) => {
-                            //handle success
-                                                      
-                            console.log(response);
-                          })
-                          .catch( (response) => {
-                           
-                            console.log(response);
-                          });
-                     }}  href="#/Home/Tutores">Eliminar Tutor </Button>
+                                    axios(params) 
+                                    .then( (response) => {                                     
+                                      console.log("Error");
+                                      console.log(response);
+                                    })
+                                    .catch( (response) => {
+                                     
+                                      console.log(response);
+                                    });
+                                                 }} href="#/Home">Eliminar Usuario </Button>
                                        
                     
                     </center>
@@ -173,17 +165,10 @@ getstudent = () =>{
                     <tbody>
                       
                       <tr>
-                     		<td><strong>DNI</strong></td>
-                     		<td>{this.state.DNI}</td> 
+                     		<td><strong>Tipo</strong></td>
+                     		<td>{this.state.type}</td> 
                       </tr>
-                      <tr>
-                     		<td><strong>Celular</strong></td>
-                     		<td>{this.state.cellphone}</td> 
-                      </tr>
-                      <tr>
-                     		<td><strong>Email</strong></td>
-                     		<td><a href={'mailto:'+this.state.email}>{this.state.email}</a></td>
-                      </tr>
+                      
                       
 
                     </tbody>
@@ -195,17 +180,10 @@ getstudent = () =>{
                     <tbody>
                       
                       <tr>
-                     		<td><strong>Direccion</strong></td>
-                     		<td>{this.state.address}</td>
+                     		<td><strong>Colegio</strong></td>
+                     		<td>{this.state.school}</td>
                      </tr>
-                     <tr>
-                     		<td><strong>Telefono</strong></td>
-                     		<td>{this.state.telephone}</td> 
-                     </tr>
-                     <tr>
-                        <td><strong>Colegio</strong></td>
-                        <td>{this.state.school}</td> 
-                     </tr>
+                    
                      
 
                     </tbody>
@@ -224,4 +202,4 @@ getstudent = () =>{
   }
 }
 
-export default TutorDetalle;
+export default UsuarioDetalleC;

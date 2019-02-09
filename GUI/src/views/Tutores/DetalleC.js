@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Modal, ModalBody, ModalFooter, ModalHeader,Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
-class TutorDetalle extends Component {
+class TutorDetalleC extends Component {
 
 
 
@@ -110,7 +110,7 @@ getstudent = () =>{
                 <div align="right">
                 <Row>
                 		<Col>
-                		<Button block color="warning"  href={'/#/Home/Tutores/Editar/'+this.state.id} >Editar</Button>
+                		<Button block color="warning"  href={'/#/Home/Tutors/Edit/'+this.state.id} >Editar</Button>
                 		</Col>
                 		<Col>
                 		<Button block color="danger" onClick={this.toggle} >Eliminar</Button>
@@ -151,7 +151,7 @@ getstudent = () =>{
                            
                             console.log(response);
                           });
-                     }}  href="#/Home/Tutores">Eliminar Tutor </Button>
+                     }}  href="#/Home/Tutors">Eliminar Tutor </Button>
                                        
                     
                     </center>
@@ -224,4 +224,4 @@ getstudent = () =>{
   }
 }
 
-export default TutorDetalle;
+export default TutorDetalleC;

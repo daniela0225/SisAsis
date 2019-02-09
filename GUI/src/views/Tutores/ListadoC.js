@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import axios from '../../AxiosFiles/axios.js';
 import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
-class Listado extends Component {
+class ListadoC extends Component {
 
 
+constructor(props) {
+    super(props);
 
-  state = {
-    teachers: []
+
+    
+    this.state = {
+
+      tutors:[],
+      school:''
+      
+    }
+
+    
+this.getschool();
+    
   }
-
-
-componentDidMount() {
-    axios.get('profesores', {
+getschool = () => {
+    axios.get('usuarios/headers', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -20,26 +30,55 @@ componentDidMount() {
       )
       .then( res => {
         
-        const data = res.data.teachers;
-        let teachers = this.state.teachers;
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
+
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
+
+        this.getTutors();
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOL");
+       
+        console.log(res);
+      })
+
+
+  }
+
+getTutors = () => {
+  const url ='tutores/tutorsBySchool?schoolId='+this.state.school
+    axios.get(url, {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const data = res.data.tutors;
+        let tutors = this.state.tutors;
         console.log(data);
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
-          let editar = "/#/Home/Profesores/Editar/"+data[i]._id;
-          teachers.push(
+          let editar = "/#/Home/Tutors/Edit/"+data[i]._id;
+          tutors.push(
             
               
 
 
 
                      <tr key={data[i]._id}>
-                    <td><a href={'/#/Home/Profesores/Detalle/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
+                    <td> <a href={'/#/Home/Tutors/Detail/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
+                    
+                    <td>{data[i].DNI}</td>
+                    <td>{data[i].address}</td>
+                    <td>{data[i].cellphone}</td>
                    
-                    <td>{data[i].school.name}</td>
-                    <td>{data[i].email}</td>
-                   
-
                     <td>
                     <Row>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
@@ -50,14 +89,14 @@ componentDidMount() {
                      <Button block color="danger" onClick={() => {
 
 
-                          let url = 'profesores/delete';
+                          let url = 'tutores/delete';
                           
 
                           const params = {
                             method: 'post',
                             url: url,
                             data: {
-                              teacherId: data[i]._id ,
+                              tutorId: data[i]._id ,
                               
                             },
                             headers: {
@@ -86,7 +125,7 @@ componentDidMount() {
           );
         }
 
-        this.setState({ teachers: teachers });
+        this.setState({ tutors: tutors });
 
       })
       .catch( res => {
@@ -107,7 +146,7 @@ componentDidMount() {
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <a href="/#/Home/Profesores/Formulario"> <Button block color="success">Nuevo Profesor</Button></a>
+                <a href="/#/Home/Tutors/Form"> <Button block color="success">Nuevo Tutor</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>
@@ -116,15 +155,16 @@ componentDidMount() {
                   <tr>
                     <th>Nombres y Apellidos</th>
                     
-                     <th>Colegio</th>
-                     <th>Email</th>
+                     <th>DNI</th>
+                    <th>Direccion</th>
+                     <th>Celular</th>
                     
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
                
-                { (this.state.teachers !== null)?this.state.teachers:(<tr><td></td></tr>) }
+                { (this.state.tutors !== null)?this.state.tutors:(<tr><td></td></tr>) }
                   </tbody>
                 </Table>
                 
@@ -138,4 +178,4 @@ componentDidMount() {
   }
 }
 
-export default Listado;
+export default ListadoC;

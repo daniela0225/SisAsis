@@ -16,16 +16,13 @@ constructor(props) {
       school:''
       
     }
-
-    
+    this.getschool();   
 
     
   }
 
-componentWillMount(){
-  this.getschool();
-}
- getschool(){
+
+ getschool = () => {
     axios.get('usuarios/headers', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
@@ -57,7 +54,7 @@ componentWillMount(){
 
 
 
-getUsers(){
+getUsers = () => {
 
   
    const url ='usuarios/usersBySchool?schoolId='+this.state.school;
@@ -84,7 +81,7 @@ getUsers(){
 
               
 
-                <tr key={data[i]._id}>
+                <tr key={Math.random()}>
                     <td><a href={'/#/Home/Users/Detail/'+data[i]._id}>{data[i].email}</a></td>
                   
                     <td>{data[i].type}</td>

@@ -27,7 +27,7 @@ import {
   Row,
 } from 'reactstrap';
 
-class Formulario extends Component {
+class EditarC extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +37,7 @@ class Formulario extends Component {
     this.state = {
 
       
+      id:props.match.params.id,
       name:'',
       last_name:'',
       DNI:'',
@@ -44,16 +45,13 @@ class Formulario extends Component {
       cellphone:'',
       telephone:'',
       email:'',
-      password:'',
-      type:'TUTOR',
-      school:'',
-      schools:[],
       collapse: true,
       fadeIn: true,
       timeout: 300
     };
     this.handleAttribute = this.handleAttribute.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.gettutor = this.gettutor.bind(this);
   }
 
   toggle() {
@@ -68,46 +66,55 @@ class Formulario extends Component {
     var attrName = e.target.id;
     this.setState({ [attrName]: attr });
   }
-componentDidMount = () =>{
-    axios.get('colegios', {
-          headers: {
-            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
-          }
-        }
-      )
-      .then( res => {
+
+componentWillMount(){
+  this.gettutor();
+}
+gettutor = () =>{
+
+
+
+    const data = this.state;
+
+    let url = 'tutores/find?tutorId='+data.id;
+
+    const params = {
+      method: 'get',
+      url: url,
         
-        const dat = res.data.orders;
-        let schools = this.state.schools;
-        console.log("schools");
-        console.log(dat);
-        schools.push(<option key="4" >Opciones...</option>);
+      headers: {
+        "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
+      }
+    };
 
-        for(let i = 0; i < dat.length ; i++){
-          console.log(dat[i]);
-          schools.push(
-            
+    axios(params) 
+    .then( (response) => {
 
-              <option  key={dat[i]._id} value={dat[i]._id}>{dat[i].name}</option>
-                       
-          );
-        }
+      
+        
+      
+      this.setState({
+        name:response.data.tutor.name,
+      last_name:response.data.tutor.last_name,
+      DNI:response.data.tutor.DNI,
+      address:response.data.tutor.address,
+      cellphone:response.data.tutor.cellphone,
+      telephone:response.data.tutor.telephone,
+      email:response.data.tutor.email
+        
 
-        this.setState({ schools: schools });
+      });
+ 
 
-      })
-      .catch( res => {
-        console.log("ERROR SCHOOLS");
-       
-        console.log(res);
-      })
-
-
-
-
-        }
-
-
+      
+      console.log(response);
+    })
+    .catch( (response) => {
+      //handle error
+      alert("Error");
+      console.log(response);
+    });
+}
 
  
 handleSubmit = (e) => {   
@@ -116,20 +123,20 @@ handleSubmit = (e) => {
 
     const data = this.state;
 
-    let url = 'tutores/';
+    let url = 'tutores/update';
 
     const params = {
       method: 'post',
       url: url,
       data: {
+        tutorId:data.id,
         name: data.name ,
         last_name: data.last_name ,
         DNI: data.DNI ,
         cellphone: data.cellphone,
         telephone: data.telephone,
         address: data.address,
-        email: data.email,
-        school: data.school
+        email: data.email
       },
       headers: {
         "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
@@ -138,38 +145,13 @@ handleSubmit = (e) => {
 
     axios(params) 
     .then( (response) => {
-      //handle 
-
-          const paramss = {
-            method: 'post',
-            url: 'usuarios/',
-            data: {
-                  email: data.email,
-                  password: data.password,
-                  type: data.type,
-                  school: data.school },
-            headers: {
-              "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken')
-            }
-          };
-          axios(paramss) 
-          .then( (response) => {
-
-            console.log("User created")
-          })
-          .catch( (response) => {
-            alert("Error");
-      
-          });
-
-
-
-      let redirect = <Redirect to="/Home/Tutores" />;
+      //handle success
+      let redirect = <Redirect to="/Home/Tutors" />;
       this.setState({
         redirect: redirect
       });
 
-      alert("Se creo correctamente el tutor");
+      alert("Se edito correctamente el tutor");
       console.log(response);
     })
     .catch( (response) => {
@@ -188,7 +170,7 @@ handleSubmit = (e) => {
          
             <Card>
               <CardHeader>
-                <strong>Formulario de Tutor</strong> 
+                <strong>Editar Tutor</strong> 
               </CardHeader>
               <CardBody>
                 <Form onSubmit={this.onSubmit} method="post"  className="form-horizontal">
@@ -243,7 +225,7 @@ handleSubmit = (e) => {
                       <Label htmlFor="text-input">Telefono</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="number" id="telephone" name="telephone" onChange={this.handleAttribute} value={this.state.telephone}/>
+                      <Input type="text" id="telephone" name="telephone" onChange={this.handleAttribute} value={this.state.telephone}/>
                       
                     </Col>
                   </FormGroup>
@@ -256,27 +238,6 @@ handleSubmit = (e) => {
                       
                     </Col>
                   </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="text-input">Password</Label>
-                    </Col>
-                    <Col xs="12" md="9">
-                      <Input type="password" id="password" name="password" onChange={this.handleAttribute} value={this.state.password}/>
-                      
-                    </Col>
-                  </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="selectLg">Colegio</Label>
-                    </Col>
-                    <Col xs="12" md="9" size="lg">
-                      <Input type="select" name="school" id="school" bsSize="lg" onChange={this.handleAttribute} value={this.state.school}>
-                         
-                         { (this.state.schools !== null)?this.state.schools:( <option>No se ecnuentran colegios</option>) }
-                        
-                      </Input>
-                    </Col>
-                  </FormGroup>
                  
                   
                   
@@ -284,7 +245,7 @@ handleSubmit = (e) => {
                 </Form>
               </CardBody>
               <CardFooter>
-                <Button type="submit" size="sm" color="primary" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"></i> Crear nuevo tutor</Button>
+                <Button type="submit" size="sm" color="primary" onClick={this.handleSubmit}><i className="fa fa-dot-circle-o"></i> Editar tutor</Button>
                 <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
               </CardFooter>
             </Card>
@@ -298,4 +259,4 @@ handleSubmit = (e) => {
   }
 }
 
-export default Formulario;
+export default EditarC;

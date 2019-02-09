@@ -4,15 +4,53 @@ import { Badge, Card, CardBody, CardHeader, Col, Button, Pagination, PaginationI
 
 class Listado extends Component {
 
+constructor(props) {
+    super(props);
 
 
-  state = {
-    teachers: []
+    
+    this.state = {
+
+      teachers:[],
+      school:''
+      
+    }
+
+    
+this.getschool();
+    
   }
 
+ getschool = () => {
+    axios.get('usuarios/headers', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
 
-componentDidMount() {
-    axios.get('profesores', {
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
+
+        this.getTeachers();
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOL");
+       
+        console.log(res);
+      })
+
+
+  }
+getTeachers = () => {
+  const url ='profesores/teachersBySchool?schoolId='+this.state.school
+    axios.get(url, {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -26,7 +64,7 @@ componentDidMount() {
 
         for(let i = 0; i < data.length ; i++){
           console.log(data[i]);
-          let editar = "/#/Home/Profesores/Editar/"+data[i]._id;
+          let editar = "/#/Home/Teachers/Edit/"+data[i]._id;
           teachers.push(
             
               
@@ -34,7 +72,7 @@ componentDidMount() {
 
 
                      <tr key={data[i]._id}>
-                    <td><a href={'/#/Home/Profesores/Detalle/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
+                    <td><a href={'/#/Home/Teachers/Detail/'+data[i]._id}>{data[i].name} {data[i].last_name}</a></td>
                    
                     <td>{data[i].school.name}</td>
                     <td>{data[i].email}</td>
@@ -107,7 +145,7 @@ componentDidMount() {
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <a href="/#/Home/Profesores/Formulario"> <Button block color="success">Nuevo Profesor</Button></a>
+                <a href="/#/Home/Teachers/Form"> <Button block color="success">Nuevo Profesor</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>

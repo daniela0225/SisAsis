@@ -28,12 +28,12 @@ export default {
     },
     {
       name: 'Tutores',
-      url: '/Home/Tutores',
+      url: '/Home/Tutors',
       icon: 'icon-pencil',
     },
     {
       name: 'Profesores',
-      url: '/Home/Profesores',
+      url: '/Home/Teachers',
       icon: 'icon-pencil',
     },
     {

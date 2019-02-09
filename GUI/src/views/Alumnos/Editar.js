@@ -55,6 +55,7 @@ class Editar extends Component {
       order_number:'',
       school:'',
       tutor:'',
+      teacher:'',
       DNIT:'',
       DNIV:'',
       schools:[],
@@ -136,6 +137,7 @@ getstudent = () =>{
       order_number:response.data.student.order_number,
       school:response.data.student.school._id,
       tutor:response.data.student.tutor,
+      teacher:response.data.student.teacher._id,
       DNIV:response.data.student.tutor.DNI
         
 
@@ -461,15 +463,7 @@ handleSubmit = () =>{
                       
                     </Col>
                   </FormGroup>
-                  <FormGroup row>
-                    <Col md="3">
-                      <Label htmlFor="text-input">Nro. Orden</Label>
-                    </Col>
-                    <Col xs="12" md="9">
-                      <Input type="number" id="order_number" name="order_number" onChange={this.handleAttribute} value={this.order_number} />
-                      
-                    </Col>
-                  </FormGroup>
+                  
                   <FormGroup row>
                     <Col md="3">
                       <Label htmlFor="selectLg">Colegio</Label>
