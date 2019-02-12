@@ -154,7 +154,7 @@ module.exports = {
 	appHeaders: (req,res,next) => {
 		Tutor.find({email: req.userData.email})
 			.select('_id name last_name email school')
-			.populate('school','name logo')
+			.populate('school','_id name logo')
 			.exec()
 			.then( (doc) => {
 				if (doc) {

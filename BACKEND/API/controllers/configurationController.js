@@ -15,7 +15,8 @@ module.exports = {
 							school: doc.school,
 							year: doc.year,
 							startDate: doc.startDate,
-							endDate: doc.endDate
+							endDate: doc.endDate,
+							vacations: doc.vacations
 						}
 					})
 				});
@@ -36,7 +37,8 @@ module.exports = {
 			endDate: req.body.endDate,
 			kinderSchedule: req.body.kinderSchedule,
 			primarySchedule: req.body.primarySchedule,
-			secondarySchedule: req.body.secondarySchedule
+			secondarySchedule: req.body.secondarySchedule,
+			vacations: req.body.vacations
 		});
 
 		schoolConf
@@ -53,7 +55,8 @@ module.exports = {
 						endDate: result.endDate,
 						kinderSchedule: result.kinderSchedule,
 						primarySchedule: result.primarySchedule,
-						secondarySchedule: result.secondarySchedule
+						secondarySchedule: result.secondarySchedule,
+						vacations = result.vacations
 					}
 				});
 			})
@@ -67,7 +70,7 @@ module.exports = {
 	find: (req,res,next)=>{
 		const schoolId = req.query.schoolId;
 		SchoolConf.find({school: schoolId})
-			.select('_id school year startDate endDate kinderSchedule primarySchedule secondarySchedule')
+			.select('_id school year startDate endDate kinderSchedule primarySchedule secondarySchedule vacations')
 			.populate('school','_id name')
 			.exec()
 			.then(doc => {
@@ -123,7 +126,7 @@ module.exports = {
 	},
 	edit:(req,res,next)=>{
 		SchoolConf.findById(req.body.schoolConfId)
-			.select('_id school year startDate endDate kinderSchedule primarySchedule secondarySchedule')
+			.select('_id school year startDate endDate kinderSchedule primarySchedule secondarySchedule vacations')
 			.exec()
 			.then(doc => {
 				if (doc) {

@@ -15,7 +15,7 @@ import logoutIcon from './logoutIcon.png';
 import { connect } from 'react-redux';
 import { setHeaders, signOut } from '../../store/actions/userActions/index';
 import { setStudents } from '../../store/actions/studentActions/index';
-import { setSchoolData } from '../../store/actions/schoolActions/index';
+import { setSchoolData, setSchoolConfig } from '../../store/actions/schoolActions/index';
 import { setActualView } from '../../store/actions/viewActions/index';
 
 import { AsyncStorage } from 'react-native';
@@ -41,9 +41,30 @@ class sideMenu extends Component {
 			const headers = response.data.tutor;
 			const students = response.data.students;
 			const school = response.data.school;
+
 			this.props.onSetHeaders(headers);
 			this.props.onSetStudents(students);
 			this.props.onSetSchoolData(school);
+
+			//this.setSchoolConfiguration();
+		})
+		.catch( (response) => {
+		  //handle error
+			alert(response);
+		});
+	}
+
+	setSchoolConfiguration = () => {
+
+		axios.get('configuraciones/find?schoolId=' + ,{
+			headers: { 
+				"Authorization": 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			//handle success
+			const config = response.data;
+			this.onSetSchoolConfig(config);
 		})
 		.catch( (response) => {
 		  //handle error
@@ -115,7 +136,8 @@ const mapStateToProps = state => {
 	return {
 		token: state.users.token,
 		headers: state.users.headers,
-		students: state.students.list
+		students: state.students.list,
+
 	};
 };
 
@@ -124,6 +146,7 @@ const mapDispatchToProps = dispatch => {
 		onSetHeaders: (headers) => dispatch(setHeaders(headers)),
 		onSetStudents: (list) => dispatch(setStudents(list)),
 		onSetSchoolData: (school) => dispatch(setSchoolData(school)),
+		onSetSchoolConfig: (config) => dispatch(setSchoolConfig(config)),
 		onSetActualView: (view) => dispatch(setActualView(view)),
 		onSignOut: () => dispatch(signOut())
 	};
