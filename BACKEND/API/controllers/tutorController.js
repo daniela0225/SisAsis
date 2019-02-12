@@ -173,6 +173,7 @@ module.exports = {
 								fullName: doc[0].name + " " + doc[0].last_name
 							},
 							school: {
+								_id: doc[0].school._id
 								name:doc[0].school.name,
 								logo:doc[0].school.logo
 							},
