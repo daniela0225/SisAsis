@@ -29,6 +29,11 @@ module.exports = {
 			});
 	},
 	create: (req,res,next)=>{
+		const vacations = [];
+		for (const doc of req.body.vacations){
+			vacations.push( doc );
+		}
+
 		const schoolConf = new SchoolConf({
 			_id: new mongoose.Types.ObjectId(),
 			school: req.body.school,
@@ -38,7 +43,7 @@ module.exports = {
 			kinderSchedule: req.body.kinderSchedule,
 			primarySchedule: req.body.primarySchedule,
 			secondarySchedule: req.body.secondarySchedule,
-			vacations: req.body.vacations
+			vacations: vacations
 		});
 
 		schoolConf
@@ -56,7 +61,7 @@ module.exports = {
 						kinderSchedule: result.kinderSchedule,
 						primarySchedule: result.primarySchedule,
 						secondarySchedule: result.secondarySchedule,
-						vacations = result.vacations
+						vacations: result.vacations
 					}
 				});
 			})

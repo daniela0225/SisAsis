@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
 		case SET_SCHOOL_DATA: 
 			return {
 				...state,
-				_id: action._id
+				_id: action._id,
 				name: action.name,
 				logo: action.logo.replace("\\", "/")
 			};
