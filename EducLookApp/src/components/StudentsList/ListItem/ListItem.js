@@ -21,6 +21,13 @@ class listItem extends Component{
 	}
 
 	componentDidMount () {
+		this.getAttendancesCount();
+
+
+		this.fillAbsencesBar(this.state.absences);
+	}
+
+	getAttendancesCount = () => {
 		const token = this.props.token;
 		const id = this.state.id;
 
@@ -31,17 +38,12 @@ class listItem extends Component{
 		})
 		.then((response) => {
 			//handle success
-			this.setState({ attendances: response.data }); 
-
+			this.setState({ attendances: response.data });
 		})
 		.catch( (response) => {
 			//handle error
 			alert("Ocurrio un error al obtener las asistencias.");
 		});
-
-		
-
-		this.fillAbsencesBar(this.state.absences);
 	}
 
 	fillAbsencesBar = (absences) => {

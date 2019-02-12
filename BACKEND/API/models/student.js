@@ -10,7 +10,7 @@ const studentSchema = mongoose.Schema({
 	gender: {type: String, enum: genders, required: true},
 	DNI: {type: String, required: true},
 	birthdate: {type:Date, required: true},
-	year: {type:Number, enum: years, required: true},
+	year: {type:String, enum: years, required: true},
 	section: {type:String, enum: sections, required: true},
 	fingerprint: {type:Number, required: true},
 	code: {type:Number, required: true},

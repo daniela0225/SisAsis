@@ -1,1 +1,2 @@
 export const SET_SCHOOL_DATA = 'SET_SCHOOL_DATA';
+export const SET_SCHOOL_CONFIG = 'SET_SCHOOL_CONFIG';
