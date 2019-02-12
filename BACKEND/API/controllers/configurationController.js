@@ -74,7 +74,7 @@ module.exports = {
 	},
 	find: (req,res,next)=>{
 		const schoolId = req.query.schoolId;
-		SchoolConf.find({school: schoolId})
+		SchoolConf.findOne({school: schoolId})
 			.select('_id school year startDate endDate kinderSchedule primarySchedule secondarySchedule vacations')
 			.populate('school','_id name')
 			.exec()
