@@ -46,7 +46,7 @@ class sideMenu extends Component {
 			this.props.onSetStudents(students);
 			this.props.onSetSchoolData(school);
 
-			this.setSchoolConfiguration();
+			this.getSchoolConfiguration();
 		})
 		.catch( (response) => {
 		  //handle error
@@ -54,7 +54,8 @@ class sideMenu extends Component {
 		});
 	}
 
-	setSchoolConfiguration = () => {
+	getSchoolConfiguration = () => {
+		const token = this.props.token;
 		const schoolId = this.props.school;
 
 		axios.get('configuraciones/find?schoolId=' + schoolId,{
@@ -62,15 +63,14 @@ class sideMenu extends Component {
 				"Authorization": 'Bearer ' + token
 			}
 		})
-		.then((response) => {
+		.then( (response) => {
 			//handle success
-			const config = response.data;
-			console.log( config );
-			//this.onSetSchoolConfig(config);
+			const config = response.data.schoolConf;
+			this.onSetSchoolConfig(config);
 		})
 		.catch( (response) => {
 		  //handle error
-			alert(response);
+			console.log(response);
 		});
 	}
 

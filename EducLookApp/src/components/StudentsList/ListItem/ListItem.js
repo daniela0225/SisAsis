@@ -85,7 +85,9 @@ class listItem extends Component{
 
 const mapStateToProps = state => {
 	return {
-		token: state.users.token
+		token: state.users.token,
+		schoolStartDate: state.schools.startDate,
+		schoolEndDate: state.schools.endDate
 	};
 };
 
