@@ -148,8 +148,8 @@ module.exports = {
 	},
 	studentsBySchool: (req, res, next)=>{
 		Student.find({school:(req.body.schoolId != null)?req.body.schoolId:req.query.schoolId})
-			.select('_id DNI name last_name gender year section tutor teacher')
-			.populate('tutor','DNI name last_name cellphone')
+			.select('_id DNI name last_name gender year tutor teacher')
+			.populate('tutor','DNI name last_name')
 			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
@@ -163,7 +163,6 @@ module.exports = {
 							gender: doc.gender,
 							DNI: doc.DNI,
 							year: doc.year,
-							section: doc.section,
 							tutor: doc.tutor,
 							teacher: doc.teacher
 						}

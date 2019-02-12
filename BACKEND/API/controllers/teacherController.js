@@ -114,35 +114,6 @@ module.exports = {
 					error: err
 				});
 			});
-	},
-	teachersBySchool: (req, res, next)=>{
-		Teacher.find({school:req.query.schoolId})
-			.select('_id name last_name school email')
-			.populate('school','name')
-			.exec()
-			.then(docs => {
-				const response = {
-					count: docs.length,
-					teachers: docs.map(doc => {
-						return {
-							_id: doc._id,
-							name: doc.name,
-							last_name: doc.last_name,
-							school: doc.school,
-							email: doc.email,
-							
-							
-						}
-					})
-				};
-				res.status(200).json(response);
-			})
-			.catch(err => {
-				console.log(err);
-				res.status(500).json({
-					error: err
-				});
-			});
 	}
 	
 	

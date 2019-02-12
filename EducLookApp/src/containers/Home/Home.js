@@ -15,48 +15,21 @@ class Home extends Component {
 
 	constructor(props){
 		super(props);
-		this.state = {
-			students: [
-				{
-					key: Math.random(),
-					absences:30,
-					completeName:"Juan Perez"
-				},{
-					key: Math.random(),
-					absences:60,
-					completeName:"Luisa Perez"
-				},{
-					key: Math.random(),
-					absences:100,
-					completeName:"José Perez"
-				},{
-					key: Math.random(),
-					absences:50,
-					completeName:"Andres Perez"
-				},{
-					key: Math.random(),
-					absences:80,
-					completeName:"Maria Perez"
-				}
-			] 
+		this.state = { 
 		};
 	};
 
-	componentDidMount () {
-
-	}
-
 	render() {
-
+		let image = { uri: axios.defaults.baseURL + this.props.schoolLogo};
 		return (
 				<ScrollView contentContainerStyle={styles.homeContainer} behavior='padding'>
 					<View style={styles.schoolLogoContainer}>
-						<Image resizeMode='contain' source={appLogo} style={styles.schoolLogo} />
+						<Image resizeMode='contain' source={image} style={styles.schoolLogo} />
 					</View>
 					<Text style={styles.schoolName}> {this.props.schoolName} </Text>
 					<Text style={styles.textContainer}> Porcentajes de Inasistencia </Text>
 					<View style={styles.studentsListContainer}>
-						<StudentsList students={this.state.students}/>
+						<StudentsList />
 					</View>
 				</ScrollView>
 		);
@@ -65,6 +38,7 @@ class Home extends Component {
 
 const mapStateToProps = state => {
 	return {
+		token: state.users.token,
 		schoolName: state.schools.name,
 		schoolLogo: state.schools.logo
 	};

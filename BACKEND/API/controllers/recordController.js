@@ -150,32 +150,6 @@ module.exports = {
 				});
 			});
 	},
-	recordsBySchool: (req,res,next)=>{
-		Record.find({school:req.query.schoolId})
-			.select('_id student date type')
-			.populate('student','DNI name last_name')
-			.exec()
-			.then(docs => {
-				const response = {
-					count: docs.length,
-					records: docs.map(doc => {
-						return {
-							_id: doc._id,
-							student: doc.student,
-							date: doc.date,
-							type: doc.type
-						}
-					})
-				};
-				res.status(200).json(response);
-			})
-			.catch(err => {
-				console.log(err);
-				res.status(500).json({
-					error: err
-				});
-			});
-	},
 	recordById: (req,res,next)=>{
 		Record.find({school:req.query.recordId})
 			.select('_id student date school type')
@@ -231,7 +205,20 @@ module.exports = {
 				});
 			});
 	},
-	recordsByDayAndYear: (req,res,next)=>{
+	recordsByDayAndYear: (req,res,next) => {
 		//desde el controlador alumnos,ordenar alumnos por año y populate con records.
+	},
+	countCheckInRecordsByStudent: (req, res, next) => {
+		Record.count({student: req.query.studentId, type: 'CHECK_IN'})
+			.exec()
+			.then(doc => {
+				res.status(200).json(doc);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
 	}
 }

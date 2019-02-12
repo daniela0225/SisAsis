@@ -5,20 +5,42 @@ import styles from './Styles.js';
 import { connect } from 'react-redux';
 import { setActualView } from '../../../store/actions/viewActions/index';
 
+import axios from '../../../Axios/axios';
+
 class listItem extends Component{
 
 	constructor (props) {
 		super(props);
 		this.state = {
-			key: props.key,
-			absences: props.absences,
+			id: props.id,
 			completeName: props.completeName,
-			onItemPressed: props.onItemPressed,
+			attendances: 0,
+			absences: 0,
 			absencesBarValue: new Animated.Value(0)
 		}
 	}
 
 	componentDidMount () {
+		const token = this.props.token;
+		const id = this.state.id;
+
+		axios.get('registros/countCheckInRecordsByStudent?studentId=' + id,{
+			headers: { 
+				"Authorization": 'Bearer ' + this.props.token
+			}
+		})
+		.then((response) => {
+			//handle success
+			this.setState({ attendances: response.data }); 
+
+		})
+		.catch( (response) => {
+			//handle error
+			alert("Ocurrio un error al obtener las asistencias.");
+		});
+
+		
+
 		this.fillAbsencesBar(this.state.absences);
 	}
 
@@ -61,6 +83,7 @@ class listItem extends Component{
 
 const mapStateToProps = state => {
 	return {
+		token: state.users.token
 	};
 };
 

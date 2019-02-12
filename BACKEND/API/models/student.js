@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 var genders = 'MALE FEMALE'.split(' ');
+var years = '1 2 3 4 5 6'.split(' ');
 var sections = 'A B C D E F G H UNIQUE'.split(' ');
 
 const studentSchema = mongoose.Schema({
@@ -9,7 +10,7 @@ const studentSchema = mongoose.Schema({
 	gender: {type: String, enum: genders, required: true},
 	DNI: {type: String, required: true},
 	birthdate: {type:Date, required: true},
-	year: {type:Number, required: true},
+	year: {type:Number, enum: years, required: true},
 	section: {type:String, enum: sections, required: true},
 	fingerprint: {type:Number, required: true},
 	code: {type:Number, required: true},

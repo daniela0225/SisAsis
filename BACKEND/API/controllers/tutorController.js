@@ -151,39 +151,6 @@ module.exports = {
 				});
 			});
 	},
-	tutorsBySchool: (req, res, next)=>{
-		Tutor.find({school:req.query.schoolId})
-			.select('_id DNI name last_name address cellphone telephone email school')
-			.populate('school','name')
-			.exec()
-			.then(docs => {
-				const response = {
-					count: docs.length,
-					tutors: docs.map(doc => {
-						return {
-							_id: doc._id,
-							DNI: doc.DNI,
-							name: doc.name,
-							last_name: doc.last_name,
-							address: doc.address,
-							cellphone: doc.cellphone,
-							telephone: doc.telephone,
-							email: doc.email,
-							school: doc.school
-							
-							
-						}
-					})
-				};
-				res.status(200).json(response);
-			})
-			.catch(err => {
-				console.log(err);
-				res.status(500).json({
-					error: err
-				});
-			});
-	},
 	appHeaders: (req,res,next) => {
 		Tutor.find({email: req.userData.email})
 			.select('_id name last_name email school')

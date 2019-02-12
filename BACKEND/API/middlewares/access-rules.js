@@ -20,7 +20,7 @@ class TableRules {
 		for(var i = 0; i < 5; i++){
 			var rules = new Rules(	roleRules[i][0], roleRules[i][1], roleRules[i][2], roleRules[i][3],
 									roleRules[i][4], roleRules[i][5], roleRules[i][6], roleRules[i][7],
-									roleRules[i][8], roleRules[i][9]	);
+									roleRules[i][8]	);
 			roles.push(rules);
 		}
 
@@ -77,7 +77,14 @@ function can(role,action,table){
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true],
 							[true,true,true,true,true,true,true,true]
-						))
+						)),
+		configuration : new TableRules(new Array(
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true],
+							[true,true,true,true,true,true,true,true]
+						)),
 	}
 
 	//var a = completeRules[transformTable(table)][role][action];
@@ -96,11 +103,14 @@ function transformTable(table){
 		case "tutores": return "tutor" ;break;
 		case "usuarios": return "user" ;break;
 		case "profesores": return "teacher" ;break;
+		case "configuraciones": return "configuration"; break;
 	}
 		
 }
 
 function tranformAction(table,url,method){
+
+	//console.log("Role: " + role + " - Action: " + action +" - Table: " + table);
 
 	switch(table){
 		case "registros":
@@ -110,10 +120,10 @@ function tranformAction(table,url,method){
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
-				case "recordsByStudent": return "readOwn" ; break;
-				case "recordsBySchool": return "readAny" ; break;
-				case "recordById": return "readOwn" ; break;
-				case "recordsByDay": return "readAny" ; break;
+				case "/recordsByStudent": return "readOwn" ; break;
+				case "/recordById": return "readOwn" ; break;
+				case "/recordsByDay": return "readAny" ; break;
+				case "/countCheckInRecordsByStudent": return "readAny"; break;
 				default: return ""; break;
 			}
 			break;
@@ -152,7 +162,6 @@ function tranformAction(table,url,method){
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 				case "/searchByDNI": return "readAny"; break;
-				case "/tutorsBySchool": return "readAny"; break;
 				case "/appHeaders": return "readOwn"; break;
 				case "/appTutorInfo": return "readOwn"; break;
 				default: return ""; break;
@@ -172,7 +181,7 @@ function tranformAction(table,url,method){
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 				
 				case "/usersByType": return "readAny"; break;
-				case "/usersBySchool": return "readAny"; break;
+				case "/usersBySchool": return "readOwn"; break;
 				case "/usersByTypeAndSchool": return "readOwn"; break;
 				default: return ""; break;
 			}
@@ -182,13 +191,20 @@ function tranformAction(table,url,method){
 				case "/find": return "readAny"; break;
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
-				case "/teachersBySchool": return "readAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
-
 
 				default: return ""; break;
 			}
 			break;
+		case "configuraciones":
+			switch(url){
+				case "/find": return "readAny"; break;
+				case "/edit": return "readAny"; break;
+				case "/update": return "updateAny"; break;
+				case "/delete": return "deleteAny"; break;
+				case "/": return (method == "POST")?"createAny":"readAny"; break;
+				default: return ""; break;
+			}
 		default: return "";
 	}
 }
@@ -200,8 +216,6 @@ module.exports = (req, res, next) => {
 		var role = req.userData.type + "_RULES";
 		var action = req.url;
 		var table = req.originalUrl;
-
-
 
 		table = table.substr(1,table.length-1);
 		table = (table.indexOf("/")>-1)?table.substr(0,table.indexOf("/")):table;

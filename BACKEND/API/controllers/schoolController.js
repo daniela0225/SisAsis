@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const School = require('../models/school');
 const fs = require('fs');
 const defaultPicture = 'Uploads\\default.jpeg';
-const route = 'http://localhost:3000/';
 const cron = require('node-cron');
 
 module.exports = {
