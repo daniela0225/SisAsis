@@ -4,6 +4,7 @@ import {
 } from '../actions/schoolActions/actionTypes';
 
 const initialState = {
+	_id: null,
 	name: '',
 	logo: '',
 	startDate: null,
@@ -18,6 +19,7 @@ const reducer = (state = initialState, action) => {
 		case SET_SCHOOL_DATA: 
 			return {
 				...state,
+				_id: action._id
 				name: action.name,
 				logo: action.logo.replace("\\", "/")
 			};
