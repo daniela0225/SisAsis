@@ -14,7 +14,7 @@ router.post('/',checkAuth, accessRules, Record.create);
 router.get('/recordsByStudent',checkAuth, accessRules, Record.recordsByStudent);
 router.post('/recordsByDay',checkAuth, accessRules, Record.recordsByDay);
 router.get('/recordById',checkAuth, accessRules, Record.recordsByDay);
-router.get('/countCheckInRecordsByStudent',checkAuth, accessRules, Record.countCheckInRecordsByStudent);
+router.get('/countAttendancesByStudent',checkAuth, accessRules, Record.countAttendancesByStudent);
 
 
 module.exports = router;

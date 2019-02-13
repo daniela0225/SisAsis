@@ -123,7 +123,7 @@ function tranformAction(table,url,method){
 				case "/recordsByStudent": return "readOwn" ; break;
 				case "/recordById": return "readOwn" ; break;
 				case "/recordsByDay": return "readAny" ; break;
-				case "/countCheckInRecordsByStudent": return "readAny"; break;
+				case "/countAttendancesByStudent": return "readAny"; break;
 				default: return ""; break;
 			}
 			break;

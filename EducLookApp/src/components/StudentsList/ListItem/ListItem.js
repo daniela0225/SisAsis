@@ -23,7 +23,6 @@ class listItem extends Component{
 	componentDidMount () {
 		this.getAttendancesCount();
 
-
 		this.fillAbsencesBar(this.state.absences);
 	}
 
@@ -31,19 +30,31 @@ class listItem extends Component{
 		const token = this.props.token;
 		const id = this.state.id;
 
-		axios.get('registros/countCheckInRecordsByStudent?studentId=' + id,{
+		axios.get('registros/countAttendancesByStudent?studentId=' + id,{
 			headers: { 
 				"Authorization": 'Bearer ' + this.props.token
 			}
 		})
 		.then((response) => {
 			//handle success
+			console.log(response.data);
 			this.setState({ attendances: response.data });
+			//this.calculateAbsences();
 		})
 		.catch( (response) => {
 			//handle error
 			alert("Ocurrio un error al obtener las asistencias.");
 		});
+	}
+
+	calculateAbsences = () => {
+		/*
+			startDate
+			todayDate
+
+			expected attendances = days between - weekends - holidays
+			expected attendances - attendances = absences
+		*/
 	}
 
 	fillAbsencesBar = (absences) => {
@@ -85,9 +96,7 @@ class listItem extends Component{
 
 const mapStateToProps = state => {
 	return {
-		token: state.users.token,
-		schoolStartDate: state.schools.startDate,
-		schoolEndDate: state.schools.endDate
+		token: state.users.token
 	};
 };
 

@@ -66,7 +66,7 @@ class sideMenu extends Component {
 		.then( (response) => {
 			//handle success
 			const config = response.data.schoolConf;
-			this.onSetSchoolConfig(config);
+			this.props.onSetSchoolConfig(config);
 		})
 		.catch( (response) => {
 		  //handle error

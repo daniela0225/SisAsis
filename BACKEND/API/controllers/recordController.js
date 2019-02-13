@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const Record = require('../models/record');
 
+const Student = require('../models/student');
+const SchoolConf = require('../models/schoolConfiguration');
+
+const DateFunctions = require('../SpecialFunctions/DateFunctions');
+
 module.exports = {
 	show: (req,res,next)=>{
 		Record.find()
@@ -208,13 +213,44 @@ module.exports = {
 	recordsByDayAndYear: (req,res,next) => {
 		//desde el controlador alumnos,ordenar alumnos por año y populate con records.
 	},
-	countCheckInRecordsByStudent: (req, res, next) => {
+	countAttendancesByStudent: (req, res, next) => {
 		Record.count({student: req.query.studentId, type: 'CHECK_IN'})
 			.exec()
-			.then(doc => {
-				res.status(200).json(doc);
+			.then((attendaces) => {
+				Student.findById(req.query.studentId)
+					.select('school')
+					.exec()
+					.then((student) => {
+						const school = student.school;
+						SchoolConf.findOne({school: school})
+							.exec()
+							.then((config) => {
+								const startDate = new Date(config.startDate.toISOString());
+								const today = new Date();
+								//const endDate = ( today > config.endDate)? new Date(config.endDate) : today;
+								const endDate = new Date(config.endDate.toISOString());
+								const daysBetween = DateFunctions.daysBetween(startDate, endDate);
+								const weekendDays = DateFunctions.weekendDaysBetween(startDate, endDate);
+								const holidays = DateFunctions.holidaysBetween(startDate, endDate);
+
+								const expectedAttendaces = daysBetween - (weekendDays + holidays);
+								const absences = expectedAttendaces - attendaces;
+
+								result = {
+									attendaces: attendaces,
+									absences: absences,
+									startDate: startDate,
+									endDate: endDate,
+									daysBetween: daysBetween,
+									weekendDays: weekendDays,
+									holidays: holidays
+								};
+
+								res.status(200).json(result);
+							});
+					})
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 				res.status(500).json({
 					error: err
