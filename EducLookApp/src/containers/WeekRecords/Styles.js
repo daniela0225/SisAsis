@@ -17,7 +17,7 @@ const styles = StyleSheet.create ({
 		textAlign: 'center'	
 	},
 	recordsContainer: {
-		height: '80%',
+		height: '90%',
 		marginLeft: 20,
 		marginRight: 20,
 		marginTop: 20

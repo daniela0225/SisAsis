@@ -226,17 +226,32 @@ module.exports = {
 							.exec()
 							.then((config) => {
 								const startDate = new Date(config.startDate.toISOString());
-								const today = new Date();
-								//const endDate = ( today > config.endDate)? new Date(config.endDate) : today;
-								const endDate = new Date(config.endDate.toISOString());
+								//let endDate = new Date(config.endDate.toISOString());
+								//const today = new Date();
+								//endDate = ( today > endDate)? endDate : today;
+								const endDate = new Date(2019,3,1);
+
 								const daysBetween = DateFunctions.daysBetween(startDate, endDate);
 								const weekendDays = DateFunctions.weekendDaysBetween(startDate, endDate);
 								const holidays = DateFunctions.holidaysBetween(startDate, endDate);
+								const vacationDays = DateFunctions.vacationDaysBetween(startDate, endDate, config.vacations);
 
-								const expectedAttendaces = daysBetween - (weekendDays + holidays);
-								const absences = expectedAttendaces - attendaces;
+								const expectedAttendances = daysBetween - (weekendDays + holidays + vacationDays);
+								const absences = expectedAttendances - attendaces;
+
+								//Total expected attendances
+								const totalEndDate =  new Date(config.endDate.toISOString());
+
+								const totalDaysBetween = DateFunctions.daysBetween(startDate, totalEndDate);
+								const totalWeekendDays = DateFunctions.weekendDaysBetween(startDate, totalEndDate);
+								const totalHolidays = DateFunctions.holidaysBetween(startDate, totalEndDate);
+								const totalVacationDays = DateFunctions.vacationDaysBetween(startDate, totalEndDate, config.vacations);
+
+								const totalExpectedAttendances = totalDaysBetween - (totalWeekendDays + totalHolidays + totalVacationDays);
 
 								result = {
+									totalExpectedAttendances: totalExpectedAttendances, 
+									expectedAttendances: expectedAttendances,
 									attendaces: attendaces,
 									absences: absences,
 									startDate: startDate,

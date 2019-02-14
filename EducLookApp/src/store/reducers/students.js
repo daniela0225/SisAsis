@@ -1,9 +1,11 @@
 import {
-	SET_STUDENTS
+	SET_STUDENTS,
+	SET_PROFILE_SELECTED_STUDENT
 } from '../actions/studentActions/actionTypes';
 
 const initialState = {
-	list: []
+	list: [],
+	profileSelectedStudent: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +13,11 @@ const reducer = (state = initialState, action) => {
 		case SET_STUDENTS:
 			return {
 				list: action.list
+			}
+		case SET_PROFILE_SELECTED_STUDENT:
+			return {
+				...state,
+				profileSelectedStudent: action.selectedStudent
 			}
 		default:
 			return state;

@@ -32,14 +32,15 @@ const styles = StyleSheet.create({
 	},
 	tutorInfoContainer: {
 		width: '90%',
-		height: 170,
+		height: 180,
 		marginBottom: 20
 	},
 	tutorIcon: {
-		height: 100,
-		width: 100,
+		height: 120,
+		width: 120,
 		borderRadius: 100,
 		margin: 10,
+		marginLeft: '25%'
 	},
 	text: {
 		color: '#fff',
@@ -71,8 +72,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	logoutIcon: {
-		height: 30,
-		width: 30
+		height: 25,
+		width: 25,
+		marginRight: 5
 	}
 });
 

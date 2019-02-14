@@ -29,7 +29,7 @@ class monthRecords extends Component {
 					Registros mensuales de Pedro Perez
 				</Text>
 				<Text style={styles.text}>
-					Para ver los detalles de un día, presione el mismo en el calendario.
+					Presione un día para ver los detalles.
 				</Text>
 				<View style={styles.legendContainer}>
 					<Text style={styles.legendTitle}>
@@ -37,11 +37,15 @@ class monthRecords extends Component {
 					</Text>
 					<View style={styles.legendLine}>
 						<View style={[styles.legendLineIcon, styles.colorGreen]} />
-						<Text style={styles.legendLineText}> Entrada a tiempo </Text>
+						<Text style={styles.legendLineText}> Puntual </Text>
+					</View>
+					<View style={styles.legendLine}>
+						<View style={[styles.legendLineIcon, styles.colorYellow]} />
+						<Text style={styles.legendLineText}> Tardanza </Text>
 					</View>
 					<View style={styles.legendLine}>
 						<View style={[styles.legendLineIcon, styles.colorRed]} />
-						<Text style={styles.legendLineText}> Tardanza </Text>
+						<Text style={styles.legendLineText}> Falta </Text>
 					</View>
 				</View>
 				<Calendar 

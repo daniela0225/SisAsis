@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../Axios/axios.js';
-import appLogo from '../../assets/schoolLogo.png';
+
 import styles from './Styles.js';
 import {	View, ScrollView, Image,
 			Text, TextInput, 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../Axios/axios.js';
 
-import appLogo from '../../assets/appLogo.png';
+import appLogo from '../../assets/appLogo.jpg';
 import styles from './Styles.js';
 import {	View, ScrollView, Image,
 			Text, TextInput,
@@ -38,7 +38,7 @@ class Login extends Component {
 				delay: 0
 			}),
 			Animated.timing(this.state.imgBorderRadius, {
-				toValue: 25,
+				toValue: 1,
 				duration: 1000,
 				delay: 0
 			})
@@ -95,8 +95,8 @@ class Login extends Component {
 					<Divider type='top'/>
 					<Animated.View
 						style={ {
-							borderWidth: 2,
-							borderColor: '#0083ff',
+							borderWidth: 4,
+							borderColor: '#FBBA00',
 							borderRadius: imgBorderRadius
 						} }>
 						<Animated.Image resizeMode='contain' source={appLogo} 

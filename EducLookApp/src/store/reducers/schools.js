@@ -1,18 +1,11 @@
 import {
-	SET_SCHOOL_DATA,
-	SET_SCHOOL_CONFIG
+	SET_SCHOOL_DATA
 } from '../actions/schoolActions/actionTypes';
 
 const initialState = {
 	_id: '',
 	name: '',
-	logo: '',
-	startDate: '',
-	endDate: '',
-	kinderSchedule: {},
-	primarySchedule: {},
-	secondarySchedule: {},
-	vacations: []
+	logo: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,16 +17,6 @@ const reducer = (state = initialState, action) => {
 				name: action.name,
 				logo: action.logo.replace("\\", "/")
 			};
-		case SET_SCHOOL_CONFIG:
-			return {
-				...state,
-				startDate: action.startDate,
-				endDate: action.endDate,
-				kinderSchedule: action.kinderSchedule,
-				primarySchedule: action.primarySchedule,
-				secondarySchedule: action.secondarySchedule,
-				vacations: action.vacations
-			}
 		default:
 			return state;
 	}

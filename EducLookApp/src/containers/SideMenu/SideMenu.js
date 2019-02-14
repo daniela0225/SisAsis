@@ -9,13 +9,13 @@ import {	View, ScrollView, Image,
 import MenuStudentsList from '../../components/MenuStudentsList/MenuStudentsList';
 
 import closeIcon from './closeIcon.png';
-import tutorIcon from './tutorIcon.png';
+import tutorIcon from './tutorIcon.jpg';
 import logoutIcon from './logoutIcon.png';
 
 import { connect } from 'react-redux';
 import { setHeaders, signOut } from '../../store/actions/userActions/index';
 import { setStudents } from '../../store/actions/studentActions/index';
-import { setSchoolData, setSchoolConfig } from '../../store/actions/schoolActions/index';
+import { setSchoolData } from '../../store/actions/schoolActions/index';
 import { setActualView } from '../../store/actions/viewActions/index';
 
 import { AsyncStorage } from 'react-native';
@@ -45,32 +45,10 @@ class sideMenu extends Component {
 			this.props.onSetHeaders(headers);
 			this.props.onSetStudents(students);
 			this.props.onSetSchoolData(school);
-
-			this.getSchoolConfiguration();
 		})
 		.catch( (response) => {
 		  //handle error
 			alert(response);
-		});
-	}
-
-	getSchoolConfiguration = () => {
-		const token = this.props.token;
-		const schoolId = this.props.school;
-
-		axios.get('configuraciones/find?schoolId=' + schoolId,{
-			headers: {
-				"Authorization": 'Bearer ' + token
-			}
-		})
-		.then( (response) => {
-			//handle success
-			const config = response.data.schoolConf;
-			this.props.onSetSchoolConfig(config);
-		})
-		.catch( (response) => {
-		  //handle error
-			console.log(response);
 		});
 	}
 
@@ -106,8 +84,7 @@ class sideMenu extends Component {
 							</TouchableOpacity>
 							<TouchableOpacity style={styles.tutorInfoContainer} onPress={this.TutorInfoButtonHandler }>
 								<View>
-									<Image resizeMode='contain' source={tutorIcon} 
-									style={styles.tutorIcon} /> 
+									<Image resizeMode='contain' source={tutorIcon} style={styles.tutorIcon} />
 									<Text style={[styles.text, styles.primaryText]}> {headers.fullName} </Text>
 									<Text style={[styles.text, styles.secondaryText]}> {headers.email} </Text>
 								</View>
@@ -138,8 +115,7 @@ const mapStateToProps = state => {
 	return {
 		token: state.users.token,
 		headers: state.users.headers,
-		students: state.students.list,
-		school: state.schools._id
+		students: state.students.list
 	};
 };
 
@@ -148,7 +124,6 @@ const mapDispatchToProps = dispatch => {
 		onSetHeaders: (headers) => dispatch(setHeaders(headers)),
 		onSetStudents: (list) => dispatch(setStudents(list)),
 		onSetSchoolData: (school) => dispatch(setSchoolData(school)),
-		onSetSchoolConfig: (config) => dispatch(setSchoolConfig(config)),
 		onSetActualView: (view) => dispatch(setActualView(view)),
 		onSignOut: () => dispatch(signOut())
 	};

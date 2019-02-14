@@ -14,9 +14,10 @@ const styles = StyleSheet.create({
 	},
 	barContainer: {
 		backgroundColor: '#fff',
-		width: "100%",
+		//width: "100%",
+		width: 200,
 		height: 30,
-		borderRadius: 20,
+		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: '#ffbf00'
 	},

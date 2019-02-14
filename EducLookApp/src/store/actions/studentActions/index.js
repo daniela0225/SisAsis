@@ -1,1 +1,1 @@
-export { setStudents } from './students';
+export { setStudents, setProfileSelectedStudent } from './students';

@@ -4,22 +4,22 @@ const styles = StyleSheet.create({
 	monthRecordsContainer : {
 		height: '70%',
 		width: '95%',
-		marginTop: 20,
+		marginTop: 15,
 		flexDirection: 'column'
 	},
 	title: {
 		color: '#0083ff',
-		fontSize: 18,
+		fontSize: 15,
 		fontWeight: 'bold',
-		marginBottom: 10
+		marginBottom: 5
 	},
 	text : {
 		color: '#0083ff',
 		fontSize: 15,
-		marginBottom: 10
+		marginBottom: 5
 	},
 	legendContainer : {
-		marginTop: 10,
+		marginTop: 5,
 		marginBottom: 10,
 		flexDirection: 'column'
 	},
@@ -40,6 +40,9 @@ const styles = StyleSheet.create({
 	},
 	colorGreen: {
 		backgroundColor: '#00ff0c'
+	},
+	colorYellow: {
+		backgroundColor: '#FBBA00'
 	},
 	colorRed: {
 		backgroundColor: '#ff1447'

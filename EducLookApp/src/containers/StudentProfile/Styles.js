@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderWidth: 2,
 		padding: 15,
-		paddingLeft: 25,
-		paddingRight: 25,
-		marginTop: 25
+		paddingLeft: 35,
+		paddingRight: 35,
+		marginTop: 15
 	},
 	infoContainer: {
 		paddingBottom: 15
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: '#fff',
-		fontSize: 17,
-		margin: 3
+		fontSize: 16,
+		margin: 2
 	}
 });
 
