@@ -18,28 +18,26 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		marginBottom: 5
 	},
-	legendContainer : {
-		marginTop: 5,
-		marginBottom: 10,
-		flexDirection: 'column'
-	},
 	legendTitle: {
 		color: '#0083ff',
 		fontSize: 15,
 		marginBottom: 5,
 		fontWeight: 'bold'
 	},
-	legendLine : {
+	legendContainer : {
+		marginTop: 5,
+		marginBottom: 15,
 		flexDirection: 'row',
-		margin: 3
+		alignItems: 'center'
 	},
 	legendLineIcon: {
-		width: 20,
-		height: 20,
-		borderRadius: 20
+		width: 15,
+		height: 15,
+		borderRadius: 15,
+		marginLeft: 15
 	},
 	colorGreen: {
-		backgroundColor: '#00ff0c'
+		backgroundColor: '#14ff56'
 	},
 	colorYellow: {
 		backgroundColor: '#FBBA00'
