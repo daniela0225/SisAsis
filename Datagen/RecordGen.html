@@ -1,24 +1,41 @@
 <!--
-
 db.records.insertMany([
-
 ]);
 -->
+
 
 <p id="container"></p>
 </body>
 <script type="module">
 	var x = [];
-	for (var i = 1; i<29; i++){
-		var day = (i < 10 ) ? "0"+i : ""+i; 
-		var hour = ( i < 14 ) ? "12:50" : "13:05";
-
-		x.push("{student: ObjectId('5c34c96fe6fd11201ca11fd4'), <br> date: ISODate('2019-03-" + day + "T" + hour + ":08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
-		x.push("{student: ObjectId('5c34dfac6c3e20162448835b'), <br> date: ISODate('2019-03-" + day + "T" + hour + ":08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
-		x.push("{student: ObjectId('5c34c96fe6fd11201ca11fd4'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
-		x.push("{student: ObjectId('5c34dfac6c3e20162448835b'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
-	}
-
+	//startDate : ISODate("2019-03-11T00:00:01Z"),
+	//endDate : ISODate("2019-12-20T00:00:01Z"),
+	var d = new Date();
+	var n = d.getDay();
+	var startDate = new Date("Marzo 11, 2019");
+	var endDate = new Date("December 22, 2019");
+	if (n != 0 && n != 6){
+		for (n = 1; n < 6; n++){
+			for (var i = 11; i < 31; i++){
+				var day = (i < n ) ? "0"+i : ""+i; 
+				var hour = ( i < 14 ) ? "12:50" : "13:05";
+			
+				x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate(" + n + "T" + hour + ":01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
+				
+				x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('2019-03-" + day + "T19:31:01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
+		
+			}
+		}
+		
+	} else
+		console.log("error"); 
+	
 	document.getElementById("container").innerHTML = x;
 
 </script>
+
+<!-- 
+	for (var i = 1; i<29; i++){
+		var day = (i < 10 ) ? "0"+i : ""+i; 
+		var hour = ( i < 14 ) ? "12:50" : "13:05";
+	-->
