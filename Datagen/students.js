@@ -1,10 +1,10 @@
 db.students.insertMany([
 { 
-	_id : ObjectId("5c62fc69173c30771fe7818c"),
+	_id : ObjectId('5c62fc69173c30771fe7818c'),
 	name: "Josefina Mariel",
 	last_name: "Martinez Flores",
 	gender: "FEMALE",
-	DNI: "75648912",
+	DNI: "75648912", 
 	birthdate: ISODate("2005-03-11T00:00:01Z"),
 	year: 5,
 	section: "A",
@@ -12,11 +12,11 @@ db.students.insertMany([
 	code: 75648912,
 	order_number: 15,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817c"),
-	teacher: ObjectId("5c62f543173c30771fe78189")
+	tutor: ObjectId('5c62e15c173c30771fe7817c'),
+	teacher: ObjectId('5c62f543173c30771fe78189')
 },
 { 
-	_id : ObjectId("5c62fc69173c30771fe7818d"),
+	_id : ObjectId('5c62fc69173c30771fe7818d'),
 	name: "Marco Antonio",
 	last_name: "Martinez Flores",
 	gender: "MALE",
@@ -28,11 +28,11 @@ db.students.insertMany([
 	code: 75648911,
 	order_number: 15,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817c"),
-	teacher: ObjectId("5c62f543173c30771fe7818a")
+	tutor: ObjectId('5c62e15c173c30771fe7817c'),
+	teacher: ObjectId('5c62f543173c30771fe7818a')
 },
 {
-	_id : ObjectId("5c62fc69173c30771fe7818e"),
+	_id : ObjectId('5c62fc69173c30771fe7818e'),
 	name: "Ana Isabel",
 	last_name: "Martinez Flores",
 	gender: "FEMALE",
@@ -44,11 +44,11 @@ db.students.insertMany([
 	code: 75648919,
 	order_number: 15,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817c"),
-	teacher: ObjectId("5c62f543173c30771fe7818b")
+	tutor: ObjectId('5c62e15c173c30771fe7817c'),
+	teacher: ObjectId('5c62f543173c30771fe7818b')
 },
 {
-	_id : ObjectId("5c62fc69173c30771fe7818f"),
+	_id : ObjectId('5c62fc69173c30771fe7818f'),
 	name: "Martina",
 	last_name: "Quispe Suarez",
 	gender: "FEMALE",
@@ -60,11 +60,11 @@ db.students.insertMany([
 	code: 78965432 ,
 	order_number: 10,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817d"),
-	teacher: ObjectId("5c62f543173c30771fe7818b")
+	tutor: ObjectId('5c62e15c173c30771fe7817d'),
+	teacher: ObjectId('5c62f543173c30771fe7818b')
 },
 {
-	_id : ObjectId("5c62fc69173c30771fe78190"),
+	_id : ObjectId('5c62fc69173c30771fe78190'),
 	name: "Kimberly Lizbeth",
 	last_name: "Villa Mendoza",
 	gender: "FEMALE",
@@ -76,11 +76,11 @@ db.students.insertMany([
 	code: 78965463 ,
 	order_number: 12,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817e"),
-	teacher: ObjectId("5c62f543173c30771fe7818b")
+	tutor: ObjectId('5c62e15c173c30771fe7817e'),
+	teacher: ObjectId('5c62f543173c30771fe7818b')
 },
 {
-	_id : ObjectId("5c62fc69173c30771fe78191"),
+	_id : ObjectId('5c62fc69173c30771fe78191'),
 	name: "Diego Alonso",
 	last_name: "Villa Mendoza",
 	gender: "MALE",
@@ -92,11 +92,11 @@ db.students.insertMany([
 	code: 78965462 ,
 	order_number: 12,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817e"),
-	teacher: ObjectId("5c62f543173c30771fe7818b")
+	tutor: ObjectId('5c62e15c173c30771fe7817e'),
+	teacher: ObjectId('5c62f543173c30771fe7818b')
 },
 {
-	_id : ObjectId("5c62fc69173c30771fe78192"),
+	_id : ObjectId('5c62fc69173c30771fe78192'),
 	name: "José Daniel",
 	last_name: "Diaz Pampa",
 	gender: "MALE",
@@ -108,8 +108,8 @@ db.students.insertMany([
 	code: 74653298 ,
 	order_number: 20,
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),
-	tutor: ObjectId("5c62e15c173c30771fe7817f"),
-	teacher: ObjectId("5c62f543173c30771fe7818b")
+	tutor: ObjectId('5c62e15c173c30771fe7817f'),
+	teacher: ObjectId('5c62f543173c30771fe7818b')
 }
 ]);
 

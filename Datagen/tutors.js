@@ -1,6 +1,6 @@
 db.tutors.insertMany([
 {
-_id : ObjectId("5c62e15c173c30771fe7817c"), 
+_id : ObjectId('5c62e15c173c30771fe7817c'), 
 DNI:"76419532",
 name:"José Eduardo",
 last_name:"Martinez Avalos",
@@ -11,7 +11,7 @@ email:"jmartinez@gmail.com",
 school: ObjectId('5c5d9fe75cb286b5fae960a9')
 },
 {  
-_id : ObjectId("5c62e15c173c30771fe7817d"),
+_id : ObjectId('5c62e15c173c30771fe7817d'),
 DNI:"76452138",
 name:"Marina Rosa",
 last_name:"Suarez Paredes",
@@ -22,7 +22,7 @@ email:"msuarez@gmail.com",
 school:ObjectId('5c5d9fe75cb286b5fae960a9')
 },
 {
-_id : ObjectId("5c62e15c173c30771fe7817e"), 
+_id : ObjectId('5c62e15c173c30771fe7817e'), 
 DNI:"78965412",
 name:"Pedro",
 last_name:"Villa Corrales",
@@ -33,7 +33,7 @@ email:"pvilla@gmail.com",
 school:ObjectId('5c5d9fe75cb286b5fae960a9')
 },
 {
-_id : ObjectId("5c62e15c173c30771fe7817f"), 
+_id : ObjectId('5c62e15c173c30771fe7817f'), 
 DNI:"72316548",
 name:"Rosario Maria",
 last_name:"Pampa Robles",
