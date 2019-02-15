@@ -6,14 +6,98 @@ db.records.insertMany([
 <p id="container"></p>
 </body>
 <script type="module">
+
+	var date = new Date();
+	var year = date.getFullYear();
+	var day = date.getDay();
+	var month = date.getMonth();
+
+	var startDate = new Date(2019,5,1);
+	var endDate = new Date('12-20-2019');
+	var ndays = 1 + Math.round( ( endDate.getTime() - startDate.getTime() ) / (24*3600*1000) );
+	var nsaturdays = Math.floor( ( startDate.getDay() + ndays ) / 7 );
+	var WeekendBetween= 2*nsaturdays + ( startDate.getDay() == 0 ) - ( endDate.getDay()==6 );
+	var res = ndays - WeekendBetween;
+
+	const getDateWithoutTime = (date) => {
+		const newDate = new Date( date.getFullYear(), date.getMonth() + 1, date.getDate() );
+		return newDate;
+	}
+
+	const getHolidays = (year) => {
+	let holidays = [];
+	let posibleHolidays = [
+		new Date(year,5,1),
+		new Date(year,6,29),
+		new Date(year,7,28),
+		new Date(year,7,29),
+		new Date(year,8,30),
+		new Date(year,11,1),
+		new Date(year,12,8)
+	];
+
+		for (let i = 0; i < posibleHolidays.length; i++) {		
+			if(isWeekday(posibleHolidays[i])){
+				holidays.push(posibleHolidays[i]);
+			}
+		}
+
+		return holidays;
+	}
+
+	const isHoliday = (date) => {
+		date = getDateWithoutTime(date);
+		let holidays = getHolidays(date.getFullYear());
+		return ( holidays.includes(date) )? true : false;
+		}
+
+	const holidaysBetween = (startDate, endDate) => {
+		let holidaysNumber = 0;
+		let holidays = getHolidays(startDate.getFullYear());
+		
+		let startDay = startDate.getDate();
+		let endDay = endDate.getDate();
+		let startMonth = startDate.getMonth() + 1;
+		let endMonth = endDate.getMonth() + 1;
+
+		for (let i = 0; i < holidays.length; i++) {
+			const itemDay = holidays[i].getDate();
+			const itemMonth = holidays[i].getMonth();
+
+			if(itemDay >= startDay && itemDay <= endDay) {
+				if(itemMonth >= startMonth && itemMonth <= endMonth) {
+					holidaysNumber++;
+				}
+			}
+		}
+
+		return holidaysNumber;
+	}
+
+	const isWeekday = (date) => {
+		return (day == 0 || day == 6)? false : true;
+	}	
+ 
 	var x = [];
-	for (var i = 1; i<29; i++){
-		var day = (i < 10 ) ? "0"+i : ""+i; 
-		var hour = ( i < 14 ) ? "12:50" : "13:05";
-		x.push("{student: ObjectId('5c34c96fe6fd11201ca11fd4'), <br> date: ISODate('2019-03-" + day + "T" + hour + ":08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
-		x.push("{student: ObjectId('5c34dfac6c3e20162448835b'), <br> date: ISODate('2019-03-" + day + "T" + hour + ":08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
-		x.push("{student: ObjectId('5c34c96fe6fd11201ca11fd4'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
-		x.push("{student: ObjectId('5c34dfac6c3e20162448835b'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
+
+	for( var i=0; i<5; i++){
+			var diaMilisegundos = 1000 * 60 * 60 * 24;
+			var sumMil = startDate.getTime() + (diaMilisegundos * i); 
+			var suma = new Date(sumMil);
+			//console.log(suma);
+			
+			var newDate = suma.getFullYear() + "-" + (suma.getMonth() + 1) +"-"+suma.getDate() ;
+			var dia = suma.getDay();
+			if(dia != 0 && dia != 6){
+
+				console.log("Holidays: " + getHolidays(year));
+				console.log("Holidays: "+ holidaysBetween(startDate, endDate));
+				console.log("Holidays: "+ isHoliday(startDate));
+				
+				//x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T07:45:01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
+					//x.push(fiestas[f]);
+				//x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T15:45:15Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
+			}
 	}
 	document.getElementById("container").innerHTML = x;
 </script>
