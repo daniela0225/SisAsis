@@ -1,12 +1,44 @@
-<!--
-db.records.insertMany([
-]);
--->
+
 
 <p id="container"></p>
 </body>
+<script type="text/javascript" src="DateFunctions.js"></script>
 <script type="module">
-	var x = [];
+
+	let x = [];
+	let date = new Date(2019,2,11);
+	let endDate = new Date(2019,11,20);
+
+	let vacaciones = [
+		{start: new Date( 2019,4,27) , end: new Date(2019,4,31) },
+		{start: new Date( 2019,6,26),end: new Date(2019,7,12) },
+		{start: new Date( 2019,9,21),end: new Date(2019,9,25) }
+	]
+
+	while (date.getTime() <= endDate.getTime() ) {
+		date.setDate(date.getDate() + 1);
+		let day = date.getDay();
+		let isVacation = isVacationDay(date, vacaciones);
+
+		if( isVacation === false){
+			if( day !== 0 && day !== 6 ){
+				if( isHoliday(date) == false ){
+					var newDate = date.getFullYear() + "-" + (date.getMonth() + 1) +"-"+date.getDate() ;
+					var hour = "08:30";
+					if(  Math.floor(Math.random()*2 + 1) == 2 ){
+						hour = "07:45";
+					}
+
+					x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T"+ hour +":01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
+					
+					x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T15:45:15Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
+				}
+			}
+		}
+	}
+
+	document.getElementById("container").innerHTML = x;
+/*
 	for (var i = 1; i<29; i++){
 		var day = (i < 10 ) ? "0"+i : ""+i; 
 		var hour = ( i < 14 ) ? "12:50" : "13:05";
@@ -15,9 +47,9 @@ db.records.insertMany([
 		x.push("{student: ObjectId('5c34c96fe6fd11201ca11fd4'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
 		x.push("{student: ObjectId('5c34dfac6c3e20162448835b'), <br> date: ISODate('2019-03-" + day + "T19:31:08.200Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
 	}
-	document.getElementById("container").innerHTML = x;
+*/
 	//modal
-	//fecha de fin en controladores se tienen que cambiar
+	//fecha de fin en record Controllers se tienen que cambiar
 </script>
 	
 

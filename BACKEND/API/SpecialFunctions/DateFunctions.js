@@ -1,6 +1,6 @@
 
 const getDateWithoutTime = (date) => {
-	const newDate = new Date( date.getFullYear(), date.getMonth() + 1, date.getDate() );
+	const newDate = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
 	return newDate;
 }
 
@@ -35,7 +35,13 @@ const isWeekday = (date) => {
 const isHoliday = (date) => {
 	date = getDateWithoutTime(date);
 	let holidays = getHolidays(date.getFullYear());
-	return ( holidays.includes(date) )? true : false;
+
+	for (let i = 0; i < holidays.length; i++) {
+		if(holidays[i].getTime() == date.getTime()){
+			return true;
+		}
+	}
+	return false;
 }
 
 const daysBetween = (startDate, endDate) => {

@@ -5,7 +5,9 @@ import {	View, ScrollView, Image,
 			Text, TextInput, 
 			TouchableOpacity,
 			Animated } from 'react-native';
+
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import DayInfoModal from '../../components/DayInfoModal/DayInfoModal';
 
 class monthRecords extends Component {
 
@@ -64,7 +66,11 @@ class monthRecords extends Component {
 
 	dayPressedHandler = ( day ) => {
 		const newDate = day.dateString;
-		this.setState( { selectedDate: newDate } );
+		this.setState( { selectedDate: newDate, showInfoModal: true } );
+	}
+
+	hideDayInfoModal = () => {
+		this.setState({ showInfoModal : false});
 	}
 
 	render() {
@@ -108,6 +114,7 @@ class monthRecords extends Component {
 					onPressArrowLeft={() => { this.arrowPressedHandler('left') }}
 					onPressArrowRight={() => { this.arrowPressedHandler('right') }}
 				/>
+				<DayInfoModal hide={this.hideDayInfoModal} show={this.state.showInfoModal} />
 			</View>
 		);
 	}

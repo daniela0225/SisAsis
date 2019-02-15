@@ -1,6 +1,6 @@
 //cambio de formato de fecha
 const getDateWithoutTime = (date) => {
-	const newDate = new Date( date.getFullYear(), date.getMonth() + 1, date.getDate() );
+	const newDate = new Date( date.getFullYear(), date.getMonth(), date.getDate() );
 	return newDate;
 }
 //dias festivos
@@ -17,8 +17,7 @@ const getHolidays = (year) => {
 		new Date(year,12 - 1,8)
 	];
 
-	for (let i = 0; i < posibleHolidays.length; i++) {
-		console.log(posibleHolidays[i]);		
+	for (let i = 0; i < posibleHolidays.length; i++) {	
 		if(isWeekday(posibleHolidays[i])){
 			holidays.push(posibleHolidays[i]);
 		}
@@ -35,7 +34,13 @@ const isWeekday = (date) => {
 const isHoliday = (date) => {
 	date = getDateWithoutTime(date);
 	let holidays = getHolidays(date.getFullYear());
-	return ( holidays.includes(date) )? true : false;
+
+	for (let i = 0; i < holidays.length; i++) {
+		if(holidays[i].getTime() == date.getTime()){
+			return true;
+		}
+	}
+	return false;
 }
 //dias entre fechas
 const daysBetween = (startDate, endDate) => {
@@ -111,13 +116,11 @@ const vacationDaysBetween = ( startDate, endDate, vacationsList ) => {
 	return vacationDays;
 }
 
-module.exports = { 
-	getDateWithoutTime,
-	getHolidays,
-	isWeekday,
-	isHoliday,
-	daysBetween,
-	weekendDaysBetween,
-	holidaysBetween,
-	vacationDaysBetween
-};
+const isVacationDay = (posibleV, vacations) => {
+		for(let i = 0; i < vacations.length; i++){
+			if (posibleV.getTime() >= vacations[i].start.getTime() && posibleV.getTime() <= vacations[i].end.getTime()) {
+				return true;
+			}
+		}
+		return false;
+	}
