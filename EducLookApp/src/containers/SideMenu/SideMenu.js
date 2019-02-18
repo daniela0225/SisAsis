@@ -74,6 +74,10 @@ class sideMenu extends Component {
 		
 		let headers = this.props.headers;
 
+		let fn = (headers.fullName != null)?
+			headers.fullName.substr(0,headers.fullName.lastIndexOf(' ')):
+			"";
+
 		return (
 			<Modal onRequestClose={ this.props.hide} visible={this.props.show == true} animationType="slide" transparent={true}>
 				<View style={styles.sideMenuContainer}>
@@ -85,7 +89,7 @@ class sideMenu extends Component {
 							<TouchableOpacity style={styles.tutorInfoContainer} onPress={this.TutorInfoButtonHandler }>
 								<View>
 									<Image resizeMode='contain' source={tutorIcon} style={styles.tutorIcon} />
-									<Text style={[styles.text, styles.primaryText]}> {headers.fullName} </Text>
+									<Text style={[styles.text, styles.primaryText]}> {fn} </Text>
 									<Text style={[styles.text, styles.secondaryText]}> {headers.email} </Text>
 								</View>
 							</TouchableOpacity>

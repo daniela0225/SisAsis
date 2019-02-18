@@ -80,6 +80,17 @@ db.records.insertMany([
  
 	var x = [];
 
+	var suma1 = endDate.getTime() - date.getTime()
+	console.log(suma);
+	var suma2 = (suma)/2;
+	console.log(suma2);
+	var suma3 = suma2 + date.getTime();
+	console.log(suma3);
+	var nuevo = new Date(suma3)
+	console.log(nuevo);
+	var nuevaFecha = nuevo.getFullYear() + "-" + (nuevo.getMonth() + 1) +"-"+nuevo.getDate() ;
+	console.log(nuevaFecha);
+
 	for( var i=0; i<5; i++){
 			var diaMilisegundos = 1000 * 60 * 60 * 24;
 			var sumMil = startDate.getTime() + (diaMilisegundos * i); 

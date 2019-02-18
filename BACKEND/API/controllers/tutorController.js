@@ -158,8 +158,8 @@ module.exports = {
 			.exec()
 			.then( (doc) => {
 				if (doc) {
-					console.log(doc[0].id);
-					Student.find({tutor: doc[0].id})
+					console.log(doc[0]._id);
+					Student.find({tutor: doc[0]._id})
 					.select('_id name last_name school')
 					.exec()
 					.then( (students) => {
