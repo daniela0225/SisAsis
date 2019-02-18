@@ -1,4 +1,4 @@
-import { SET_STUDENTS, SET_PROFILE_SELECTED_STUDENT } from './actionTypes';
+import { SET_STUDENTS, SET_PROFILE_SELECTED_STUDENT, SET_MENU_SELECTED_STUDENT } from './actionTypes';
 
 export const setStudents = ( list ) => {
 	return {
@@ -10,6 +10,13 @@ export const setStudents = ( list ) => {
 export const setProfileSelectedStudent = ( id ) => {
 	return {
 		type: SET_PROFILE_SELECTED_STUDENT,
+		selectedStudent: id
+	}
+}
+
+export const setMenuSelectedStudent = ( id ) => {
+	return {
+		type: SET_MENU_SELECTED_STUDENT,
 		selectedStudent: id
 	}
 }

@@ -17,13 +17,15 @@ class menuStudentsList extends Component{
 			<FlatList 
 				style={styles.listContainer}
 				data={this.props.students}
-				renderItem={ (info) => (
-					<ListItem
-						key={info.item.key}
-						fullName={info.item.fullName}
-						hideMenu={this.props.hideMenu}
-					/>
-				)}
+				renderItem={ (info) => {
+					return (
+						<ListItem
+							id={info.item.key}
+							fullName={info.item.fullName}
+							hideMenu={this.props.hideMenu}
+						/>
+					)
+				}}
 			/>
 		);
 	};
