@@ -28,6 +28,11 @@ class listItem extends Component{
 	}
 
 	render () {
+		let fn = this.state.fullName
+		let fullName = (fn != null)?
+			fn.substr(0,fn.lastIndexOf(' ')):
+			"";
+
 		let options = (this.state.selected == false)? (<View></View>) : (
 					<View>
 						<TouchableOpacity style={styles.option} onPress={ () => {this.optionSelectedHandler('MonthRecords');} }>
@@ -51,7 +56,7 @@ class listItem extends Component{
 					onPress={ this.onSelectHandler } >
 					<Image resizeMode='contain' source={triangleIcon} 
 						style={[styles.triangleIcon,(this.state.selected==true)?styles.triangleIconSelected:{}]} /> 
-					<Text style={styles.nameContainer}>{this.state.fullName}</Text>
+					<Text style={styles.nameContainer}>{fullName}</Text>
 				</TouchableOpacity>
 				<View>
 					{options}

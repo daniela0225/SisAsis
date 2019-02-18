@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		position:'absolute'
 	},
 	nameContainer: {
-		fontSize: 18,
+		fontSize: 16,
 		fontWeight: 'bold',
 		color: '#fff'
 	}

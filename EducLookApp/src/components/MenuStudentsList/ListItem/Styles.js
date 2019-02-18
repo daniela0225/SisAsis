@@ -13,10 +13,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	nameContainer: {
-		fontSize: 18,
+		fontSize: 16,
 		fontWeight: 'bold',
 		color: '#fff',
-		padding: 5 
+		padding: 5,
+		width: '90%'
 	},
 	triangleIcon: {
 		height: 30, 
