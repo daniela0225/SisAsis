@@ -31,7 +31,7 @@ class Listado extends Component {
           let editar = "/#/Home/Colegios/Editar/"+data[i]._id;
           schools.push(
             <tr key={data[i]._id}>
-                    <td>{data[i].name}</td>
+                    <td><a href={'/#/Home/Colegios/Detalle/'+data[i]._id}>{data[i].name}</a></td>
                     <td>{(data[i].kinder)?"SI":"NO" }</td>
                     <td>{(data[i].prmary)?"SI":"NO" }</td>
                     <td>{(data[i].highschool)?"SI":"NO" }</td>
@@ -42,6 +42,7 @@ class Listado extends Component {
                     </center>
                     </td>
                     <td>
+                    <Row>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                      <Button block color="warning" href={editar}>Editar</Button>
                     </Col>
@@ -79,6 +80,7 @@ class Listado extends Component {
                                     });
                                                  }} >Eliminar</Button>
                                                  </Col>
+                                                 </Row>
                                                 </td>
                                               </tr>
           );

@@ -27,7 +27,7 @@ import {
   Row,
 } from 'reactstrap';
 
-class Editar extends Component {
+class FormularioC extends Component {
   constructor(props) {
     super(props);
 
@@ -37,7 +37,6 @@ class Editar extends Component {
     this.state = {
 
       
-      id: props.match.params.id,
       student:'',
       date:'',
       school:'',
@@ -51,7 +50,7 @@ class Editar extends Component {
     };
     this.handleAttribute = this.handleAttribute.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getRecord = this.getRecord.bind(this);
+    this.getschool();
   }
 
   toggle() {
@@ -67,50 +66,8 @@ class Editar extends Component {
     this.setState({ [attrName]: attr });
   }
 
-  getRecord = (id) => {
-    axios.get('anuncios/find?anuncioId=' + id,
-        {headers: { "Authorization": 'Bearer ' + sessionStorage.getItem('jwtToken') }})
-      .then((response) => {
-        const data = response.data.anuncio;
-
-        this.setState({
-          _id: data._id,
-        id_cat: data.categoria._id,
-        nom_cat: data.categoria.nombre,
-        fec_pub: data.fec_pub,
-        imagenUrl: data.imagen,
-        imagenUrlPreviews: [],
-        precio: data.precio,
-        sub_cat: data.subcategoria,
-        titulo: data.titulo,
-        descripcion: data.descripcion,
-        usuario: data.usuario._id,
-        nombres: data.usuario.nombres,
-        cambiarImagen: false
-        });
-        let array = [];
-        for(let i=0, l=this.state.imagenUrl.length;i < l; i++){
-          array.push(<img src={localStorage.getItem('path') + this.state.imagenUrl[i]} />);
-        }
-        this.setState({
-          imagenUrlPreviews: array,
-          load:true
-        });
-      })
-      .catch((response) => {
-        console.log("Error");
-      });   
-  }
-  componentWillMount = () => {
-   
-      this.getRecord(this.props.match.params.id);
-
-  }
-
-
-
-componentDidMount = () =>{
-    axios.get('colegios', {
+getschool = () => {
+    axios.get('usuarios/headers', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -118,66 +75,29 @@ componentDidMount = () =>{
       )
       .then( res => {
         
-        const dat = res.data.orders;
-        let schools = this.state.schools;
-        console.log("schools");
-        console.log(dat);
-        schools.push(<option key="4" >Opciones...</option>);
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
 
-        for(let i = 0; i < dat.length ; i++){
-          console.log(dat[i]);
-          schools.push(
-            
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
 
-              <option  key={dat[i]._id} value={dat[i]._id}>{dat[i].name}</option>
-                       
-          );
-        }
-
-        this.setState({ schools: schools });
-
+        this.getStudents();
       })
       .catch( res => {
-        console.log("ERROR SCHOOLS");
+        console.log("ERROR SCHOOL");
        
         console.log(res);
       })
 
+
+  }
+
+getStudents = () =>{
+    
 
       axios.get('alumnos', {
-          headers: {
-            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
-          }
-        }
-      )
-      .then( res => {
-        
-        const dataa = res.data.students;
-        let students = this.state.students;
-        console.log("students");
-        console.log(dataa);
-        students.push(<option key="4" >Opciones...</option>);
-
-        for(let i = 0; i < dataa.length ; i++){
-          console.log(dataa[i]);
-          students.push(
-            
-
-              <option  key={dataa[i]._id} value={dataa[i]._id}>{dataa[i].name}</option>
-                       
-          );
-        }
-
-        this.setState({ students: students });
-
-      })
-      .catch( res => {
-        console.log("ERROR STUDENTS");
-       
-        console.log(res);
-      })
-
-       axios.get('registros', {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -329,4 +249,4 @@ handleSubmit = (e) => {
   }
 }
 
-export default Editar;
+export default FormularioC;
