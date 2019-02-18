@@ -50,14 +50,14 @@ db.users.insertMany([
 },
 {
 	_id : ObjectId('5c62f543173c30771fe7818a'),
-	email: "jmendoza.c@gmail.com"
+	email: "jmendoza.c@gmail.com",
 	password : "$2b$10$Udi1tpTAFUQUNn4E29m5QeQ597Sj/.d0Mw6XJJGAfqvv6FrMzVlxu",
 	type : "TEACHER",
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'), 
 },
 {
 	_id : ObjectId('5c62f543173c30771fe7818b'),
-	email: "pgomez.t@gmail.com"
+	email: "pgomez.t@gmail.com",
 	password : "$2b$10$v6SkeEqLdtf5.I92u/Kv0OLo7kO0v.fIMVuPkglJeP8..VfBfRh/G",
 	type : "TEACHER",
 	school: ObjectId('5c5d9fe75cb286b5fae960a9'),

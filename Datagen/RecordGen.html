@@ -23,7 +23,7 @@
 		if( isVacation === false){
 			if( day !== 0 && day !== 6 ){
 				if( isHoliday(date) == false ){
-					var newDate = date.getFullYear() + "-" + (date.getMonth() + 1) +"-"+date.getDate() ;
+					var newDate = date.getFullYear() + "-" + (((date.getMonth() + 1 ) < 10 )?"0":"") + (date.getMonth() + 1) + "-" + ((date.getDate() < 10)?"0":"") + date.getDate() ;
 					var hour = "08:30";
 					if(  Math.floor(Math.random()*2 + 1) == 2 ){
 						hour = "07:45";
