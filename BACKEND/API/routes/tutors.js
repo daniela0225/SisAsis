@@ -11,6 +11,7 @@ router.post('/delete',checkAuth, accessRules,Tutor.delete);
 router.get('/',checkAuth, accessRules,Tutor.show);
 router.post('/',checkAuth, accessRules, Tutor.create);
 router.post('/searchByDNI',checkAuth, accessRules, Tutor.searchByDNI);
+router.get('/tutorsBySchool',checkAuth, accessRules, Tutor.tutorsBySchool);
 router.get('/appHeaders',checkAuth, accessRules, Tutor.appHeaders);
 router.get('/appTutorInfo',checkAuth, accessRules, Tutor.appTutorInfo);
 

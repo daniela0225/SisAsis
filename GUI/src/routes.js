@@ -53,6 +53,7 @@ const EditarTutor = React.lazy(() => import('./views/Tutores/Editar'));
 const EditarTutorC = React.lazy(() => import('./views/Tutores/EditarC'));
 const EditarProfesor = React.lazy(() => import('./views/Profesores/Editar'));
 const EditarProfesorC = React.lazy(() => import('./views/Profesores/EditarC'));
+const BuscarAlumnoC = React.lazy(() => import('./views/Alumnos/BuscarC'));
 
 
 
@@ -83,6 +84,7 @@ const routes = [
   { path: '/Home/Colegios/Detalle/:id', exact:true,name: 'Info Colegio', component: DetalleColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },
   { path: '/Home/Students',exact:true, name: 'Alumnos', component: ListadoAlumnosC },
+  { path: '/Home/Students/Search',exact:true, name: 'Busqueda de Alumno', component: BuscarAlumnoC },
   //{ path: '/Home/AlumnosTutores',exact:true, name: 'Alumnos', component: ListadoAlumnosTutores },
   { path: '/Home/Alumnos/Detalle/:id',exact:true, name: 'Alumno Info', component: DetalleAlumno },
   { path: '/Home/Students/Detail/:id',exact:true, name: 'Alumno Info', component: DetalleAlumnoC },
