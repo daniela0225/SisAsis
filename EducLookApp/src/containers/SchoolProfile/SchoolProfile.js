@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import image from './tutorIcon.png';
 import styles from './Styles.js';
 import { Image, Text, ScrollView, View, ListView} from 'react-native';
 
@@ -7,37 +6,39 @@ import axios from '../../Axios/axios';
 
 import { connect } from 'react-redux';
 
-class tutorProfile extends Component {
+class schoolProfile extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-			DNI: '',
 			name: '',
-			last_name: '',
-			email: '',
-			cellphone: '',
-			telephone: '',
-			address: ''
+			logo: '',
+			kinder: '',
+			primary: '',
+			highschool: ''
 		};
-	};
+		/*
+		_id: mongoose.Schema.Types.ObjectId,
+		school: { type: mongoose.Schema.Types.ObjectId, ref:'School', required: true },
+		year: { type:Number, required:true },
+		startDate: { type:Date, required:true },
+		endDate: { type:Date, required:true },
+		kinderSchedule: { type: schedule },
+		primarySchedule: { type: schedule },
+		secondarySchedule: { type: schedule },
+		vacations: { type:[period], required: true }
 
-	componentDidMount(){
-		const token = this.props.token;
-		axios.get('tutores/appTutorInfo',{
-			headers: { 
-				"Authorization": 'Bearer ' + token
-			}
-		})
-		.then((response) => {
-			//handle success
-			const tutorInfo = response.data.tutor;
-			this.setState(tutorInfo);
-		})
-		.catch( (response) => {
-		  //handle error
-			alert('No se pudo cargar la información.');
-		});
+	const schedule = mongoose.Schema({
+		startHour: { type: String, minlength: 5, maxlength: 5, required: true }, 
+		endHour: { type: String, minlength: 5, maxlength: 5, required: true },
+		tolerance:  { type: Number, min: 5, max: 30, required: true }
+	});
+
+	const period = mongoose.Schema({
+		start: { type:Date, required:true},
+		end: { type:Date, required:true}
+	});
+	*/
 	};
 
 	render() {
@@ -47,32 +48,18 @@ class tutorProfile extends Component {
 					<View style={styles.imageContainer}>
 						<Image source={image} style={styles.image} />
 					</View>
-					<Text style={[styles.text, styles.label]}> DNI: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.DNI } </Text>
-					<Text style={[styles.text, styles.label]}> Nombre: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.name + " " + this.state.last_name } </Text>
-					<Text style={[styles.text, styles.label]}> E-mail: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.email } </Text>
-					<Text style={[styles.text, styles.label]}> Celular: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.cellphone } </Text>
-					<Text style={[styles.text, styles.label]}> Teléfono: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.telephone } </Text>
-					<Text style={[styles.text, styles.label]}> Dirección: </Text>
-						<Text style={[styles.text, styles.bold]}> { this.state.address } </Text>
+					<Text style={styles.text}> Nombre: </Text>
+						<Text style={styles.text}> { this.state.name} </Text>
+					<Text style={styles.text}> kinder: </Text>
+						<Text style={styles.text}> { this.state.kinder } </Text>
+					<Text style={styles.text}> primary: </Text>
+						<Text style={styles.text}> { this.state.primary } </Text>
+					<Text style={styles.text}> highschool: </Text>
+						<Text style={styles.text}> { this.state.highschool } </Text>
 				</View>
 			</View>
 		)
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		token: state.users.token
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return { };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(tutorProfile);
+export default schoolProfile;

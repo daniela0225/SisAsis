@@ -17,25 +17,8 @@ class teacherProfile extends Component {
 			email: ''
 		};
 	};
-
-	componentDidMount(){
-		const token = this.props.token;
-		axios.get('tutores/appTutorInfo',{
-			headers: { 
-				"Authorization": 'Bearer ' + token
-			}
-		})
-		.then((response) => {
-			//handle success
-			const tutorInfo = response.data.tutor;
-			this.setState(tutorInfo);
-		})
-		.catch( (response) => {
-		  //handle error
-			alert('No se pudo cargar la información.');
-		});
-	};
-
+ 
+	
 	render() {
 		return (
 			<View style={styles.container}>
@@ -57,14 +40,4 @@ class teacherProfile extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		token: state.users.token
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return { };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(teacherProfile);
+export default teacherProfile;

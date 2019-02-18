@@ -1,7 +1,7 @@
 db.schoolConfigurations.insert({
         _id : ObjectId('5c630497173c30771fe78194'),
         school : ObjectId('5c5d9fe75cb286b5fae960a9'),
-        year : 5,
+        year : 2019,
         startDate : ISODate('2019-03-11T00:00:01Z'),
         endDate : ISODate('2019-12-20T00:00:01Z'),
         kinderSchedule : {
