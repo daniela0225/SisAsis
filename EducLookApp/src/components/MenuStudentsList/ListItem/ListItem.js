@@ -11,7 +11,7 @@ class listItem extends Component{
 	constructor (props) {
 		super(props);
 		this.state = {
-			key: props.key,
+			id: props.id,
 			fullName: props.fullName,
 			selected: false
 		}
