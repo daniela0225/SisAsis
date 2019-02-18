@@ -14,18 +14,47 @@ class Listado extends Component {
 
    
     this.state = {
+      school:'',
       records: [],
     messages:[]  
 
 }
-this.componentDidMount = this.componentDidMount.bind(this);
+this.getschool();
+
 }
- 
+ getschool = () => {
+    axios.get('usuarios/headers', {
+          headers: {
+            "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+          }
+        }
+      )
+      .then( res => {
+        
+        const dat = res.data.usuario;       
+        
+        console.log('Reconocio school')
+        console.log(dat);     
+
+        this.setState({ school: res.data.usuario.school._id });
+        console.log(this.state.school);
+
+        this.getRecords();
+      })
+      .catch( res => {
+        console.log("ERROR SCHOOL");
+       
+        console.log(res);
+      })
+
+
+  }
   
 
 
-  componentDidMount = () => {
-    axios.get('registros', {
+  getRecords = () => {
+    const url ='registros/recordsBySchool?schoolId='+this.state.school
+    axios.get(url, {
           headers: {
             "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
           }
@@ -44,10 +73,10 @@ this.componentDidMount = this.componentDidMount.bind(this);
           records.push(
             
               <tr key={Math.random()}>
-                    <td><a href={'/#/Home/Alumnos/Detalle/'+data[i].student._id}>{data[i].student.name} {data[i].student.last_name}</a></td>
+                    <td><a href={'/#/Home/Students/Detail/'+data[i].student._id}>{data[i].student.name} {data[i].student.last_name}</a></td>
                     <td>{data[i].date}</td>
-                    <td>{(data[i].school !== null)?data[i].school.name:"NULL"}</td>
-                    <td>{data[i].type}</td>
+                    
+                    <td>{(data[i].type === "CHECK_IN")?'ENTRADA':'SALIDA'}</td>
                     <td>
                     
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
@@ -112,7 +141,7 @@ this.componentDidMount = this.componentDidMount.bind(this);
               <CardHeader>
                   
                 <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                 <a href="/#/Home/Registros/Formulario"><Button block color="success">Nuevo Registro</Button></a>
+                 <a href="/#/Home/Records/Form"><Button block color="success">Nuevo Registro</Button></a>
                 </Col>
               </CardHeader>
               <CardBody>
@@ -121,7 +150,7 @@ this.componentDidMount = this.componentDidMount.bind(this);
                   <tr>
                     <th>Alumno</th>
                     <th>Fecha</th>
-                    <th>Colegio</th>
+                    
                     <th>Tipo de registro</th>
                     <th>Acciones</th>
                   </tr>

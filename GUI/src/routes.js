@@ -13,6 +13,7 @@ import InicioLayout from './containers';
 const Sisasis = React.lazy(() => import('./views/Pages/sisasis/sisasis'));
 const Home = React.lazy(() => import('./views/Home/Home'));
 const HomeAdmin = React.lazy(() => import('./views/Home/HomeAdmin'));
+const DetalleColegio = React.lazy(() => import('./views/Colegios/Detalle'));
 const DetalleAlumno = React.lazy(() => import('./views/Alumnos/Detalle'));
 const DetalleAlumnoC = React.lazy(() => import('./views/Alumnos/DetalleC'));
 const DetalleTutor = React.lazy(() => import('./views/Tutores/Detalle'));
@@ -22,6 +23,7 @@ const DetalleUsuarioC = React.lazy(() => import('./views/Usuarios/DetalleC'));
 const DetalleProfesor = React.lazy(() => import('./views/Profesores/Detalle'));
 const DetalleProfesorC = React.lazy(() => import('./views/Profesores/DetalleC'));
 const ListadoRegistros = React.lazy(() => import('./views/Registros/Listado'));
+const ListadoRegistrosC = React.lazy(() => import('./views/Registros/ListadoC'));
 const ListadoColegios = React.lazy(() => import('./views/Colegios/Listado'));
 //const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/Listado'));
 const ListadoAlumnos = React.lazy(() => import('./views/Alumnos/AlumnosTutores'));
@@ -42,7 +44,6 @@ const FormularioTutor = React.lazy(() => import('./views/Tutores/Formulario'));
 const FormularioTutorC = React.lazy(() => import('./views/Tutores/FormularioC'));
 const FormularioProfesor = React.lazy(() => import('./views/Profesores/Formulario'));
 const FormularioProfesorC = React.lazy(() => import('./views/Profesores/FormularioC'));
-const EditarRegistro = React.lazy(() => import('./views/Registros/Editar'));
 const EditarColegio = React.lazy(() => import('./views/Colegios/Editar'));
 const EditarAlumno = React.lazy(() => import('./views/Alumnos/Editar'));
 const EditarAlumnoC = React.lazy(() => import('./views/Alumnos/EditarC'));
@@ -73,11 +74,13 @@ const routes = [
   { path: '/Home', name: 'Home', component: Home, exact:true },
   { path: '/Admin', name: 'Home', component: HomeAdmin, exact:true },
   { path: '/Home/Registros', exact:true, name: 'Registros', component: ListadoRegistros },
+  { path: '/Home/Records', exact:true, name: 'Registros', component: ListadoRegistrosC },
   { path: '/Home/Registros/Formulario', name: 'Nuevo Registro', component: FormularioRegistro },
   //{ path: '/Home/Registros/Editar/:id', name: 'Editar Registro', component: EditarRegistro },
   { path: '/Home/Colegios',exact:true, name: 'Colegios', component: ListadoColegios },
   { path: '/Home/Colegios/Formulario', exact:true, name: 'Formulario Colegio', component: FormularioColegio },
   { path: '/Home/Colegios/Editar/:id', exact:true,name: 'Editar Colegio', component: EditarColegio },
+  { path: '/Home/Colegios/Detalle/:id', exact:true,name: 'Info Colegio', component: DetalleColegio },
   { path: '/Home/Alumnos',exact:true, name: 'Alumnos', component: ListadoAlumnos },
   { path: '/Home/Students',exact:true, name: 'Alumnos', component: ListadoAlumnosC },
   //{ path: '/Home/AlumnosTutores',exact:true, name: 'Alumnos', component: ListadoAlumnosTutores },

@@ -14,7 +14,7 @@
 		{start: new Date( 2019,6,26),end: new Date(2019,7,12) },
 		{start: new Date( 2019,9,21),end: new Date(2019,9,25) }
 	]
-
+	
 	while (date.getTime() <= endDate.getTime() ) {
 		date.setDate(date.getDate() + 1);
 		let day = date.getDay();
@@ -31,11 +31,10 @@
 
 					x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T"+ hour +":01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
 					x.push("{student: ObjectId('5c62fc69173c30771fe7818d'), <br> date: ISODate('" + newDate + "T"+ hour +":01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
-					x.push("{student: ObjectId('5c62fc69173c30771fe7818e'), <br> date: ISODate('" + newDate + "T"+ hour +":01Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_IN'}<br>");
 					
 					x.push("{student: ObjectId('5c62fc69173c30771fe7818c'), <br> date: ISODate('" + newDate + "T15:45:15Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
 					x.push("{student: ObjectId('5c62fc69173c30771fe7818d'), <br> date: ISODate('" + newDate + "T15:45:15Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
-					x.push("{student: ObjectId('5c62fc69173c30771fe7818e'), <br> date: ISODate('" + newDate + "T15:45:15Z'), <br> school: ObjectId('5c5d9fe75cb286b5fae960a9'), <br> type: 'CHECK_OUT'}<br>");
+					
 				}
 			}
 		}

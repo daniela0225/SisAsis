@@ -12,7 +12,7 @@ export default {
     },
     {
       name: 'Registros',
-      url: '/Home/Registros',
+      url: '/Home/Records',
       icon: 'icon-pencil',
     },
     

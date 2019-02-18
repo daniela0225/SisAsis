@@ -177,6 +177,62 @@ module.exports = {
 				});
 			});
 	},
+	studentsByTutor: (req, res, next)=>{
+		Student.find({tutor:req.query.tutorId})
+			.select('_id DNI name last_name  year section ')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,							
+							DNI: doc.DNI,
+							year: doc.year,
+							section: doc.section
+							
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	studentsByTeacher: (req, res, next)=>{
+		Student.find({teacher:req.query.teacherId})
+			.select('_id DNI name last_name  birthdate order_number ')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					students: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,							
+							DNI: doc.DNI,
+							birthdate: doc.birthdate,
+							order_number: doc.order_number
+							
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
 	studentsBySchoolAndYear: (req, res, next)=>{
 		Student.find({school:req.body.school, year:req.body.year})
 			.select('_id DNI name last_name section tutor order_number teacher')

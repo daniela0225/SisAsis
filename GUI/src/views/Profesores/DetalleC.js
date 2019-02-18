@@ -18,6 +18,7 @@ class ProfesorDetalleC extends Component {
       name:'',
       last_name:'',
       email:'',
+      students:[],
      
       school:'',
       modal: false
@@ -28,10 +29,12 @@ class ProfesorDetalleC extends Component {
     };
     
     this.getteacher = this.getteacher.bind(this);
+    this.getStudents = this.getStudents.bind(this);
   }
   componentWillMount(){
 
     this.getteacher();
+    this.getStudents();
   }
 toggle() {
     this.setState({ collapse: !this.state.collapse });
@@ -43,6 +46,88 @@ toggle() {
 
   toggleFade() {
     this.setState((prevState) => { return { fadeIn: !prevState }});
+  }
+getStudents = () => {
+   const url ='alumnos/studentsByTeacher?teacherId='+this.state.id
+  axios.get(url, {
+      headers: {
+      "Authorization" : 'Bearer ' + sessionStorage.getItem('jwtToken') 
+      }
+    }
+    )
+    .then( res => {
+    
+    const data = res.data.students;
+    let students = this.state.students;
+    console.log(data);
+
+    for(let i = 0; i < data.length ; i++){
+      
+
+      
+
+      console.log(data[i]);
+      let date = new Date(data[i].birthdate);
+      let day = date.getDate();
+      let month = date.getMonth();
+     
+      let birthdate = "Dia : "+day+" Mes : "+month;
+      students.push(
+
+        <Col lg={6} key={data[i]._id}>
+            <Card>
+
+              <CardHeader>
+               
+                <h3>{data[i].name} {data[i].last_name}</h3>
+                <a href={'/#/Home/Alumnos/Detalle/'+data[i]._id}>Ver detalles </a>              
+                
+              </CardHeader>
+              <CardBody>
+              <Row>
+              <Col>
+                
+                <Table responsive striped hover>
+                    <tbody>
+                      
+                      <tr>
+                        <td><strong>DNI</strong></td>
+                        <td>{data[i].DNI}</td> 
+                      </tr>
+                      <tr>
+                        <td><strong>Cumpleaños</strong></td>
+                        <td>{birthdate}</td> 
+                      </tr>
+                      <tr>
+                        <td><strong>Nro. Orden</strong></td>
+                        <td>{data[i].order_number}</td>
+                      </tr>
+                      
+
+                    </tbody>
+                  </Table>
+                 </Col>
+                 
+                
+                </Row>
+
+              </CardBody>
+            </Card>
+            </Col>
+      
+        
+
+        
+      );
+    }
+
+    this.setState({ students: students });
+
+    })
+    .catch( res => {
+   
+    console.log(res);
+    })
   }
 getteacher = () =>{
 
@@ -192,6 +277,14 @@ getteacher = () =>{
 
               </CardBody>
             </Card>
+            <Card className="text-white bg-primary">
+            <CardHeader>
+            <h5>Alumnos</h5>
+            </CardHeader>
+            </Card>
+             <Row>
+            { (this.state.students !== null)?this.state.students:("No se encuentra alumnos") }
+            </Row>
            
        
 
