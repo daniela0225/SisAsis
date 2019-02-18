@@ -11,6 +11,8 @@ router.post('/delete',checkAuth, accessRules,Student.delete);
 router.get('/',checkAuth, accessRules, Student.show);
 router.post('/',checkAuth, accessRules, Student.create);
 
+router.get('/studentsByTutor',checkAuth, accessRules, Student.studentsByTutor);
+router.get('/studentsByTeacher',checkAuth, accessRules, Student.studentsByTeacher);
 router.get('/studentsBySchool',checkAuth, accessRules, Student.studentsBySchool);
 router.post('/studentsBySchool',checkAuth, accessRules, Student.studentsBySchool);
 router.post('/studentsBySchoolAndYear',checkAuth, accessRules, Student.studentsBySchoolAndYear);
