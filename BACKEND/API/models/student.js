@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var genders = 'MALE FEMALE'.split(' ');
-var years = '1 2 3 4 5 6'.split(' ');
+var years = '1P 2P 3P 4P 5P 6P 1S 2S 3S 4S 5S'.split(' ');
 var sections = 'A B C D E F G H UNIQUE'.split(' ');
 
 const studentSchema = mongoose.Schema({

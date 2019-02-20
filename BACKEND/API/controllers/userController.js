@@ -257,7 +257,8 @@ module.exports = {
 					{
 						email: user[0].email,
 						userId: user[0]._id,
-						type: user[0].type
+						type: user[0].type,
+						school: (user[0].school != null)?user[0].school:''
 					},
 					//process.env.JWT_KEY,
 					'secret',

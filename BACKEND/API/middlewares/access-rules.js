@@ -166,6 +166,7 @@ function tranformAction(table,url,method){
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 				case "/searchByDNI": return "readAny"; break;
 				case "/tutorsBySchool": return "readAny"; break;
+				case "/tutorsBySchoolAndLastName": return "readAny"; break;
 				case "/appHeaders": return "readOwn"; break;
 				case "/appTutorInfo": return "readOwn"; break;
 				default: return ""; break;
@@ -196,6 +197,7 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/teachersBySchool": return "readAny"; break;
+				case "/teachersBySchoolAndLastName": return "readAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
 
 				default: return ""; break;

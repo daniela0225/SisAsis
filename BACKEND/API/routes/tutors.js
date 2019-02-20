@@ -12,6 +12,7 @@ router.get('/',checkAuth, accessRules,Tutor.show);
 router.post('/',checkAuth, accessRules, Tutor.create);
 router.post('/searchByDNI',checkAuth, accessRules, Tutor.searchByDNI);
 router.get('/tutorsBySchool',checkAuth, accessRules, Tutor.tutorsBySchool);
+router.post('/tutorsBySchoolAndLastName',checkAuth, accessRules, Tutor.tutorsBySchoolAndLastName);
 router.get('/appHeaders',checkAuth, accessRules, Tutor.appHeaders);
 router.get('/appTutorInfo',checkAuth, accessRules, Tutor.appTutorInfo);
 

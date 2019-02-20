@@ -148,8 +148,8 @@ module.exports = {
 	},
 	studentsBySchool: (req, res, next)=>{
 		Student.find({school:(req.body.schoolId != null)?req.body.schoolId:req.query.schoolId})
-			.select('_id DNI name last_name gender year tutor teacher')
-			.populate('tutor','DNI name last_name')
+			.select('_id DNI name last_name gender year section tutor teacher')
+			.populate('tutor','DNI name last_name cellphone')
 			.populate('teacher','name last_name')
 			.exec()
 			.then(docs => {
@@ -163,6 +163,7 @@ module.exports = {
 							gender: doc.gender,
 							DNI: doc.DNI,
 							year: doc.year,
+							section: doc.section,
 							tutor: doc.tutor,
 							teacher: doc.teacher
 						}
@@ -207,7 +208,7 @@ module.exports = {
 	},
 	studentsByTeacher: (req, res, next)=>{
 		Student.find({teacher:req.query.teacherId})
-			.select('_id DNI name last_name  birthdate order_number ')
+			.select('_id DNI name last_name  birthdate order_number year section')
 			.exec()
 			.then(docs => {
 				const response = {
@@ -219,7 +220,9 @@ module.exports = {
 							last_name: doc.last_name,							
 							DNI: doc.DNI,
 							birthdate: doc.birthdate,
-							order_number: doc.order_number
+							order_number: doc.order_number,
+							year: doc.year,
+							section: doc.section
 							
 						}
 					})
@@ -305,7 +308,8 @@ module.exports = {
 	},
 	searchByLastName: (req, res, next)=>{
 		const string = req.body.string;
-		Student.find({last_name: { $regex: string , $options:'i'}})
+	
+		Student.find({last_name: { $regex: string , $options:'i'} , school: req.userData.school } )
 			.select('_id name last_name gender DNI birthdate year section fingerprint code order_number school tutor teacher')
 			.populate('school','name')
 			.populate('tutor','DNI')

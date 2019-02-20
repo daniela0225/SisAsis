@@ -358,7 +358,22 @@ handleSubmit = () =>{
                       <Label htmlFor="text-input">Año:</Label>
                     </Col>
                     <Col xs="12" md="9">
-                      <Input type="number" id="year" name="year"  onChange={this.handleAttribute} value={this.state.year} />
+                      <Input type="select" name="year" id="year" bsSize="lg" onChange={this.handleAttribute} value={this.state.year}>
+                        <option >Opciones...</option>
+                        <option value="1P">1° Primaria</option>
+                        <option value="2P">2° Primaria</option>
+                        <option value="3P">3° Primaria</option>
+                        <option value="4P">4° Primaria</option>
+                        <option value="5P">5° Primaria</option>
+                        <option value="6P">6° Primaria</option>
+                        <option value="1S">1° Secundaria</option>
+                        <option value="2S">2° Secundaria</option>
+                        <option value="3S">3° Secundaria</option>
+                        <option value="4S">4° Secundaria</option>
+                        <option value="5S">5° Secundaria</option>
+                       
+                        
+                      </Input>
                       
                     </Col>
                   </FormGroup>
@@ -373,6 +388,10 @@ handleSubmit = () =>{
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="D">D</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                        <option value="H">H</option>
+                        <option value="UNIQUE">Unica</option>
                         
                       </Input>
                     </Col>
