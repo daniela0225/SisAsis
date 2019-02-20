@@ -62,7 +62,7 @@ module.exports = {
 	find: (req,res,next)=>{
 		const id = req.query.teacherId;
 		Teacher.findById(id)
-			.select('_id name last_name schoo email')
+			.select('_id name last_name school email')
 			.populate('school','name')
 			.exec()
 			.then(doc=> {

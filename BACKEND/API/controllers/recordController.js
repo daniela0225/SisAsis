@@ -252,10 +252,9 @@ module.exports = {
 							.exec()
 							.then((config) => {
 								const startDate = new Date(config.startDate.toISOString());
-								//let endDate = new Date(config.endDate.toISOString());
-								//const today = new Date();
+								let endDate = new Date(config.endDate.toISOString());
+								//endDate = new Date();
 								//endDate = ( today > endDate)? endDate : today;
-								const endDate = new Date(2019,3,1);
 
 								const daysBetween = DateFunctions.daysBetween(startDate, endDate);
 								const weekendDays = DateFunctions.weekendDaysBetween(startDate, endDate);
