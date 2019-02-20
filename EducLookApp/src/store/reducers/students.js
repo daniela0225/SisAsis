@@ -7,7 +7,7 @@ import {
 const initialState = {
 	list: [],
 	profileSelectedStudent: '',
-	menuSelectedStudent: ''
+	menuSelectedStudent: {}
 };
 
 const reducer = (state = initialState, action) => {

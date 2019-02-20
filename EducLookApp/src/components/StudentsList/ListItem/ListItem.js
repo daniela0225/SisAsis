@@ -89,7 +89,7 @@ class listItem extends Component{
 								backgroundColor: '#ffbf00',
 								width: percentage,
 								height: 26,
-								borderRadius: 100
+								borderRadius: 4
 							}}/>
 							<Animated.Text style={styles.absencesText}>{this.state.absencesPercentage} %</Animated.Text>
 					</View>

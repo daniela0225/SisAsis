@@ -146,5 +146,23 @@ module.exports = {
 				console.log(err);
 				res.status(500).json({error: err});
 			});
+	},
+	appSchoolConfig:(req,res,next)=>{
+		SchoolConf.findOne({school: req.body.schoolId})
+			.select('startDate endDate kinderSchedule vacations')
+			.exec()
+			.then((doc) =>  {
+				if (doc) {
+					res.status(200).json({
+						school: doc
+					});
+				}else{
+					res.status(404).json({message: 'No valid entry found for provided ID'});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({error: err});
+			});
 	}
 }

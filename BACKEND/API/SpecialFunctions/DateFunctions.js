@@ -18,7 +18,6 @@ const getHolidays = (year) => {
 	];
 
 	for (let i = 0; i < posibleHolidays.length; i++) {
-		console.log(posibleHolidays[i]);		
 		if(isWeekday(posibleHolidays[i])){
 			holidays.push(posibleHolidays[i]);
 		}
@@ -46,7 +45,6 @@ const isHoliday = (date) => {
 
 const daysBetween = (startDate, endDate) => {
 	let ndays = 1 + Math.round( ( endDate.getTime() - startDate.getTime() ) / (24*3600*1000) );
-	console.log("daysBetween" + ndays);
 	return ndays;
 }
 

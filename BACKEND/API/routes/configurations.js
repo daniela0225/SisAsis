@@ -12,5 +12,6 @@ router.post('/delete',checkAuth, accessRules,SchoolConf.delete);
 router.get('/',checkAuth, accessRules, SchoolConf.show);
 router.post('/',checkAuth, accessRules, SchoolConf.create);
 
+router.post('/appSchoolConfig',checkAuth, accessRules, SchoolConf.appSchoolConfig);
 
 module.exports = router;

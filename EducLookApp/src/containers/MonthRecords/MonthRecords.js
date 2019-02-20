@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from '../../Axios/axios.js';
 import styles from './Styles.js';
+import { calStyles, customStyles } from './CalendarStyles.js';
+
 import {	View, ScrollView, Image,
 			Text, TextInput, 
 			TouchableOpacity,
@@ -9,35 +11,101 @@ import {	View, ScrollView, Image,
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import DayInfoModal from '../../components/DayInfoModal/DayInfoModal';
 
+import { connect } from 'react-redux';
+import { setSchoolConfig } from '../../store/actions/schoolActions/index.js';
+
+import { isHoliday, isWeekday } from '../../SpecialFunctions/DateFunctions.js';
+
 class monthRecords extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
 			current: new Date(),
+			attendances: [],
 			selectedDate: '',
 			days: {}
 		};
 	};
 
 	componentDidMount () {
+		this.getSchoolConfiguration();
+		this.getMonthRecords();
+	}
+
+	getSchoolConfiguration = () => {
+		const schoolId = this.props.schoolId;
+		const token = this.props.token;
+
+		axios.post('configuraciones/appSchoolConfig', 
+			{
+				schoolId: schoolId
+			},
+			{
+				headers: { 
+					"Authorization": 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			const config = response.data.school;
+			this.props.onSetSchoolConfig(config);
+		})
+		.catch((error) => {
+			alert('Error al obtener el horario de estudios.');
+		})
+	}
+
+	getMonthRecords = () => {
+		const studentId = this.props.selectedStudent.id;
+		const currentDate = this.state.current;
+		const token = this.props.token;
+
+		axios.post('registros/attendancesByMonth', 
+			{
+				studentId: studentId,
+				currentDate: currentDate
+			}, 
+			{
+				headers: { 
+					"Authorization": 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			const attendances = response.data;
+			this.setState({
+				attendances: attendances
+			});
+			this.setDays();
+		})
+		.catch((error) => {
+			alert('Error al cargar las asistencias.');
+		})
+	}
+
+	setDays = () => {
+		let attendances = this.state.attendances;
+		let configuration = this.props.schoolConf;
+		
 		let days = {};
 
-		for(let i = 0; i < 31; i++) {
-			let date = new Date(2019,2,i);
-			if( date.getDay() != 0 && date.getDay() != 6){
-				days = {
-					...days,
-					[this.transformDate(date)]: {customStyles: customStyles.greenDay}
-				};
+		for(let i = 0; i < attendances.length; i++ ) { 
+			
+			let date = new Date(attendances[i].date);
+			let type = attendances[i].type;
+
+			if( type === 'CHECK_IN' ){
+				if( isWeekday(date) ){
+					if( ! isHoliday(date) ){
+						days = {
+							...days,
+							[this.transformDate(date)]: {customStyles: customStyles.greenDay}
+						};
+					}
+				}
 			}
 		}
 
 		this.setState({ days: days });
-	}
-
-	getMonthRecords = () => {
-
 	}
 
 	arrowPressedHandler = ( direction ) => {
@@ -48,6 +116,7 @@ class monthRecords extends Component {
 			current.setMonth( current.getMonth() + 1 );
 		}
 		this.setState({ current: current });
+		this.getMonthRecords();
 	}
 
 	transformDate = (date) => {
@@ -83,7 +152,7 @@ class monthRecords extends Component {
 		return (
 			<View style={ styles.monthRecordsContainer }>
 				<Text style={styles.title}>
-					Registros de Pedro Perez
+					Registros de {this.props.selectedStudent.fullName.substring(0,this.props.selectedStudent.fullName.lastIndexOf(' '))}
 				</Text>
 				<Text style={styles.text}>
 					Presione un día para ver los detalles.
@@ -120,63 +189,19 @@ class monthRecords extends Component {
 	}
 }
 
-const calStyles = {
-	container: {
-		borderColor: '#0083ff',
-		borderWidth: 2,
-		borderRadius: 10,
-		padding: 7
-	},
-	theme: {
-		backgroundColor: '#ffffff',
-		calendarBackground: '#ffffff',
-		textSectionTitleColor: '#0083ff',
-		selectedDayBackgroundColor: '#0083ff',
-		selectedDayTextColor: '#ffffff',
-		todayTextColor: '#0083ff',
-		dayTextColor: '#0083ff',
-		arrowColor: '#0083ff',
-		monthTextColor: '#0083ff'
-	},
-	greenContainer: {
-		backgroundColor: '#14ff56',
-		borderRadius: 15
-	},
-	yellowContainer: {
-		backgroundColor: '#FBBA00',
-		borderRadius: 15
-	},
-	redContainer: {
-		backgroundColor: '#ff1447',
-		borderRadius: 15
-	},
-	blueContainer: {
-		backgroundColor: '#0083ff',
-		borderRadius: 15
-	},
-	whiteText: {
-		color: '#fff',
-		fontWeight: 'bold'
-	}
+const mapStateToProps = state => {
+	return {
+		token: state.users.token,
+		selectedStudent: state.students.menuSelectedStudent,
+		schoolId: state.schools._id,
+		schoolConf: state.schools.configuration
+	};
 };
 
-const customStyles = {
-	greenDay: {
-		container: calStyles.greenContainer,
-		text: calStyles.whiteText,
-	},
-	yellowDay: {
-		container: calStyles.yellowContainer,
-		text: calStyles.whiteText,
-	},
-	redDay: {
-		container: calStyles.redContainer,
-		text: calStyles.whiteText,
-	},
-	blueDay: {
-		container: calStyles.blueContainer,
-		text: calStyles.whiteText
-	}
+const mapDispatchToProps = dispatch => {
+	return {
+		onSetSchoolConfig: (config) => dispatch(setSchoolConfig(config))
+	};
 };
 
-export default monthRecords;
+export default connect(mapStateToProps, mapDispatchToProps)(monthRecords);

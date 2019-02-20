@@ -296,5 +296,32 @@ module.exports = {
 					error: err
 				});
 			});
+	},
+	attendancesByMonth: (req, res, next) => {
+
+		let studentId = req.body.studentId;
+		let currentDate = new Date(req.body.currentDate);
+		let currentMonth = currentDate.getMonth() + 1;
+
+		Record.aggregate()
+		.project({ 
+					month: { $month: '$date' },
+					date: '$date',
+					type: '$type',
+					student: '$student'
+				})
+		.match({
+					student: new mongoose.Types.ObjectId(studentId),
+					month: currentMonth
+				})
+		.exec()
+		.then((docs) => {
+			console.log(docs);
+			res.status(200).json(docs);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+		});
+
 	}
 }

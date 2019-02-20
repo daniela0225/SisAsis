@@ -4,6 +4,7 @@ import styles from './Styles.js';
 import triangleIcon from './triangleIcon.png';
 
 import { connect } from 'react-redux';
+import { setMenuSelectedStudent } from '../../../store/actions/studentActions/index';
 import { setActualView } from '../../../store/actions/viewActions/index';
 
 class listItem extends Component{
@@ -23,6 +24,7 @@ class listItem extends Component{
 	}
 
 	optionSelectedHandler = (view) => {
+		this.props.onSetMenuSelectedStudent({ id: this.state.id, fullName: this.state.fullName });
 		this.props.onSetActualView(view);
 		this.props.hideMenu();
 	}
@@ -73,6 +75,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
+		onSetMenuSelectedStudent: (id) => dispatch(setMenuSelectedStudent(id)),
 		onSetActualView: (view) => dispatch(setActualView(view))
 	};
 };

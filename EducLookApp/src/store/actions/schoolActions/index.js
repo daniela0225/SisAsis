@@ -1,1 +1,1 @@
-export { setSchoolData } from './schools';
+export { setSchoolData, setSchoolConfig } from './schools';

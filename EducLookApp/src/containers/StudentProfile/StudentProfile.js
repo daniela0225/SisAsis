@@ -37,7 +37,6 @@ class studentProfile extends Component {
 			}
 		})
 		.then((response) => {
-			console.log(response.data.student);
 			this.setState(response.data.student);
 		})
 		.catch((error) => {

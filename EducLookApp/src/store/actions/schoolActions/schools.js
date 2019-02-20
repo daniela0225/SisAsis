@@ -1,4 +1,4 @@
-import { SET_SCHOOL_DATA } from './actionTypes';
+import { SET_SCHOOL_DATA, SET_SCHOOL_CONFIG } from './actionTypes';
 
 export const setSchoolData = ( school ) => {
 	return {
@@ -8,3 +8,10 @@ export const setSchoolData = ( school ) => {
 		logo: school.logo,
 	};
 };
+
+export const setSchoolConfig = ( config ) => {
+	return {
+		type: SET_SCHOOL_CONFIG,
+		config: config
+	};
+}

@@ -14,9 +14,9 @@ export const setProfileSelectedStudent = ( id ) => {
 	}
 }
 
-export const setMenuSelectedStudent = ( id ) => {
+export const setMenuSelectedStudent = ( doc ) => {
 	return {
 		type: SET_MENU_SELECTED_STUDENT,
-		selectedStudent: id
+		selectedStudent: doc
 	}
 }

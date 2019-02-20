@@ -125,6 +125,7 @@ function tranformAction(table,url,method){
 				case "/recordById": return "readOwn" ; break;
 				case "/recordsByDay": return "readAny" ; break;
 				case "/countAttendancesByStudent": return "readAny"; break;
+				case "/attendancesByMonth": return "readAny"; break;
 				default: return ""; break;
 			}
 			break;
@@ -208,6 +209,8 @@ function tranformAction(table,url,method){
 				case "/update": return "updateAny"; break;
 				case "/delete": return "deleteAny"; break;
 				case "/": return (method == "POST")?"createAny":"readAny"; break;
+
+				case "/appSchoolConfig": return "readOwn"; break;
 				default: return ""; break;
 			}
 		default: return "";
