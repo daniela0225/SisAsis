@@ -154,7 +154,7 @@ getStudents = () => {
 				</Col>
 
 				<Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-			   <a href="/#/Home/Students/Form"> <Button block color="dark">Buscar Alumno</Button></a>
+			   <a href="/#/Home/Students/Search"> <Button block color="dark">Buscar Alumno</Button></a>
 				</Col>
 				</Row>
 			  </CardHeader>

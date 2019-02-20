@@ -60,7 +60,7 @@ module.exports = {
 			});
 	},
 	find: (req,res,next)=>{
-		const id = req.body.teacherId;
+		const id = req.query.teacherId;
 		Teacher.findById(id)
 			.select('_id name last_name school email')
 			.populate('school','name')
@@ -117,6 +117,36 @@ module.exports = {
 	},
 	teachersBySchool: (req, res, next)=>{
 		Teacher.find({school:req.query.schoolId})
+			.select('_id name last_name school email')
+			.populate('school','name')
+			.exec()
+			.then(docs => {
+				const response = {
+					count: docs.length,
+					teachers: docs.map(doc => {
+						return {
+							_id: doc._id,
+							name: doc.name,
+							last_name: doc.last_name,
+							school: doc.school,
+							email: doc.email,
+							
+							
+						}
+					})
+				};
+				res.status(200).json(response);
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	},
+	teachersBySchoolAndLastName: (req, res, next)=>{
+		const string = req.body.string;
+		Teacher.find({last_name: { $regex: string , $options:'i'} , school: req.userData.school } )
 			.select('_id name last_name school email')
 			.populate('school','name')
 			.exec()
