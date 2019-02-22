@@ -149,7 +149,7 @@ module.exports = {
 	},
 	appSchoolConfig:(req,res,next)=>{
 		SchoolConf.findOne({school: req.body.schoolId})
-			.select('startDate endDate kinderSchedule vacations')
+			.select('startDate endDate kinderSchedule primarySchedule secondarySchedule vacations')
 			.exec()
 			.then((doc) =>  {
 				if (doc) {

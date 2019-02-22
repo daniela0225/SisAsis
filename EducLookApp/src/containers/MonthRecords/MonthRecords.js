@@ -14,7 +14,7 @@ import DayInfoModal from '../../components/DayInfoModal/DayInfoModal';
 import { connect } from 'react-redux';
 import { setSchoolConfig } from '../../store/actions/schoolActions/index.js';
 
-import { isHoliday, isWeekday } from '../../SpecialFunctions/DateFunctions.js';
+import { isWeekday, isHoliday, isVacationDay } from '../../SpecialFunctions/DateFunctions.js';
 
 class monthRecords extends Component {
 
@@ -24,7 +24,9 @@ class monthRecords extends Component {
 			current: new Date(),
 			attendances: [],
 			selectedDate: '',
-			days: {}
+			days: {},
+			scheduleMaxHours: 0,
+			scheduleMaxMins: 0
 		};
 	};
 
@@ -37,7 +39,7 @@ class monthRecords extends Component {
 		const schoolId = this.props.schoolId;
 		const token = this.props.token;
 
-		axios.post('configuraciones/appSchoolConfig', 
+		axios.post('configuraciones/appSchoolConfig',
 			{
 				schoolId: schoolId
 			},
@@ -49,8 +51,29 @@ class monthRecords extends Component {
 		.then((response) => {
 			const config = response.data.school;
 			this.props.onSetSchoolConfig(config);
+
+			let configuration = this.props.schoolConf;
+			let scheduleOption = this.props.selectedStudent.schedule;
+
+			let schedule = ( scheduleOption == "I")? configuration.kinderSchedule :
+						( scheduleOption == "P")? configuration.primarySchedule : configuration.secondarySchedule;
+
+			let checkInHour = schedule.startHour;
+			let maxHours = parseInt(checkInHour.substr(0,2),10);
+			let maxMins = parseInt(checkInHour.substr(3),10) + schedule.tolerance;
+
+			if( maxMins >= 60 ) {
+				maxHours++;
+				maxMins = maxMins - 60;
+			}
+
+			this.setState({
+				scheduleMaxHours: maxHours,
+				scheduleMaxMins: maxMins
+			});
 		})
 		.catch((error) => {
+			console.log(error);
 			alert('Error al obtener el horario de estudios.');
 		})
 	}
@@ -78,59 +101,100 @@ class monthRecords extends Component {
 			this.setDays();
 		})
 		.catch((error) => {
+			console.log(error);
 			alert('Error al cargar las asistencias.');
 		})
 	}
 
 	setDays = () => {
 		let attendances = this.state.attendances;
-		let configuration = this.props.schoolConf;
-		
+		let maxHours = this.state.scheduleMaxHours; 
+		let maxMins = this.state.scheduleMaxMins;
 		let days = {};
 
 		for(let i = 0; i < attendances.length; i++ ) { 
-			
+	
 			let date = new Date(attendances[i].date);
 			let type = attendances[i].type;
 
 			if( type === 'CHECK_IN' ){
 				if( isWeekday(date) ){
 					if( ! isHoliday(date) ){
+						let dateHours = date.getHours() + 5;
+						let dateMins = date.getMinutes();
+
 						days = {
 							...days,
-							[this.transformDate(date)]: {customStyles: customStyles.greenDay}
+							[this.transformDate(date)]: {
+								customStyles:	((dateHours < maxHours) || (dateHours == maxHours && dateMins < maxMins ))? 
+												customStyles.greenDay : customStyles.yellowDay
+							}
 						};
 					}
 				}
 			}
 		}
+		this.setRedDays( days );
+	}
 
+	setRedDays = ( days ) => {
+		const config = this.props.schoolConf;
+		const vacations = config.vacations;
+		let confStartDate = new Date(config.startDate);
+		confStartDate.setHours(confStartDate.getHours() + 5);
+		let confEndDate = new Date(config.endDate);
+		confEndDate.setHours(confEndDate.getHours() + 5);
+
+		const current = this.state.current;
+		let startDate = new Date(current.getFullYear(), current.getMonth(), 1);
+		let endDate = new Date(current.getFullYear(), current.getMonth() + 1, 0);
+
+		if( startDate < confStartDate){
+			startDate = new Date(confStartDate);
+		}
+		if(endDate > confEndDate){
+			endDate = new Date(confStartDate);
+		}
+		if(startDate > confEndDate){
+			this.setState({ days: days });
+			return;
+		}
+
+		while (startDate <= endDate) {
+			const tdate = this.transformDate(startDate);
+			if ( ! days[tdate] ){
+				if( isWeekday(startDate) ){
+					if( ! isHoliday(startDate) ){
+						if( ! isVacationDay(startDate, vacations)){
+							days = {
+								...days,
+								[tdate]: {
+									customStyles: customStyles.redDay
+								}
+							};
+						}
+					}
+				}
+			}
+			startDate.setDate(startDate.getDate() + 1);
+		}
 		this.setState({ days: days });
 	}
 
 	arrowPressedHandler = ( direction ) => {
 		let current = this.state.current;
-		if(direction == 'left'){
-			current.setMonth( current.getMonth() - 1 );
-		}else if (direction == 'right'){
-			current.setMonth( current.getMonth() + 1 );
-		}
+		current.setMonth((direction === 'left')?(current.getMonth() - 1):(current.getMonth() + 1));
 		this.setState({ current: current });
 		this.getMonthRecords();
 	}
 
 	transformDate = (date) => {
+
 		let dd = date.getDate();
 		let mm = date.getMonth() + 1; 
-
 		let yyyy = date.getFullYear();
-		if (dd < 10) {
-		  dd = '0' + dd;
-		} 
-		if (mm < 10) {
-		  mm = '0' + mm;
-		} 
-		return yyyy + '-' + mm + '-' + dd;
+
+		return	yyyy + ((mm < 10)?('-0'):('-')) + mm + ((dd < 10)?('-0'):('-')) + dd;
 	}
 
 	dayPressedHandler = ( day ) => {
