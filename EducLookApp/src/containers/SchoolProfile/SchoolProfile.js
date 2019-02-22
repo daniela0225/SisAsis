@@ -1,65 +1,87 @@
 import React, { Component } from 'react';
 import styles from './Styles.js';
-import { Image, Text, ScrollView, View, ListView} from 'react-native';
-
-import axios from '../../Axios/axios';
+import image from '../../assets/schoolLogo.png';
+import { Image, Text, ScrollView, View, ListView, Button} from 'react-native';
+import { setActualView } from '../../store/actions/viewActions/index';
+import SchoolListAttibutes from '../../components/SchoolListAttributes/SchoolListAttributes';
 
 import { connect } from 'react-redux';
 
-class schoolProfile extends Component {
+import axios from '../../Axios/axios';
+
+class SchoolProfile extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-			name: '',
-			logo: '',
-			kinder: '',
-			primary: '',
-			highschool: ''
+			school: [
+				{
+					id: Math.random(),
+					name: 'Internacional',
+					logo: 'pato.png',
+					kinder: 'true',
+					primary: 'true',
+					highschool: 'true'
+				}
+			],
+			schoolConfigurations: [
+				{
+				    id: Math.random(),
+					year: '2019',
+					startDate: '2019-03-11T00:00:01Z',
+					endDate: '2019-12-20T00:00:01Z',
+
+					kinderSchedule: {
+						startHour: '08:00',
+						endHour: '13:00',
+						tolerance: '15'
+					},
+					primarySchedule: {
+						startHour: '07:45',
+						endHour: '14:45',
+						tolerance: '15'
+					},
+					secondarySchedule: {
+						startHour: '07:45',
+						endHour: '15:45',
+						tolerance: '15'
+					},
+					vacations: [
+						{
+							start: '2019-05-27T00:00:01Z',
+							end: '2019-05-31T00:00:01Z'
+						},
+						{
+							start: '2019-07-26T00:00:01Z',
+							end: '2019-08-12T00:00:01Z'
+						},
+						{
+							start: '2019-10-21T00:00:01Z',
+							end: '2019-10-25T00:00:01Z'
+						}
+					]
+				}
+			]
 		};
-		/*
-		_id: mongoose.Schema.Types.ObjectId,
-		school: { type: mongoose.Schema.Types.ObjectId, ref:'School', required: true },
-		year: { type:Number, required:true },
-		startDate: { type:Date, required:true },
-		endDate: { type:Date, required:true },
-		kinderSchedule: { type: schedule },
-		primarySchedule: { type: schedule },
-		secondarySchedule: { type: schedule },
-		vacations: { type:[period], required: true }
-
-	const schedule = mongoose.Schema({
-		startHour: { type: String, minlength: 5, maxlength: 5, required: true }, 
-		endHour: { type: String, minlength: 5, maxlength: 5, required: true },
-		tolerance:  { type: Number, min: 5, max: 30, required: true }
-	});
-
-	const period = mongoose.Schema({
-		start: { type:Date, required:true},
-		end: { type:Date, required:true}
-	});
-	*/
 	};
-
 	render() {
 		return (
-			<View style={styles.tutorProfileContainer}>
-				<View style={styles.infoContainer}>
-					<View style={styles.imageContainer}>
-						<Image source={image} style={styles.image} />
+			<View>
+				<ScrollView contentContainerStyle={styles.container}>
+					<View>
+						<Image source={image} style={styles.image}/>
 					</View>
-					<Text style={styles.text}> Nombre: </Text>
-						<Text style={styles.text}> { this.state.name} </Text>
-					<Text style={styles.text}> kinder: </Text>
-						<Text style={styles.text}> { this.state.kinder } </Text>
-					<Text style={styles.text}> primary: </Text>
-						<Text style={styles.text}> { this.state.primary } </Text>
-					<Text style={styles.text}> highschool: </Text>
-						<Text style={styles.text}> { this.state.highschool } </Text>
-				</View>
+
+					<Text style={styles.textAttribute}> {this.state.school.name} </Text>
+					<Text style={styles.text}>Kinder:</Text>
+						<Text style={styles.textAttribute}> {this.state.kinderSchedule} </Text>
+					<Text style={styles.text}>Primaria:</Text>
+						<Text style={styles.textAttribute}> {this.state.primarySchedule} </Text>
+					<Text style={styles.text}>Secundaria:</Text>
+						<Text style={styles.textAttribute}> {this.state.secondarySchedule} </Text>
+				</ScrollView>
 			</View>
 		)
 	}
 }
-
-export default schoolProfile;
+export default SchoolProfile;

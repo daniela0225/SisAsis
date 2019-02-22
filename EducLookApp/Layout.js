@@ -6,6 +6,7 @@ import Home from './src/containers/Home/Home';
 
 import TutorProfile from './src/containers/TutorProfile/TutorProfile';
 import StudentProfile from './src/containers/StudentProfile/StudentProfile';
+import TeacherProfile from './src/containers/TeacherProfile/TeacherProfile';
 
 import WeekRecords from './src/containers/WeekRecords/WeekRecords';
 import MonthRecords from './src/containers/MonthRecords/MonthRecords';
@@ -36,6 +37,7 @@ class Layout extends Component {
 			case 'Home': return 'Inicio';
 			case 'TutorProfile': return 'Mi Perfil';
 			case 'StudentProfile': return 'Perfil del estudiante';
+			case 'TeacherProfile': return 'Perfil del Profesor';
 			case 'WeekRecords': return 'Registros';
 			case 'MonthRecords': return 'Registros';
 			default: break;
@@ -48,6 +50,7 @@ class Layout extends Component {
 			case 'Home': return (<Home />);
 			case 'TutorProfile': return (<TutorProfile />);
 			case 'StudentProfile': return (<StudentProfile />);
+			case 'TeacherProfile': return (<TeacherProfile />);
 			case 'WeekRecords': return (<WeekRecords />);
 			case 'MonthRecords': return (<MonthRecords />);
 			default: break;

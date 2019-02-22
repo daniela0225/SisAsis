@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import image from './studentIcon.png';
 import styles from './Styles.js';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Button } from 'react-native';
 
 import { connect } from 'react-redux';
+
+import { setProfileSelectedTeacher } from '../../store/actions/teacherActions/index';
+import { setActualView } from '../../store/actions/viewActions/index';
 
 import axios from '../../Axios/axios';
 
@@ -13,6 +16,7 @@ class studentProfile extends Component {
 		super(props);
 		this.state = {
 			key: Math.random(),
+			teacherId: props.teacherId,
 			name: 'Mariana',
 			last_name: 'Paredes Robles',
 			DNI: '76423529',
@@ -29,6 +33,7 @@ class studentProfile extends Component {
 	componentDidMount () {
 
 		const studentId = this.props.studentId;
+		const teacherId = this.props.teacherId;
 		const token = this.props.token;
 
 		axios.post('alumnos/find', { studentId: studentId }, {
@@ -42,6 +47,10 @@ class studentProfile extends Component {
 		.catch((error) => {
 			console.log(error);
 		})
+	}
+	onPressButton = () => {
+		this.props.onSetSelected(this.state.teacherId);
+		this.props.onSetActualView("teacherProfile");
 	}
 
 	render() {
@@ -63,7 +72,13 @@ class studentProfile extends Component {
 					<Text style={[styles.text, styles.label]}> Número de orden: </Text>
 						<Text style={[styles.text, styles.bold]}> { this.state.order_number } </Text>
 					<Text style={[styles.text, styles.label]}> Fecha de nacimiento: </Text>
-						<Text style={[styles.text, styles.bold]}> { birthday } </Text>
+						<Text style={[styles.text, styles.bold]}> { birthday } </Text>						
+					<Button
+					  onPress={this.onPressButton}
+					  title="profesor"
+					  color="#841584"
+					/>
+
 				</View>
 			</View>
 		)
@@ -73,12 +88,15 @@ class studentProfile extends Component {
 const mapStateToProps = state => {
 	return {
 		token: state.users.token,
-		studentId: state.students.profileSelectedStudent
+		studentId: state.students.profileSelectedStudent,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
-	return { };
+	return {
+		onSetSelectedTeacher: (teacherId) => dispatch(setProfileSelectedTeacher(teacherId)),
+		onSetActualView: (view) => dispatch(setActualView(view))
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(studentProfile);
