@@ -6,7 +6,7 @@ db.students.insertMany([
 	gender: "FEMALE",
 	DNI: "75648912", 
 	birthdate: ISODate("2005-03-11T00:00:01Z"),
-	year: 5,
+	year: '1S',
 	section: "A",
 	fingerprint: 96385274178, 
 	code: 75648912,
@@ -22,7 +22,7 @@ db.students.insertMany([
 	gender: "MALE",
 	DNI: "75648911",
 	birthdate: ISODate("2006-03-11T00:00:01Z"),
-	year: 4,
+	year: '6P',
 	section: "A",
 	fingerprint: 96385274185, 
 	code: 75648911,
@@ -38,7 +38,7 @@ db.students.insertMany([
 	gender: "FEMALE",
 	DNI: "75648919",
 	birthdate: ISODate("2009-03-11T00:00:01Z"),
-	year: 3,
+	year: '3I',
 	section: "B",
 	fingerprint: 96385274159, 
 	code: 75648919,
@@ -54,7 +54,7 @@ db.students.insertMany([
 	gender: "FEMALE",
 	DNI: "78965432",
 	birthdate: ISODate("2007-03-11T00:00:01Z"),
-	year: 4,
+	year: '2P',
 	section: "B",
 	fingerprint: 96385241, 
 	code: 78965432 ,
@@ -70,7 +70,7 @@ db.students.insertMany([
 	gender: "FEMALE",
 	DNI: "78965463",
 	birthdate: ISODate("2008-03-11T00:00:01Z"),
-	year: 2,
+	year: '3S',
 	section: "C",
 	fingerprint: 96385236, 
 	code: 78965463 ,
@@ -86,7 +86,7 @@ db.students.insertMany([
 	gender: "MALE",
 	DNI: "78965462",
 	birthdate: ISODate("2009-03-11T00:00:01Z"),
-	year: 1,
+	year: '1S',
 	section: "A",
 	fingerprint: 963859658, 
 	code: 78965462 ,
@@ -102,7 +102,7 @@ db.students.insertMany([
 	gender: "MALE",
 	DNI: "74653298",
 	birthdate: ISODate("2009-03-11T00:00:01Z"),
-	year: 1,
+	year: '5I',
 	section: "A",
 	fingerprint: 963859555, 
 	code: 74653298 ,
@@ -112,5 +112,3 @@ db.students.insertMany([
 	teacher: ObjectId('5c62f543173c30771fe7818b')
 }
 ]);
-
-	

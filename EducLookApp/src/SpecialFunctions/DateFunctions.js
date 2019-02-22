@@ -43,6 +43,19 @@ const isHoliday = (date) => {
 	return false;
 }
 
+const isVacationDay = (date, vacations) => {
+	for( let i = 0; i < vacations.length ; i++ ){
+		let vacationStart = new Date(vacations[i].start);
+		vacationStart.setHours(vacationStart.getHours() + 5);
+		const vacationEnd =  new Date(vacations[i].end);
+		vacationEnd.setHours(vacationEnd.getHours() + 5);
+		if( date >= vacationStart && date <= vacationEnd ){
+			return true;
+		}
+	}
+	return false;
+}
+
 const daysBetween = (startDate, endDate) => {
 	let ndays = 1 + Math.round( ( endDate.getTime() - startDate.getTime() ) / (24*3600*1000) );
 	return ndays;
@@ -120,6 +133,7 @@ module.exports = {
 	getHolidays,
 	isWeekday,
 	isHoliday,
+	isVacationDay,
 	daysBetween,
 	weekendDaysBetween,
 	holidaysBetween,

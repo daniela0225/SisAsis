@@ -22,6 +22,7 @@ class menuStudentsList extends Component{
 						<ListItem
 							id={info.item.key}
 							fullName={info.item.fullName}
+							schedule={info.item.schedule}
 							hideMenu={this.props.hideMenu}
 						/>
 					)

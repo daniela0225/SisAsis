@@ -14,6 +14,7 @@ class listItem extends Component{
 		this.state = {
 			id: props.id,
 			fullName: props.fullName,
+			schedule: props.schedule,
 			selected: false
 		}
 	}
@@ -24,7 +25,7 @@ class listItem extends Component{
 	}
 
 	optionSelectedHandler = (view) => {
-		this.props.onSetMenuSelectedStudent({ id: this.state.id, fullName: this.state.fullName });
+		this.props.onSetMenuSelectedStudent({ id: this.state.id, fullName: this.state.fullName, schedule: this.state.schedule });
 		this.props.onSetActualView(view);
 		this.props.hideMenu();
 	}
@@ -75,7 +76,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onSetMenuSelectedStudent: (id) => dispatch(setMenuSelectedStudent(id)),
+		onSetMenuSelectedStudent: (item) => dispatch(setMenuSelectedStudent(item)),
 		onSetActualView: (view) => dispatch(setActualView(view))
 	};
 };

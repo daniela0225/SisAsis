@@ -228,11 +228,11 @@ module.exports = {
 				if (doc) {
 					console.log(doc[0]._id);
 					Student.find({tutor: doc[0]._id})
-					.select('_id name last_name school')
+					.select('_id name last_name year')
 					.exec()
 					.then( (students) => {
 						const list = students.map( (element) => {
-							return { key: element._id , fullName: element.name + " " + element.last_name }
+							return { key: element._id , fullName: element.name + " " + element.last_name, schedule: element.year.substr(1) }
 						});
 
 						res.status(200).json({
