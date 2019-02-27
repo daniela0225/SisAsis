@@ -8,7 +8,7 @@ import {	View, ScrollView, Image,
 			TouchableOpacity,
 			Animated } from 'react-native';
 
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { Calendar, CalendarList, Agenda, LocaleConfig } from 'react-native-calendars';
 import DayInfoModal from '../../components/DayInfoModal/DayInfoModal';
 
 import { connect } from 'react-redux';
@@ -22,11 +22,14 @@ class monthRecords extends Component {
 		super(props);
 		this.state = {
 			current: new Date(),
-			attendances: [],
 			selectedDate: '',
+			selectedISODate: null,
+			selectedOutISODate: null,
 			days: {},
+			outDates: {},
 			scheduleMaxHours: 0,
-			scheduleMaxMins: 0
+			scheduleMaxMins: 0,
+			loading: true
 		};
 	};
 
@@ -36,46 +39,27 @@ class monthRecords extends Component {
 	}
 
 	getSchoolConfiguration = () => {
-		const schoolId = this.props.schoolId;
-		const token = this.props.token;
 
-		axios.post('configuraciones/appSchoolConfig',
-			{
-				schoolId: schoolId
-			},
-			{
-				headers: { 
-					"Authorization": 'Bearer ' + token
-			}
-		})
-		.then((response) => {
-			const config = response.data.school;
-			this.props.onSetSchoolConfig(config);
+		let configuration = this.props.schoolConf;
+		let scheduleOption = this.props.selectedStudent.schedule;
 
-			let configuration = this.props.schoolConf;
-			let scheduleOption = this.props.selectedStudent.schedule;
+		let schedule = ( scheduleOption == "I")? configuration.kinderSchedule :
+					( scheduleOption == "P")? configuration.primarySchedule : configuration.secondarySchedule;
 
-			let schedule = ( scheduleOption == "I")? configuration.kinderSchedule :
-						( scheduleOption == "P")? configuration.primarySchedule : configuration.secondarySchedule;
+		let checkInHour = schedule.startHour;
+		let maxHours = parseInt(checkInHour.substr(0,2),10);
+		let maxMins = parseInt(checkInHour.substr(3),10) + schedule.tolerance;
 
-			let checkInHour = schedule.startHour;
-			let maxHours = parseInt(checkInHour.substr(0,2),10);
-			let maxMins = parseInt(checkInHour.substr(3),10) + schedule.tolerance;
+		if( maxMins >= 60 ) {
+			maxHours++;
+			maxMins = maxMins - 60;
+		}
 
-			if( maxMins >= 60 ) {
-				maxHours++;
-				maxMins = maxMins - 60;
-			}
+		this.setState({
+			scheduleMaxHours: maxHours,
+			scheduleMaxMins: maxMins
+		});
 
-			this.setState({
-				scheduleMaxHours: maxHours,
-				scheduleMaxMins: maxMins
-			});
-		})
-		.catch((error) => {
-			console.log(error);
-			alert('Error al obtener el horario de estudios.');
-		})
 	}
 
 	getMonthRecords = () => {
@@ -95,22 +79,19 @@ class monthRecords extends Component {
 		})
 		.then((response) => {
 			const attendances = response.data;
-			this.setState({
-				attendances: attendances
-			});
-			this.setDays();
+			this.setDays( attendances );
 		})
 		.catch((error) => {
 			console.log(error);
 			alert('Error al cargar las asistencias.');
-		})
+		});
 	}
 
-	setDays = () => {
-		let attendances = this.state.attendances;
+	setDays = ( attendances ) => {
 		let maxHours = this.state.scheduleMaxHours; 
 		let maxMins = this.state.scheduleMaxMins;
 		let days = {};
+		let outDates = {};
 
 		for(let i = 0; i < attendances.length; i++ ) { 
 	
@@ -127,13 +108,20 @@ class monthRecords extends Component {
 							...days,
 							[this.transformDate(date)]: {
 								customStyles:	((dateHours < maxHours) || (dateHours == maxHours && dateMins < maxMins ))? 
-												customStyles.greenDay : customStyles.yellowDay
+												customStyles.greenDay : customStyles.yellowDay ,
+								isoDate: date
 							}
 						};
 					}
 				}
+			} else {
+				outDates = {
+							...outDates,
+							[this.transformDate(date)]: date
+						}
 			}
 		}
+		this.setState({ outDates: outDates });
 		this.setRedDays( days );
 	}
 
@@ -156,7 +144,7 @@ class monthRecords extends Component {
 			endDate = new Date(confStartDate);
 		}
 		if(startDate > confEndDate){
-			this.setState({ days: days });
+			this.setState({ days: days, loading: false });
 			return;
 		}
 
@@ -169,7 +157,8 @@ class monthRecords extends Component {
 							days = {
 								...days,
 								[tdate]: {
-									customStyles: customStyles.redDay
+									customStyles: customStyles.redDay,
+									isoDate: null
 								}
 							};
 						}
@@ -178,14 +167,14 @@ class monthRecords extends Component {
 			}
 			startDate.setDate(startDate.getDate() + 1);
 		}
-		this.setState({ days: days });
+		this.setState({ days: days, loading: false });
 	}
 
 	arrowPressedHandler = ( direction ) => {
-		let current = this.state.current;
-		current.setMonth((direction === 'left')?(current.getMonth() - 1):(current.getMonth() + 1));
-		this.setState({ current: current });
-		this.getMonthRecords();
+			let current = this.state.current;
+			current.setMonth((direction === 'left')?(current.getMonth() - 1):(current.getMonth() + 1));
+			this.setState({ current: current, loading: true });
+			this.getMonthRecords();
 	}
 
 	transformDate = (date) => {
@@ -198,8 +187,29 @@ class monthRecords extends Component {
 	}
 
 	dayPressedHandler = ( day ) => {
-		const newDate = day.dateString;
-		this.setState( { selectedDate: newDate, showInfoModal: true } );
+		const days = this.state.days;
+		const outDates = this.state.outDates;
+		const dateString = day.dateString;
+
+		if( days[dateString] == null) return;
+		if( days[dateString].isoDate == null){
+			return;
+		}
+
+		const selectedISODate = days[dateString].isoDate;
+		let ISODateToDate = new Date(selectedISODate);
+
+		ISODateToDate.setHours( ISODateToDate.getHours() + 5 );
+
+		const selectedOutISODate = outDates[dateString];
+		let ISOOutDateToDate = new Date (selectedOutISODate);
+		ISOOutDateToDate.setHours( ISOOutDateToDate.getHours() + 5 );
+
+		this.setState( { 
+			showInfoModal: true,
+			selectedDate: dateString,
+			selectedISODate: ISODateToDate, 
+			selectedOutISODate: ISOOutDateToDate } );
 	}
 
 	hideDayInfoModal = () => {
@@ -214,7 +224,7 @@ class monthRecords extends Component {
 		days = {...days, [selectedDate]: {customStyles: customStyles.blueDay}}
 		
 		return (
-			<View style={ styles.monthRecordsContainer }>
+			<View style={ styles.monthRecordsContainer } pointerEvents={(this.state.loading == false )?"auto":"none"} >
 				<Text style={styles.title}>
 					Registros de {this.props.selectedStudent.fullName.substring(0,this.props.selectedStudent.fullName.lastIndexOf(' '))}
 				</Text>
@@ -237,21 +247,26 @@ class monthRecords extends Component {
 					style={calStyles.container}
 					theme={calStyles.theme}
 					markingType={'custom'}
-
-					markedDates={
-						days
-					}
+					markedDates={ days }
 					hideExtraDays={true}
 					onDayPress={this.dayPressedHandler}
-
 					onPressArrowLeft={() => { this.arrowPressedHandler('left') }}
 					onPressArrowRight={() => { this.arrowPressedHandler('right') }}
 				/>
-				<DayInfoModal hide={this.hideDayInfoModal} show={this.state.showInfoModal} />
+				<DayInfoModal hide={this.hideDayInfoModal} show={this.state.showInfoModal} date={ this.state.selectedISODate } outDate={ this.state.selectedOutISODate} />
 			</View>
 		);
 	}
 }
+
+LocaleConfig.locales['es'] = {
+  monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+  monthNamesShort: ['Ene.','Feb.','Mar','Abr.','May.','Jun.','Jul.','Ago.','Sep.','Oct.','Nov.','Dic.'],
+  dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+  dayNamesShort: ['Dom.','Lun.','Mar.','Mie.','Jue.','Vie.','Sab.']
+};
+
+LocaleConfig.defaultLocale = 'es';
 
 const mapStateToProps = state => {
 	return {

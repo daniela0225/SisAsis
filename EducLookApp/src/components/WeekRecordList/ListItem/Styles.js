@@ -10,7 +10,7 @@ const styles = StyleSheet.create ({
 		width: '100%'
 	},
 	primaryText: {
-		fontSize: 18,
+		fontSize: 17,
 		color: '#fff',
 		fontWeight: 'bold',
 		width: '50%'
@@ -22,12 +22,13 @@ const styles = StyleSheet.create ({
 		alignSelf: 'center'
 	},
 	rowContainer: {
+		width: '95%',
 		flexDirection: 'row',
 		margin: 5
 	},
 	rightAlign: {
 		width: '85%',
-		marginLeft: '10%'
+		marginLeft: '15%'
 	},
 	hourContainer: {
 		padding: 5,

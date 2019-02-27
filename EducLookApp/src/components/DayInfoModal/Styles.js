@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
 		height: '100%',
 		backgroundColor: 'rgba(0,0,0,0.5)',
 		flex: 1,
-    	justifyContent: 'center',
-    	alignItems: 'center'
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	modalContainer: {
 		width: '80%',

@@ -4,11 +4,14 @@ import styles from './Styles.js';
 
 import WeekRecordList from '../../components/WeekRecordList/RecordList';
 
+import { connect } from 'react-redux';
+
 class weekRecords extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
+			schedule: {},
 			dates: [
 				{
 					id: Math.random(),
@@ -49,19 +52,59 @@ class weekRecords extends Component {
 		};
 	};
 
+	componentDidMount () {		
+		let config = this.props.schoolConfig;
+		let selectedStudent = this.props.selectedStudent;
+		let schedule = {};
+
+		if(selectedStudent.schedule == 'I'){
+			schedule = config.kinderSchedule;
+		}
+		else if(selectedStudent.schedule == 'P'){
+			schedule = config.primarySchedule;
+		}
+		else if(selectedStudent.schedule == 'S'){
+			schedule = config.secondarySchedule;
+		}
+
+		this.setState({ schedule: schedule });
+	}
+
 	render() {
+
+		let schedule = (this.state.schedule !== undefined)? this.state.schedule : {};
+		
 		return (
 			<View  style={styles.weekRecordsContainer}>
-				<Text style={styles.title}>Registro Semanal de Pedro Perez</Text>
-				<Text style={styles.text}>Hora de entrada establecida: 8:00 A.M.</Text>
-				<Text style={styles.text}>Hora de salida establecida: 2:30 P.M.</Text>
+				<Text style={styles.title}>Registro Semanal de {this.props.selectedStudent.fullName}</Text>
+				<Text style={styles.text}>
+					Hora de entrada establecida: {(schedule.startHour !== undefined)? schedule.startHour : ''}
+				</Text>
+				<Text style={styles.text}>
+					Hora de salida establecida: {(schedule.endHour !== undefined)? schedule.endHour : ''}
+				</Text>
+				<Text style={styles.text}>
+					Tiempo de tolerancia: {(schedule.tolerance !== undefined)? schedule.tolerance : ''} Min.
+				</Text>
 				<View style={styles.recordsContainer}>
 					<WeekRecordList dates={this.state.dates} />
-				</View>	
+				</View>
 			</View>
 		)
 	}
 }
 
-export default weekRecords;
+const mapStateToProps = state => {
+	return {
+		token: state.users.token,
+		selectedStudent: state.students.menuSelectedStudent,
+		schoolConfig: state.schools.configuration
+	};
+};
 
+const mapDispatchToProps = dispatch => {
+	return {
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(weekRecords);

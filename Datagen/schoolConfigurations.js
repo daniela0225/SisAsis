@@ -21,16 +21,16 @@ db.schoolConfigurations.insert({
         },
         vacations : ([
         {       
-                start: ISODate('2019-05-27T00:00:01Z') ,
-                end: ISODate('2019-05-31T00:00:01Z')
+                start: ISODate('2019-05-27T00:00:00Z') ,
+                end: ISODate('2019-05-31T00:00:00Z')
         },
         {
-                start: ISODate('2019-07-26T00:00:01Z'),
-                end: ISODate('2019-08-12T00:00:01Z')
+                start: ISODate('2019-07-26T00:00:00Z'),
+                end: ISODate('2019-08-12T00:00:00Z')
         },
         {
-                start: ISODate('2019-10-21T00:00:01Z'),
-                end: ISODate('2019-10-25T00:00:01Z')
+                start: ISODate('2019-10-21T00:00:00Z'),
+                end: ISODate('2019-10-25T00:00:00Z')
         }
         ])
 

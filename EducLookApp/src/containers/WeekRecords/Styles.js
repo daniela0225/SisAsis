@@ -2,24 +2,25 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create ({
 	weekRecordsContainer: {
-		height: '80%',
-		margin: 20
+		height: '75%',
+		width: '100%',
+		marginTop: 18,
+		flexDirection: 'column'
 	},
 	title: {
 		color: '#0083ff',
-		fontSize: 18,
+		fontSize: 15,
 		fontWeight: 'bold',
-		textAlign: 'center'
+		marginBottom: 8
 	},
 	text: {
 		color: '#0083ff',
 		fontSize: 15,
-		textAlign: 'center'	
+		marginBottom: 3
 	},
 	recordsContainer: {
 		height: '90%',
-		marginLeft: 20,
-		marginRight: 20,
+		width: '100%',
 		marginTop: 20
 	}
 });

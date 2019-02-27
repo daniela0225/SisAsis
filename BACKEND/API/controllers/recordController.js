@@ -158,7 +158,7 @@ module.exports = {
 			});
 	},
 	recordsByStudent: (req,res,next)=>{
-		Record.find({school:req.query.studentId})
+		Record.find({student:req.query.studentId})
 			.select('_id date type')
 			.exec()
 			.then(docs => {

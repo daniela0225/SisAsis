@@ -15,7 +15,7 @@ import logoutIcon from './logoutIcon.png';
 import { connect } from 'react-redux';
 import { setHeaders, signOut } from '../../store/actions/userActions/index';
 import { setStudents } from '../../store/actions/studentActions/index';
-import { setSchoolData } from '../../store/actions/schoolActions/index';
+import { setSchoolData, setSchoolConfig } from '../../store/actions/schoolActions/index';
 import { setActualView } from '../../store/actions/viewActions/index';
 
 import { AsyncStorage } from 'react-native';
@@ -45,11 +45,36 @@ class sideMenu extends Component {
 			this.props.onSetHeaders(headers);
 			this.props.onSetStudents(students);
 			this.props.onSetSchoolData(school);
+
+			this.getSchoolConfiguration();
 		})
 		.catch( (response) => {
 		  //handle error
 			alert(response);
 		});
+	}
+
+	getSchoolConfiguration = () => {
+		const schoolId = this.props.schoolId;
+		const token = this.props.token;
+
+		axios.post('configuraciones/appSchoolConfig',
+			{
+				schoolId: schoolId
+			},
+			{
+				headers: { 
+					"Authorization": 'Bearer ' + token
+			}
+		})
+		.then((response) => {
+			const config = response.data.school;
+			this.props.onSetSchoolConfig(config);
+		})
+		.catch((error) => {
+			console.log(error);
+			alert('Error al obtener los horarios de estudios.');
+		})
 	}
 
 	TutorInfoButtonHandler = () => {
@@ -119,7 +144,8 @@ const mapStateToProps = state => {
 	return {
 		token: state.users.token,
 		headers: state.users.headers,
-		students: state.students.list
+		students: state.students.list,
+		schoolId: state.schools._id
 	};
 };
 
@@ -128,6 +154,7 @@ const mapDispatchToProps = dispatch => {
 		onSetHeaders: (headers) => dispatch(setHeaders(headers)),
 		onSetStudents: (list) => dispatch(setStudents(list)),
 		onSetSchoolData: (school) => dispatch(setSchoolData(school)),
+		onSetSchoolConfig: (config) => dispatch(setSchoolConfig(config)),
 		onSetActualView: (view) => dispatch(setActualView(view)),
 		onSignOut: () => dispatch(signOut())
 	};

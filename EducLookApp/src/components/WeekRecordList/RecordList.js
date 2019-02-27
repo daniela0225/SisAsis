@@ -24,7 +24,7 @@ const recordList = (props) => {
 const styles = StyleSheet.create ({
 	listContainer: {
 		width: '100%',
-		padding: 10
+		padding: 5
 	}
 });
 
